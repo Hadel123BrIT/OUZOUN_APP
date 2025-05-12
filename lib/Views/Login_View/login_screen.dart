@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Constances/all_colors.dart';
+import 'package:ouzoun/Core/Services/mediaQuery.dart';
+import '../../Widgets/CustomButton.dart';
+import '../../Widgets/CustomText.dart';
 import '../../Widgets/CustomTextForm.dart';
 import '../../Widgets/logo.dart';
 import '../Doctor_Choices/doctor_choices_screen.dart';
@@ -16,10 +19,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final screenWidth = mediaQuery.size.width;
-    final screenHeight = mediaQuery.size.height;
-
+    final media = MediaQueryHelper(context);
     return Scaffold(
       backgroundColor: background,
       body: Obx(() => _controller.isLoading.value
@@ -31,41 +31,38 @@ class LoginScreen extends StatelessWidget {
           width: 150
       ))
           : Container(
-        padding: EdgeInsets.all(screenWidth * 0.05),
+        padding: EdgeInsets.all(media.width * 0.05),
         child: ListView(
           children: [
             Form(
               key: _controller.formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: screenHeight * 0.06),
-                  logo(),
-                  SizedBox(height: screenHeight * 0.02),
-                  Text(
-                    "Login",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.08,
-                    ),
+                  SizedBox(height: media.height * 0.06),
+                  Customtext(
+                    textAlign: TextAlign.center,
+                    fontFamily: 'Ubuntu',
+                    fontSize:media.isPortrait
+                        ? media.width * 0.09
+                        : media.height * 0.09,
+                    isbold: true,
+                    color: Colors.black87,
+                    text: "Log In",
                   ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Text(
-                    "Login To Continue Using The App",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: screenWidth * 0.04,
-                    ),
+                  SizedBox(height: media.height * 0.04),
+                  Customtext(
+                    textAlign: TextAlign.center,
+                    fontFamily: 'Montserrat',
+                    fontSize:media.isPortrait
+                        ? media.width * 0.04
+                        : media.height * 0.04,
+                    isbold: false,
+                    color: Colors.black,
+                    text: "Log in to your account and then continue using this app",
+                    max: 2,
                   ),
-                  SizedBox(height: screenHeight * 0.02),
-                  Text(
-                    "Email",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.045,
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.01),
+                   SizedBox(height: media.height * 0.08),
                   CustomTextForm(
                     validator: (val) {
                       if (val == null || val.isEmpty) {
@@ -74,18 +71,14 @@ class LoginScreen extends StatelessWidget {
                       return null;
                     },
                     mycontroller: _controller.emailController,
-                    hinttext: 'Enter Your Email', obscureText: false,
+                    hinttext: "Enter your Email",
+                    obscureText: false,
                   ),
-                  SizedBox(height: screenHeight * 0.02),
-                  Text(
-                    "Password",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.045,
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.02),
+                  SizedBox(height: media.height * 0.05),
                   CustomTextForm(
+                    suffixIcon: Icon(Icons.remove_red_eye_outlined,
+                    color: Colors.grey[500],
+                    ),
                     validator: (val) {
                       if (val == null || val.isEmpty) {
                         return "Password must not be empty";
@@ -96,86 +89,33 @@ class LoginScreen extends StatelessWidget {
                     mycontroller: _controller.passwordController,
                     hinttext: 'Enter Your Password',
                   ),
+                  SizedBox(height: media.height * 0.01),
                   InkWell(
                     onTap: () => {},
                     child: Container(
                       alignment: Alignment.topRight,
                       margin: EdgeInsets.only(
-                        top: screenHeight * 0.01,
-                        bottom: screenHeight * 0.02,
+                        top: media.height * 0.01,
+                        bottom: media.height * 0.02,
                       ),
                       child: Text(
                         "Forgot Password ?",
                         style: TextStyle(
-                          fontSize: screenWidth * 0.04,
+                          fontSize: media.width * 0.04,
                           color: green
                         ),
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      color: background,
-                      textColor: Colors.black,
-                      onPressed: () => {Get.to(DoctorChoicesScreen())},
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.04,
-                        ),
-                      ),
-                    ),
+                  SizedBox(height: media.height * 0.08),
+                  Custombutton(
+                    onTap: (){
+                      Get.to(DoctorChoicesScreen());
+                    },
+                    text: 'Login', color: green,
+
                   ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Or",
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    alignment: Alignment.center,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      color: background,
-                      textColor: Colors.white,
-                      onPressed:(){},
-                      child: SizedBox(
-                        width: screenWidth * 0.5,
-                        child: Row(
-                          children: [
-                            TextButton(
-                              onPressed: (){},
-                              child: Text(
-                                "Login with Google",
-                                style: TextStyle(
-                                    fontSize: screenWidth * 0.04,
-                                    color: Colors.black
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: screenWidth * 0.03),
-                            Image.asset(
-                              "assets/images/4.png",
-                              width: screenWidth * 0.05,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.04),
+                  SizedBox(height: media.height * 0.15),
                   Container(
                     alignment: Alignment.center,
                     child: InkWell(
@@ -187,7 +127,8 @@ class LoginScreen extends StatelessWidget {
                           TextSpan(text: "Don't have an account ? ",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: screenWidth * 0.04,
+                                fontSize: media.width * 0.04,
+                                fontFamily: "Montserrat",
                               )
                           ),
                           TextSpan(
@@ -195,7 +136,8 @@ class LoginScreen extends StatelessWidget {
                             style: TextStyle(
                               color: green,
                               fontWeight: FontWeight.bold,
-                              fontSize: screenWidth * 0.04,
+                              fontSize: media.width * 0.04,
+                              fontFamily: "Montserrat",
                             ),
                           ),
                         ]),

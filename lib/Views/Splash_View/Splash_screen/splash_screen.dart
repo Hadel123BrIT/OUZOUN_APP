@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ouzoun/Core/Services/mediaQuery.dart';
 import 'package:ouzoun/Views/Login_View/login_screen.dart';
 import 'package:ouzoun/Views/Splash_View/Splash_screen/page1.dart';
 import 'package:ouzoun/Views/Splash_View/Splash_screen/page2.dart';
 import 'package:ouzoun/Views/Splash_View/Splash_screen/page3.dart';
 import '../../../Routes/AppRoutes.dart';
+import '../../../Widgets/CustomText.dart';
 import '../../../core/constances/all_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -26,10 +28,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     @override
-
-    final mediaQuery = MediaQuery.of(context);
+    final media = MediaQueryHelper(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: background,
       body: Stack(
         children: [
           PageView(
@@ -51,21 +52,24 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    child: Text("skip",
-                      style: TextStyle(
-                        fontSize: mediaQuery.size.width * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Customtext(
+                      textAlign: TextAlign.center,
+                      fontFamily: 'Montserrat',
+                      fontSize:media.width*0.05,
+                      isbold: true,
+                      color: Colors.black,
+                      text: "skip",
                     ),
                     onTap: (){
                       splashController.jumpToPage(2);
                     },
                   ),
+
                   SmoothPageIndicator(
                     controller: splashController,
                     count: 3,
                     effect: WormEffect(
-                      activeDotColor: green,
+                      activeDotColor: greenlight,
                       dotColor: Colors.grey,
                     ),
                   ),
@@ -74,22 +78,26 @@ class _SplashScreenState extends State<SplashScreen> {
                     onTap: (){
                       Get.to(LoginScreen());
                     },
-                    child: Text("done",
-                      style: TextStyle(
-                        fontSize: mediaQuery.size.width * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Customtext(
+                      textAlign: TextAlign.center,
+                      fontFamily: 'Montserrat',
+                      fontSize:media.width*0.05,
+                      isbold: true,
+                      color: Colors.black,
+                      text: "done",
                     ),
                   ):
                   GestureDetector(
                     onTap: (){
                       splashController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeInOut );
                     },
-                    child: Text("next",
-                      style: TextStyle(
-                        fontSize: mediaQuery.size.width * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Customtext(
+                      textAlign: TextAlign.center,
+                      fontFamily: 'Montserrat',
+                      fontSize:media.width*0.05,
+                      isbold: true,
+                      color: Colors.black,
+                      text: "next",
                     ),
                   ),
                 ],

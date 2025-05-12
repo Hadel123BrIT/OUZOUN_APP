@@ -62,6 +62,14 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-B.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
   assets:
      - assets/images/
      - assets/icons/
