@@ -13,7 +13,7 @@ class Custombutton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: color,
+        color:green,
         borderRadius: BorderRadius.circular(20),
       ),
       width: double.infinity,
@@ -23,16 +23,7 @@ class Custombutton extends StatelessWidget {
           onTap!();
         },
         child:Center(
-          child: Customtext
-            (
-            fontFamily: 'Montserrat',
-            fontSize: 20,
-            isbold: true,
-            color: background,
-            text: text,
-            textAlign: TextAlign.center,
-
-          ),
+          child:Text(text,style:Theme.of(context).textTheme.headlineLarge,)
         ),
       ),
     );

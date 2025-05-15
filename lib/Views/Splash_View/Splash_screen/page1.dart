@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Constances/all_images.dart';
@@ -13,34 +14,15 @@ class Page1 extends StatelessWidget {
     final media = MediaQueryHelper(context);
 
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Customtext(
-              textAlign: TextAlign.center,
-              fontFamily: 'Ubuntu',
-              fontSize:media.isPortrait
-                  ? media.width * 0.1
-                  : media.height * 0.1,
-              isbold: true,
-              color: Colors.black87,
-              text: "Welcome",
-            ),
+            Text("Welcome".tr,textAlign:TextAlign.center,style: Theme.of(context).textTheme.titleLarge,),
             SizedBox(height: media.height * 0.03),
-            Customtext(
-              textAlign: TextAlign.center,
-              fontFamily: 'Montserrat',
-              fontSize:media.isPortrait
-                  ? media.width * 0.06
-                  : media.height * 0.06,
-              isbold: false,
-              color: Colors.grey.withOpacity(0.7),
-              text: "Are you a dentist?",
-            ),
-
+            Text("Are you a dentist?".tr,textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
             SizedBox(height: media.height * 0.1),
             Image.asset(
               AppAssets.welcomeImage,

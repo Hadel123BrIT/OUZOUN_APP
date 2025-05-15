@@ -4,4 +4,6 @@ class AppAssets {
   static const String page2='assets/icons/10369801.jpg';
   static const String welcomeImage = 'assets/icons/10363302.jpg';
   static const String page3='assets/icons/dental-care (1).png';
+  static const String Choice1='assets/icons/dentist person.png';
+  static const String Choice2='assets/icons/dentist (1).png';
 }

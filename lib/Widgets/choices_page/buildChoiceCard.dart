@@ -1,5 +1,6 @@
 // widgets/choice_card.dart
 import 'package:flutter/material.dart';
+import 'package:ouzoun/Core/Constances/all_colors.dart';
 
 class ChoiceCard extends StatelessWidget {
   final IconData icon;
@@ -30,9 +31,11 @@ class ChoiceCard extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(15),
           child: Container(
-            height: 180,
+            padding:EdgeInsets.all(10),
+             alignment:Alignment.center,
+            height: 175,
             decoration: BoxDecoration(
-              color: color,
+              color: green,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
@@ -45,24 +48,20 @@ class ChoiceCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, size: 50, color: textColor),
+                Icon(icon, size: 45, color: textColor),
                 const SizedBox(height: 15),
                 Text(
                   title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                  ),
+                  textAlign:TextAlign.center,
+                  style:Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 5),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: textColor.withOpacity(0.7),
-                  ),
-                ),
+            Text(
+              subtitle,
+              textAlign:TextAlign.center,
+              style:Theme.of(context).textTheme.headlineMedium,
+            ),
+
               ],
             ),
           ),

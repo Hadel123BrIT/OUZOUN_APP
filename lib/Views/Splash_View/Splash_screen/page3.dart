@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Constances/all_images.dart';
 import 'package:ouzoun/Core/Services/mediaQuery.dart';
@@ -14,33 +15,14 @@ class Page3 extends StatelessWidget {
   final media=MediaQueryHelper(context);
 
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor:Theme.of(context).colorScheme.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Customtext(
-              textAlign: TextAlign.center,
-              fontFamily: 'Ubuntu',
-              fontSize:media.isPortrait
-                  ? media.width * 0.1
-                  : media.height * 0.1,
-              isbold: true,
-              color: Colors.black87,
-              text: "Don't worry",
-            ),
+            Text("Don't worry".tr,textAlign: TextAlign.center,style: Theme.of(context).textTheme.titleLarge,),
             SizedBox(height: media.height * 0.02),
-            Customtext(
-              textAlign: TextAlign.center,
-              max: 2,
-              fontFamily: 'Montserrat',
-              fontSize:media.isPortrait
-                  ? media.width * 0.06
-                  : media.height * 0.06,
-              isbold: false,
-              color: Colors.grey.withOpacity(0.7),
-              text: "this App helps you, Let's start",
-            ),
+            Text("this App helps you, Let's start".tr,textAlign: TextAlign.center,style: Theme.of(context).textTheme.titleMedium,),
             SizedBox(height: media.height * 0.065),
             Image.asset(
               AppAssets.page3,

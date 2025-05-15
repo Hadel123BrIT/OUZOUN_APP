@@ -6,15 +6,16 @@ import 'package:ouzoun/Core/Services/mediaQuery.dart';
 import 'package:ouzoun/Views/Register_View/register_controller.dart';
 import '../../../Widgets/CustomTextForm.dart';
 import '../../../Widgets/logo.dart';
+import '../../Routes/AppRoutes.dart' show AppRoutes;
 import '../../Widgets/CustomButton.dart';
 import '../../Widgets/CustomText.dart';
-import '../Doctor_Choices/doctor_choices_screen.dart';
+import '../Doctor_Choices/first_page_choices.dart';
 import '../Login_View/login_screen.dart';
 
 
 
 class RegisterScreen extends StatelessWidget {
-  final RegisterController _controller = Get.put(RegisterController());
+  final RegisterController _controller =Get.find();
 
   RegisterScreen({super.key});
 
@@ -23,7 +24,7 @@ class RegisterScreen extends StatelessWidget {
    final media=MediaQueryHelper(context);
     final formKey = GlobalKey<FormState>();
     return Scaffold(
-        backgroundColor:  background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body:Obx(() => _controller.isLoading.value
             ?  Center(child: Lottie.asset(
             'assets/animations/Animation - 1740348375718.json',
@@ -42,62 +43,43 @@ class RegisterScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: media.height * 0.04),
-                    Customtext(
-                      textAlign: TextAlign.center,
-                      fontFamily: 'Ubuntu',
-                      fontSize:media.isPortrait
-                          ? media.width * 0.09
-                          : media.height * 0.09,
-                      isbold: true,
-                      color: Colors.black87,
-                      text: "Sign Up",
-                    ),
+                    Text("Sign Up".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
                     SizedBox(height: media.height * 0.04),
-                    Customtext(
-                      textAlign: TextAlign.center,
-                      fontFamily: 'Montserrat',
-                      fontSize:media.isPortrait
-                          ? media.width * 0.04
-                          : media.height * 0.04,
-                      isbold: false,
-                      color: Colors.black,
-                      text: "Sign in to your account and then continue using this app",
-                      max: 2,
-                    ),
+                    Text("Sign in to your account and then continue using this app".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
                     SizedBox(height: media.height * 0.04),
                     CustomTextForm(
                       validator: (val) {
                         if (val == null || val.isEmpty) {
-                          return "Email must not be empty";
+                          return "Email must not be empty".tr;
                         }
                         return null;
                       },
                       mycontroller: _controller.emailController,
-                      hinttext: "Enter your Name",
+                      hinttext: "Enter your Name".tr,
                       obscureText: false,
                     ),
                     SizedBox(height: media.height * 0.05),
                     CustomTextForm(
                       validator: (val) {
                         if (val == null || val.isEmpty) {
-                          return "Email must not be empty";
+                          return "Email must not be empty".tr;
                         }
                         return null;
                       },
                       mycontroller: _controller.emailController,
-                      hinttext: "Enter your phone",
+                      hinttext: "Enter your phone".tr,
                       obscureText: false,
                     ),
                     SizedBox(height: media.height * 0.05),
                     CustomTextForm(
                       validator: (val) {
                         if (val == null || val.isEmpty) {
-                          return "Email must not be empty";
+                          return "Email must not be empty".tr;
                         }
                         return null;
                       },
                       mycontroller: _controller.emailController,
-                      hinttext: "Enter your Email",
+                      hinttext: "Enter your Email".tr,
                       obscureText: false,
                     ),
                     SizedBox(height: media.height * 0.05),
@@ -107,13 +89,13 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       validator: (val) {
                         if (val == null || val.isEmpty) {
-                          return "Password must not be empty";
+                          return "Password must not be empty".tr;
                         }
                         return null;
                       },
                       obscureText: true,
                       mycontroller: _controller.passwordController,
-                      hinttext: 'Enter Your Password',
+                      hinttext: 'Enter Your Password'.tr,
                     ),
                     SizedBox(height: media.height * 0.01),
                     InkWell(
@@ -125,7 +107,7 @@ class RegisterScreen extends StatelessWidget {
                           bottom: media.height * 0.02,
                         ),
                         child: Text(
-                          "Forgot Password ?",
+                          "Forgot Password ?".tr,
                           style: TextStyle(
                               fontSize: media.width * 0.04,
                               color: green
@@ -136,9 +118,9 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(height: media.height * 0.02),
                     Custombutton(
                       onTap: (){
-                        Get.to(DoctorChoicesScreen());
+                      Get.offAllNamed(AppRoutes.firstchoice);
                       },
-                      text: 'Sign Up', color: green,
+                      text: 'Sign Up'.tr, color: green,
 
                     ),
                     SizedBox(height: media.height * 0.05),
@@ -150,7 +132,7 @@ class RegisterScreen extends StatelessWidget {
                         },
                         child: Text.rich(
                           TextSpan(children: [
-                            TextSpan(text: "you have an account ? ",
+                            TextSpan(text: "you have an account ? ".tr,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: media.width * 0.04,
@@ -158,7 +140,7 @@ class RegisterScreen extends StatelessWidget {
                                 )
                             ),
                             TextSpan(
-                              text: "Login",
+                              text: "Login".tr,
                               style: TextStyle(
                                 color: green,
                                 fontWeight: FontWeight.bold,

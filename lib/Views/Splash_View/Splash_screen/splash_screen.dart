@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Services/mediaQuery.dart';
 import 'package:ouzoun/Views/Login_View/login_screen.dart';
@@ -30,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     @override
     final media = MediaQueryHelper(context);
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor:Theme.of(context).colorScheme.background,
       body: Stack(
         children: [
           PageView(
@@ -52,14 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    child: Customtext(
-                      textAlign: TextAlign.center,
-                      fontFamily: 'Montserrat',
-                      fontSize:media.width*0.05,
-                      isbold: true,
-                      color: Colors.black,
-                      text: "skip",
-                    ),
+                    child:Text("skip".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,),
                     onTap: (){
                       splashController.jumpToPage(2);
                     },
@@ -76,29 +68,15 @@ class _SplashScreenState extends State<SplashScreen> {
                   onlastPage?
                   GestureDetector(
                     onTap: (){
-                      Get.to(LoginScreen());
+                      Get.toNamed(AppRoutes.login);
                     },
-                    child: Customtext(
-                      textAlign: TextAlign.center,
-                      fontFamily: 'Montserrat',
-                      fontSize:media.width*0.05,
-                      isbold: true,
-                      color: Colors.black,
-                      text: "done",
-                    ),
+                    child:  Text("done".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,),
                   ):
                   GestureDetector(
                     onTap: (){
                       splashController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeInOut );
                     },
-                    child: Customtext(
-                      textAlign: TextAlign.center,
-                      fontFamily: 'Montserrat',
-                      fontSize:media.width*0.05,
-                      isbold: true,
-                      color: Colors.black,
-                      text: "next",
-                    ),
+                    child:  Text("next".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,)
                   ),
                 ],
               )),

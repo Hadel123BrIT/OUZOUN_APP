@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:ouzoun/Core/Constances/all_images.dart';
 import 'package:ouzoun/Core/Services/mediaQuery.dart';
 import '../../../Core/Constances/all_colors.dart';
@@ -12,44 +13,21 @@ class Page2 extends StatelessWidget {
     final media=MediaQueryHelper(context);
 
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Customtext(
-              textAlign: TextAlign.center,
-              fontFamily: 'Ubuntu',
-              fontSize:media.isPortrait
-                  ? media.width * 0.1
-                  : media.height * 0.1,
-              isbold: true,
-              color: Colors.black87,
-              text: "And",
-            ),
-
+            Text("And".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
             SizedBox(height: media.height * 0.03),
-
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: media.width * 0.05
               ),
-              child: Customtext(
-                textAlign: TextAlign.center,
-                max: 2,
-                fontFamily: 'Montserrat',
-                fontSize:media.isPortrait
-                    ? media.width * 0.06
-                    : media.height * 0.06,
-                isbold: false,
-                color: Colors.grey.withOpacity(0.7),
-                text: "you Find difficult to choose the assistant and tools",
-              ),
+              child: Text("you Find difficult to choose the assistant and tools".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
             ),
-
             SizedBox(height: media.height * 0.07),
-
             Image.asset(
               AppAssets.page2,
               fit: BoxFit.contain,
