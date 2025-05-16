@@ -20,9 +20,13 @@ class Page1 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Welcome".tr,textAlign:TextAlign.center,style: Theme.of(context).textTheme.titleLarge,),
+            Text("Welcome".tr,
+              textAlign:TextAlign.center,
+              style: Theme.of(context).textTheme.titleLarge,),
             SizedBox(height: media.height * 0.03),
-            Text("Are you a dentist?".tr,textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
+            Text("Are you a dentist?".tr,
+              textAlign: TextAlign.center,
+              style:Theme.of(context).textTheme.titleMedium,),
             SizedBox(height: media.height * 0.1),
             Image.asset(
               AppAssets.welcomeImage,

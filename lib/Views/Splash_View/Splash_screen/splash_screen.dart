@@ -51,12 +51,13 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    child:Text("skip".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,),
+                    child:Text("skip".tr,
+                      textAlign: TextAlign.center,
+                      style:Theme.of(context).textTheme.headlineSmall,),
                     onTap: (){
                       splashController.jumpToPage(2);
                     },
                   ),
-
                   SmoothPageIndicator(
                     controller: splashController,
                     count: 3,
@@ -70,13 +71,16 @@ class _SplashScreenState extends State<SplashScreen> {
                     onTap: (){
                       Get.toNamed(AppRoutes.login);
                     },
-                    child:  Text("done".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,),
+                    child:  Text("done".tr,
+                      textAlign: TextAlign.center,
+                      style:Theme.of(context).textTheme.headlineSmall,),
                   ):
                   GestureDetector(
                     onTap: (){
                       splashController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeInOut );
                     },
-                    child:  Text("next".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,)
+                    child:  Text("next".tr,
+                      textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,)
                   ),
                 ],
               )),

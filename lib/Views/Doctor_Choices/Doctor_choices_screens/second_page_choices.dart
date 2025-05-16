@@ -1,21 +1,23 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:ouzoun/Routes/AppRoutes.dart';
-import 'package:ouzoun/Widgets/CustomText.dart';
-import '../../Core/Constances/all_colors.dart';
-import '../../Core/Constances/all_images.dart';
-import '../../Widgets/choices_page/buildChoiceCard.dart';
+import '../../../Core/Constances/all_colors.dart';
+import '../../../Core/Constances/all_images.dart' show AppAssets;
+import '../../../Widgets/CustomText.dart';
+import '../../../Widgets/choices_page/buildChoiceCard.dart';
 
-class FirstPageChoices extends StatelessWidget {
-  const FirstPageChoices({super.key});
+class SecondPageChoices extends StatelessWidget {
+  const SecondPageChoices({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-
-    return Scaffold(
+    return  Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background,
       body: Container(
         width: screenSize.width,
@@ -25,16 +27,15 @@ class FirstPageChoices extends StatelessWidget {
           shape: BoxShape.rectangle,
           image: const DecorationImage(
             opacity:0.8,
-            scale: 0.40,
-            image: AssetImage(AppAssets.Choice1),
+            image: AssetImage(AppAssets.Choice2),
             fit: BoxFit.fitWidth,
           ),
-          color: Theme.of(context).colorScheme.background,
+          color:Theme.of(context).colorScheme.background,
         ),
         child: Column(
           children: [
-            const SizedBox(height: 70),
-            Text("Welcome to your app.\n Please select your need.",textAlign:TextAlign.center,style:Theme.of(context).textTheme.titleLarge),
+            SizedBox(height: 70),
+            Text("please choose.\nHow can we help you",textAlign:TextAlign.center,style:Theme.of(context).textTheme.titleLarge),
             SizedBox(height: screenSize.height * 0.4),
             Expanded(
               child: Padding(
@@ -45,26 +46,26 @@ class FirstPageChoices extends StatelessWidget {
                      ChoiceCard(
                         color:green,
                         height: isPortrait ? screenSize.height * 0.20 : screenSize.height * 0.4,
-                        icon: FontAwesomeIcons.userDoctor,
+                        icon: FontAwesomeIcons.handsHelping,
                         onTap: () {
-                         Get.toNamed(AppRoutes.secondchoice);
+                          Get.toNamed(AppRoutes.bookTool);
                         },
                         subtitle: '',
                         textColor: background,
-                        title: 'Surgical operation',
+                        title: 'With an assistant',
                       ),
 
                     const SizedBox(width: 20),
-                   ChoiceCard(
+                     ChoiceCard(
                         color:green,
                         height: isPortrait ? screenSize.height * 0.20 : screenSize.height * 0.4,
-                        icon: Icons.inventory_2,
+                        icon:FontAwesomeIcons.userSlash,
                         onTap: () {
-
+                          Get.toNamed(AppRoutes.bookTool);
                         },
                         subtitle: '',
                         textColor: background,
-                        title: 'Medical supplies.',
+                        title: 'without an assistant',
                       ),
 
                   ],

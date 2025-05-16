@@ -6,4 +6,5 @@
   static const splash = '/splash';
   static const firstchoice='/choice1';
   static const secondchoice='/choice2';
+  static const bookTool='/book';
 }

@@ -48,7 +48,8 @@ class ChoiceCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, size: 45, color: textColor),
+                Icon(icon, size: 45,
+                    color: textColor),
                 const SizedBox(height: 15),
                 Text(
                   title,

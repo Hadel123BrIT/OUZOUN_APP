@@ -9,7 +9,7 @@ import '../../../Widgets/logo.dart';
 import '../../Routes/AppRoutes.dart' show AppRoutes;
 import '../../Widgets/CustomButton.dart';
 import '../../Widgets/CustomText.dart';
-import '../Doctor_Choices/first_page_choices.dart';
+import '../Doctor_Choices/Doctor_choices_screens/first_page_choices.dart';
 import '../Login_View/login_screen.dart';
 
 
@@ -34,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
             width: 150
         ))
             : Container(
-          padding: EdgeInsets.all(media.width * 0.05),
+          padding: EdgeInsets.symmetric(horizontal: media.width * 0.04,vertical: media.width * 0.03),
           child: ListView(
             children: [
               Form(
@@ -50,12 +50,24 @@ class RegisterScreen extends StatelessWidget {
                     CustomTextForm(
                       validator: (val) {
                         if (val == null || val.isEmpty) {
-                          return "Email must not be empty".tr;
+                          return "Name must not be empty".tr;
                         }
                         return null;
                       },
                       mycontroller: _controller.emailController,
                       hinttext: "Enter your Name".tr,
+                      obscureText: false,
+                    ),
+                    SizedBox(height: media.height * 0.05),
+                    CustomTextForm(
+                      validator: (val) {
+                        if (val == null || val.isEmpty) {
+                          return "location must not be empty".tr;
+                        }
+                        return null;
+                      },
+                      mycontroller: _controller.emailController,
+                      hinttext: "Enter your Location".tr,
                       obscureText: false,
                     ),
                     SizedBox(height: media.height * 0.05),
@@ -109,7 +121,8 @@ class RegisterScreen extends StatelessWidget {
                         child: Text(
                           "Forgot Password ?".tr,
                           style: TextStyle(
-                              fontSize: media.width * 0.04,
+                            fontFamily: 'Montserrat',
+                              fontSize: media.width * 0.03,
                               color: green
                           ),
                         ),
@@ -118,7 +131,7 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(height: media.height * 0.02),
                     Custombutton(
                       onTap: (){
-                      Get.offAllNamed(AppRoutes.firstchoice);
+                      Get.toNamed(AppRoutes.firstchoice);
                       },
                       text: 'Sign Up'.tr, color: green,
 

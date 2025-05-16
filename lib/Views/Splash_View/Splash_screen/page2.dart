@@ -19,13 +19,15 @@ class Page2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("And".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
+            Text("And".tr,
+              textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
             SizedBox(height: media.height * 0.03),
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: media.width * 0.05
               ),
-              child: Text("you Find difficult to choose the assistant and tools".tr, textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
+              child: Text("you Find difficult to choose the assistant and tools".tr,
+                textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
             ),
             SizedBox(height: media.height * 0.07),
             Image.asset(

@@ -8,13 +8,13 @@ import '../../Widgets/CustomButton.dart';
 import '../../Widgets/CustomText.dart';
 import '../../Widgets/CustomTextForm.dart';
 import '../../Widgets/logo.dart';
-import '../Doctor_Choices/first_page_choices.dart';
+import '../Doctor_Choices/Doctor_choices_screens/first_page_choices.dart';
 import '../Register_View/register_screen.dart';
 import 'login_controller.dart';
 
 
 class LoginScreen extends StatelessWidget {
-  final LoginController _controller = Get.find();
+  final LoginController _controller = Get.put(LoginController());
 
   LoginScreen({super.key});
 
@@ -83,7 +83,8 @@ class LoginScreen extends StatelessWidget {
                       child: Text(
                         "Forgot Password ?".tr,
                         style: TextStyle(
-                          fontSize: media.width * 0.04,
+                          fontFamily: 'Montserrat',
+                          fontSize: media.width * 0.03,
                           color: green
                         ),
                       ),
@@ -92,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: media.height * 0.08),
                   Custombutton(
                     onTap: (){
-                      Get.offAllNamed(AppRoutes.firstchoice);
+                      Get.toNamed(AppRoutes.firstchoice);
                     },
                     text: 'Login'.tr, color: green,
 
