@@ -73,7 +73,9 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: media.height * 0.01),
                   InkWell(
-                    onTap: () => {},
+                    onTap: () => {
+                      Get.toNamed(AppRoutes.chekEmail),
+                    },
                     child: Container(
                       alignment: Alignment.topRight,
                       margin: EdgeInsets.only(
