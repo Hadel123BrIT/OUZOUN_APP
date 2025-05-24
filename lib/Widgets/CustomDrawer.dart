@@ -3,12 +3,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:ouzoun/Core/Constances/all_colors.dart';
+import 'package:ouzoun/Views/About_Us_View/About_us_screen.dart';
+import 'package:ouzoun/Views/Setting_View/Setting_Screen/setting_screen.dart';
+import '../Core/Constances/all_images.dart';
+import '../Core/Services/mediaQuery.dart';
 import '../Models/DrawItemModel.dart';
 import 'CustomViewItemList.dart';
 
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({super.key}); // أضف constructor
+  const CustomDrawer({super.key});
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -19,13 +23,17 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
     DrawItemModel(text: 'HOMEPAGE', icon: Icons.home, function: (){
 
     }, ),
-    DrawItemModel(text: 'SETTING', icon: Icons.settings,function: (){
-
-    }),
-    // DrawItemModel(text: 'NOTLFICATIONS', icon: Icons.notifications_active_sharp,function: (){}),
     DrawItemModel(text: 'MYPROFILE', icon: Icons.person,function: (){
 
     }),
+    DrawItemModel(text: 'ABOUT US', icon: Icons.info,function: (){
+      Get.to(AboutUsScreen());
+    }),
+
+    DrawItemModel(text: 'SETTING', icon: Icons.settings,function: (){
+      Get.to(SettingsScreen());
+    }),
+
     DrawItemModel(text: 'LOGOUT', icon: Icons.logout,function: ()async{
 
   }),
@@ -63,8 +71,9 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
+    final media=MediaQueryHelper(context);
     return Drawer(
-      backgroundColor: background,
+      backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 0,
       child: Column(
         children: [
@@ -76,14 +85,20 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
               ),
             ),
             child: DrawerHeader(
-              child: Icon(
-                FontAwesomeIcons.solidHeart,
-                size: 56,
-                color: greenlight,
+              child:  Image.asset(
+                AppAssets.page3,
+                 scale: 4.5,
+
               ),
+              // child: Icon(
+              //   // FontAwesomeIcons.solidHeart,
+              //
+              //   size: 56,
+              //   color: green,
+              // ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 45),
           CustomViewItemList(items: items),
         ],
       ),

@@ -1,14 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:ouzoun/Views/ForgetPassword/resetpagecontroller.dart';
-
-import '../../Core/Constances/all_colors.dart';
-import '../../Core/Services/mediaQuery.dart';
-import '../../Widgets/CustomButton.dart';
-import '../../Widgets/CustomTextForm.dart';
+import '../../../Core/Constances/all_colors.dart';
+import '../../../Core/Services/mediaQuery.dart';
+import '../../../Widgets/CustomButton.dart';
+import '../../../Widgets/CustomTextForm.dart';
+import '../ForgetPassword_Controller/resetpagecontroller.dart';
 
 class Resetpasswordpage extends StatelessWidget {
   const Resetpasswordpage({super.key});
@@ -33,7 +30,7 @@ class Resetpasswordpage extends StatelessWidget {
               SizedBox(height: media.height * 0.05),
               CustomTextForm(
                 hinttext:"Enter your Password",
-                suffixIcon:Icon(Icons.lock_outline),
+                suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,
                 mycontroller:controller.resetPassword,
                 validator:(val) {
@@ -46,7 +43,7 @@ class Resetpasswordpage extends StatelessWidget {
               SizedBox(height: media.height * 0.05),
               CustomTextForm(
                 hinttext:"confirm your Password",
-                suffixIcon:Icon(Icons.lock_open),
+                suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,
                 mycontroller:controller.confirmresetPassword,
                 validator:(val) {

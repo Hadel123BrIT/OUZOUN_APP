@@ -9,7 +9,6 @@ import '../../../Widgets/logo.dart';
 import '../../Routes/AppRoutes.dart' show AppRoutes;
 import '../../Widgets/CustomButton.dart';
 import '../../Widgets/CustomText.dart';
-import '../Doctor_Choices/Doctor_choices_screens/first_page_choices.dart';
 import '../Login_View/login_screen.dart';
 
 
@@ -111,7 +110,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     SizedBox(height: media.height * 0.01),
                     InkWell(
-                      onTap: () => {},
+                      onTap: () => {
+                        Get.toNamed(AppRoutes.chekEmail),
+                      },
                       child: Container(
                         alignment: Alignment.topRight,
                         margin: EdgeInsets.only(

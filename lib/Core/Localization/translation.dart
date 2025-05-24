@@ -37,6 +37,7 @@ class MyTranslatin extends Translations{
           'Login':'Login',
           "Don't have an account ? ":"Don't have an account ? ",
           "Register":  "Register",
+          "Choose what do you want.":"Choose what do you want.",
     },
 
 
@@ -77,6 +78,7 @@ class MyTranslatin extends Translations{
           'Login':'سجل دخول',
           "Don't have an account ? ":"ليس لديك حساب؟",
           "Register":"سجل",
+      "Choose what do you want.":"اختر ما تريد",
     }
   };
 

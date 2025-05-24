@@ -1,14 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/mediaQuery.dart';
-import 'package:ouzoun/Views/ForgetPassword/checkemailcontroller.dart';
-
-import '../../Core/Constances/all_colors.dart';
-import '../../Widgets/CustomButton.dart';
-import '../../Widgets/CustomTextForm.dart';
+import '../../../Core/Constances/all_colors.dart';
+import '../../../Widgets/CustomButton.dart';
+import '../../../Widgets/CustomTextForm.dart';
+import '../ForgetPassword_Controller/checkemailcontroller.dart';
 
 class Chekemail extends StatelessWidget {
   const Chekemail({super.key});

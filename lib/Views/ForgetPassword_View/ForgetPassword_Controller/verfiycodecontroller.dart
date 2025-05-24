@@ -7,7 +7,7 @@ void verfiycode(){
 
 }
 void goToreset(){
-  Get.offAllNamed(AppRoutes.resetpage);
+  Get.toNamed(AppRoutes.resetpage);
 }
 
 }

@@ -14,7 +14,7 @@ ThemeData lightMode=ThemeData(
    headlineSmall:TextStyle(fontFamily: 'Montserrat', fontSize: 15, color:black,fontWeight:FontWeight.bold),
    titleLarge:TextStyle(color:black,fontFamily:'Ubuntu',fontWeight:FontWeight.bold,fontSize:25),
    titleMedium: TextStyle(fontFamily:'Montserrat',color:Colors.grey,fontSize:15),
-    titleSmall: TextStyle(fontFamily:'Montserrat',color:Colors.black,fontSize:20,fontWeight:FontWeight.bold,),
+    titleSmall: TextStyle(fontFamily:'Montserrat',color:Colors.white,fontSize:20,fontWeight:FontWeight.bold,),
   ),);
 ThemeData darkMode=ThemeData(
   brightness: Brightness.dark,
@@ -26,7 +26,7 @@ ThemeData darkMode=ThemeData(
     headlineSmall:TextStyle(fontFamily: 'Montserrat', fontSize: 15, color:background,fontWeight:FontWeight.bold),
     titleLarge:TextStyle(color:background,fontFamily:'Ubuntu',fontWeight:FontWeight.bold,fontSize:25),
     titleMedium:TextStyle(fontFamily:'Montserrat',color:greenlight,fontSize:15),
-    titleSmall: TextStyle(fontFamily:'Montserrat',color:Colors.green,fontSize:20,fontWeight:FontWeight.bold,),
+    titleSmall: TextStyle(fontFamily:'Montserrat',color:Colors.white,fontSize:20,fontWeight:FontWeight.bold,),
 
   ),
 

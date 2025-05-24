@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ouzoun/Routes/AppRoutes.dart';
-import 'package:ouzoun/Views/Doctor_Choices/Doctor_choices_screens/second_page_choices.dart';
-import 'package:ouzoun/Views/ForgetPassword/chekemail.dart';
-import 'package:ouzoun/Views/Splash_View/Splash_screen/splash_screen.dart';
 
-import '../Views/Book_Tools/Book_Tools_Screen/book_tools_screen.dart';
-import '../Views/Doctor_Choices/Doctor_choices_screens/first_page_choices.dart' show FirstPageChoices;
-import '../Views/ForgetPassword/code.dart';
-import '../Views/ForgetPassword/resetpasswordpage.dart';
+import '../Views/Book_Tools_View/Book_Tools_Screen/book_tools_screen.dart';
+import '../Views/Doctor_Choices_View/Doctor_choices_screens/first_page_choices.dart';
+import '../Views/Doctor_Choices_View/Doctor_choices_screens/second_page_choices.dart';
+import '../Views/ForgetPassword_View/ForgetPassword_Screens/chekemail.dart';
+import '../Views/ForgetPassword_View/ForgetPassword_Screens/code.dart';
+import '../Views/ForgetPassword_View/ForgetPassword_Screens/resetpasswordpage.dart';
 import '../Views/Login_View/login_screen.dart';
 import '../Views/Register_View/register_screen.dart';
+import '../Views/Splash_View/Splash_screen/splash_screen.dart';
 
 class AppPages {
   static final pages = [

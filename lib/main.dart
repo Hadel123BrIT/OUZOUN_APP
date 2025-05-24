@@ -7,10 +7,9 @@ import 'package:ouzoun/Core/Services/services.dart';
 import 'package:ouzoun/Routes/AppRoutes.dart';
 import 'package:ouzoun/Test.dart';
 import 'package:ouzoun/Views/Splash_View/Splash_screen/splash_screen.dart';
-
 import 'Binding/AuthBinding/initalize_binding.dart';
 import 'Routes/AppPages.dart';
-import 'Views/ForgetPassword/chekemail.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

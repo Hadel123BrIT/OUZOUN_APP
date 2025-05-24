@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ouzoun/Core/Constances/all_colors.dart';
 import '../Models/DrawItemModel.dart';
 
 
@@ -9,13 +11,19 @@ class Customdraweritem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(customdrawermodel.icon),
+      leading: Icon(customdrawermodel.icon,
+      color: green,
+      ),
       title: Padding(
         padding: const EdgeInsets.only(left: 16),
         child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
-            child: Text(customdrawermodel.text)),
+            child: Text(customdrawermodel.text.tr,
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+            ),
+            )),
       ),
     onTap: () {
       print("Tapped on ${customdrawermodel.text}");

@@ -15,32 +15,27 @@ class Customotp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media=MediaQueryHelper(context);
-    return Container(
-
-        width: media.width/2,
-        height:media.height/3,
-        child: OtpTextField(
-          numberOfFields: codenumber,
-          cursorColor:cursorcolor,
-          focusedBorderColor:focusedbordercolor,
-          keyboardType:keybord,
-          autoFocus: true,
-          showFieldAsBox: true,
-          onCodeChanged:onChanged,
-          //runs when every textfield is filled
-          /* onSubmit: (String verificationCode){
-                  showDialog(
-                      context: context,
-                      builder: (context){
-                        return AlertDialog(
-                          title: Text("Verification Code"),
-                          content: Text('Code entered is $verificationCode'),
-                        );
-                      }
-                  );
-                },*/ // end onSubmit
-        ),
-      );
+    return OtpTextField(
+      numberOfFields: codenumber,
+      cursorColor:cursorcolor,
+      focusedBorderColor:focusedbordercolor,
+      keyboardType:keybord,
+      autoFocus: true,
+      showFieldAsBox: true,
+      onCodeChanged:onChanged,
+      //runs when every textfield is filled
+      /* onSubmit: (String verificationCode){
+              showDialog(
+                  context: context,
+                  builder: (context){
+                    return AlertDialog(
+                      title: Text("Verification Code"),
+                      content: Text('Code entered is $verificationCode'),
+                    );
+                  }
+              );
+            },*/ // end onSubmit
+    );
 
   }
 }

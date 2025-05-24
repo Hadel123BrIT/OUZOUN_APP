@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Localization/changlang.dart';
-import 'package:ouzoun/Views/ForgetPassword/checkemailcontroller.dart';
-import 'package:ouzoun/Views/ForgetPassword/resetpagecontroller.dart';
-
-import '../../Views/ForgetPassword/resetpasswordpage.dart';
-import '../../Views/ForgetPassword/verfiycodecontroller.dart';
+import '../../Views/ForgetPassword_View/ForgetPassword_Controller/checkemailcontroller.dart';
+import '../../Views/ForgetPassword_View/ForgetPassword_Controller/resetpagecontroller.dart';
+import '../../Views/ForgetPassword_View/ForgetPassword_Controller/verfiycodecontroller.dart';
 import '../../Views/Login_View/login_controller.dart';
 import '../../Views/Register_View/register_controller.dart';
 
