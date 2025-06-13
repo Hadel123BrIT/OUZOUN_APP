@@ -53,7 +53,6 @@ class FirstPageChoices extends StatelessWidget {
                         textColor: background,
                         title: 'Surgical operation',
                       ),
-
                     const SizedBox(width: 20),
                    ChoiceCard(
                         color:green,

@@ -31,8 +31,10 @@ class Page2 extends StatelessWidget {
             ),
             SizedBox(height: media.height * 0.07),
             Image.asset(
-              AppAssets.page2,
-              fit: BoxFit.contain,
+              Theme.of(context).brightness == Brightness.dark
+                  ? AppAssets.page2
+                  : AppAssets.page2_white,
+              fit: BoxFit.cover,
             ),
           ],
         ),

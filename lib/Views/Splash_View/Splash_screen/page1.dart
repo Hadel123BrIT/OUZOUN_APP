@@ -29,7 +29,9 @@ class Page1 extends StatelessWidget {
               style:Theme.of(context).textTheme.titleMedium,),
             SizedBox(height: media.height * 0.1),
             Image.asset(
-              AppAssets.welcomeImage,
+              Theme.of(context).brightness == Brightness.dark
+                  ? AppAssets.welcomeImage
+                  : AppAssets.welcomeImage_white,
               fit: BoxFit.cover,
             ),
           ],

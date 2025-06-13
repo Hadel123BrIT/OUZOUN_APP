@@ -64,42 +64,7 @@ class BookToolsScreen extends StatelessWidget {
           ],
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: media.height * 0.025), // 20 replaced
-            Getsearch(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(media.width * 0.03), // 12 replaced
-                  child: Column(
-                    children: [
-                      GridView.count(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.8,
-                        crossAxisSpacing: media.width * 0.025, // 10 replaced
-                        mainAxisSpacing: media.height * 0.012, // 10 replaced
-                        children: controller.filteredTools.map((tool) =>
-                            buildToolCard(
-                              imagePath: tool['image']!,
-                              toolName: tool['name']!,
-                              selectedQuantity: controller.selectedTools[tool['name']],
-                              onQuantitySelected: (quantity) {
-                                controller.updateQuantity(tool['name']!, quantity);
-                              }, context: context,
-                            ),
-                        ).toList(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        //body:
       ),
     );
   }

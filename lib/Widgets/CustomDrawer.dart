@@ -8,6 +8,7 @@ import 'package:ouzoun/Views/Setting_View/Setting_Screen/setting_screen.dart';
 import '../Core/Constances/all_images.dart';
 import '../Core/Services/mediaQuery.dart';
 import '../Models/DrawItemModel.dart';
+import '../Views/MyProfile_View/MyProfile_Screen/myProfile_screen.dart';
 import 'CustomViewItemList.dart';
 
 
@@ -24,7 +25,7 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
 
     }, ),
     DrawItemModel(text: 'MYPROFILE', icon: Icons.person,function: (){
-
+    // Get.to(DoctorProfilePage());
     }),
     DrawItemModel(text: 'ABOUT US', icon: Icons.info,function: (){
       Get.to(AboutUsScreen());

@@ -8,11 +8,13 @@ class CustomTextForm extends StatelessWidget {
         required this.validator,
         required bool obscureText,
         this.suffixIcon,
+        this.prefixIcon,
       });
   final TextEditingController mycontroller;
   final String hinttext;
   final String? Function(String?) validator;
   final Widget? suffixIcon;
+   final Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class CustomTextForm extends StatelessWidget {
           borderSide: BorderSide(color: green, width: 2.0),
         ),
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
       ),
     );
   }
