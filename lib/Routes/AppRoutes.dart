@@ -10,4 +10,7 @@
   static const chekEmail='/checkEmail';
   static const code='/code';
   static const resetpage='/Reset';
+  static const homepage='/homepage';
+  static const settings='/settings';
+  static const profile='/profile';
  }

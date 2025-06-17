@@ -10,7 +10,7 @@ class LocationPickerController extends GetxController {
   var selectedLocation = Rxn<LatLng>();
   var locationName = 'Tap your location'.obs;
   String placeM = "";
-  bool useOSM = true; // قيمة افتراضية
+  bool useOSM = true;
 
   Future<void> onMapTapped(LatLng latLng) async {
     selectedLocation.value = latLng;

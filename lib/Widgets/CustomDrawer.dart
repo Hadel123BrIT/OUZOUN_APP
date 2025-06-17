@@ -27,6 +27,9 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
     DrawItemModel(text: 'MYPROFILE', icon: Icons.person,function: (){
     // Get.to(DoctorProfilePage());
     }),
+    DrawItemModel(text: 'MYORDER', icon: Icons.receipt_long,function: (){
+      // Get.to(DoctorProfilePage());
+    }),
     DrawItemModel(text: 'ABOUT US', icon: Icons.info,function: (){
       Get.to(AboutUsScreen());
     }),

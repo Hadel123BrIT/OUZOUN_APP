@@ -50,34 +50,42 @@ class SecondPageChoices extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center, // أضفنا هذا السطر
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Obx(() => ChoiceCard(
-                          color: green,
-                          height: isPortrait
-                              ? screenSize.height * 0.20
-                              : screenSize.height * 0.4,
-                          icon: FontAwesomeIcons.handsHelping,
-                          onTap: () => showAssistantDialog(context),
-                          subtitle: controller.selectedAssistants.value > 0
-                              ? '${controller.selectedAssistants.value} assistant(s)'
-                              : '',
-                          textColor: background,
-                          title: 'With an assistant',
-                        )),
+                        Flexible(
+                          child: Obx(() => ChoiceCard(
+                            color: green,
+                            height: isPortrait
+                                ? screenSize.height * 0.20
+                                : screenSize.height * 0.4,
+                            icon: FontAwesomeIcons.handsHelping,
+                            onTap: () => showAssistantDialog(context),
+                            subtitle: controller.selectedAssistants.value > 0
+                                ? '${controller.selectedAssistants.value} assistant(s)'
+                                : '',
+                            textColor: background,
+                            title: 'With an assistant',
+                          )),
+                        ),
                         const SizedBox(width: 20),
-                        ChoiceCard(
-                          color: green,
-                          height: isPortrait
-                              ? screenSize.height * 0.20
-                              : screenSize.height * 0.4,
-                          icon: FontAwesomeIcons.userSlash,
-                          onTap: () {
-                            Get.toNamed(AppRoutes.bookTool);
-                          },
-                          subtitle: '',
-                          textColor: background,
-                          title: 'without an assistant',
+                        Flexible(
+                          child:  ChoiceCard(
+                            color: green,
+                            height: isPortrait
+                                ? screenSize.height * 0.20
+                                : screenSize.height * 0.4,
+                            icon: FontAwesomeIcons.userSlash,
+                            onTap: () {
+                              controller.selectedAssistants.value = 0;
+                              controller.showNextButton.value = true;
+                            },
+                            subtitle: controller.selectedAssistants.value == 0
+                                ? '${controller.selectedAssistants.value} assistant(s)'
+                                : '',
+                            textColor: background,
+                            title: 'without an assistant',
+                          ),
                         ),
                       ],
                     ),
@@ -86,7 +94,7 @@ class SecondPageChoices extends StatelessWidget {
               ],
             ),
           ),
-          Obx(() => controller.showNextButton.value && controller.selectedAssistants.value > 0
+          Obx(() => controller.showNextButton.value && controller.selectedAssistants.value >= 0
               ? Positioned(
             bottom: 40,
             left: 0,
@@ -94,7 +102,7 @@ class SecondPageChoices extends StatelessWidget {
             child: Center(
               child:    GestureDetector(
                   onTap: (){
-                    Get.toNamed(AppRoutes.bookTool);
+                    Get.toNamed(AppRoutes.homepage);
                   },
                   child:  Text("next".tr,
                     textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,)

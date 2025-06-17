@@ -9,7 +9,6 @@ import 'package:ouzoun/Routes/AppRoutes.dart';
 import 'package:ouzoun/Views/Login_View/login_screen.dart';
 import 'package:ouzoun/Widgets/CustomButton.dart';
 import 'package:ouzoun/Widgets/CustomTextForm.dart';
-
 import '../register_controller.dart';
 import 'LocationPicker/LocationPicker .dart';
 
@@ -57,10 +56,8 @@ class RegisterHelpers {
       obscureText: false,
     );
   }
-  static Widget buildLocationField(
-      MediaQueryHelper media,
-      RegisterController controller,
-      ) {
+
+  static Widget buildLocationField(MediaQueryHelper media, RegisterController controller,) {
     return InkWell(
       onTap: () async {
         Get.dialog(
@@ -73,7 +70,7 @@ class RegisterHelpers {
             onLocationSelected: (coords, address) {
               controller.updateLocation(coords, address);
             },
-            useOSM: true, // أو false إذا أردت استخدام جوجل
+            useOSM: true,
           ));
 
           if (Get.isDialogOpen!) Get.back();
@@ -95,7 +92,7 @@ class RegisterHelpers {
               ? "Tap to select location".tr
               : "Location selected. Tap to change".tr,
           obscureText: false,
-          // إضافة مؤشر إذا كان هناك موقع محدد
+
           suffixIcon: controller.selectedLocation.value != null
               ? Icon(Icons.check_circle, color: Colors.green)
               : null,

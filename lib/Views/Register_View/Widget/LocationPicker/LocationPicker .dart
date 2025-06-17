@@ -16,11 +16,13 @@ class LocationPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LocationPickerController());
-    controller.useOSM = useOSM; // تمرير القيمة للكونترولر
+    controller.useOSM = useOSM;
 
     return Scaffold(
       appBar: AppBar(
-        title: Obx(() => Text(controller.locationName.value)),
+        title: Obx(() => Text(controller.locationName.value,
+          style: Theme.of(context).textTheme.titleSmall,
+        )),
         actions: [
           Obx(() => Visibility(
             visible: controller.selectedLocation.value != null,
@@ -42,7 +44,7 @@ class LocationPicker extends StatelessWidget {
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: LatLng(33.5138, 36.2765),
-          zoom: 14,
+          zoom: 12,
         ),
         onMapCreated: (ctrl) => controller.mapController = ctrl,
         onTap: controller.onMapTapped,

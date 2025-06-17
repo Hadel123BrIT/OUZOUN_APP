@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/mediaQuery.dart';
 import 'package:ouzoun/Views/Register_View/register_controller.dart';
 import 'package:ouzoun/Views/Login_View/login_screen.dart';
-
 import 'Widget/LocationPicker/LocationPicker .dart';
 import 'Widget/RegisterHelpers .dart';
 
