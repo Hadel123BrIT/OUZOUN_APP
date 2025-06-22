@@ -9,8 +9,8 @@ import '../../../Widgets/CustomText.dart';
 import '../../HomePage_View/HomePage_Controller/homePage_controller.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/BuildToolCard.dart';
-import '../widget/_BuildDetailItem.dart';
-import '../widget/_ShowQuantityDialog.dart';
+import '../widget/BuildDetailItem.dart';
+import '../widget/ShowQuantityDialog.dart';
 
 class AdditionalKits extends StatelessWidget {
   final KitsController _controller = Get.put(KitsController());
@@ -86,7 +86,9 @@ class AdditionalKits extends StatelessWidget {
         actions: [
           Padding(
           padding: const EdgeInsets.all(10.0),
-          child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined)),
+          child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined,
+          color: Colors.white,
+          )),
         )],
         toolbarHeight: media.height * 0.1,
         shape: RoundedRectangleBorder(

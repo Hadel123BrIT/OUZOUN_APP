@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Services/mediaQuery.dart';
 import '../../../Widgets/CustomText.dart';
-import '_BuildDetailItem.dart';
-import '_ShowQuantityDialog.dart';
+import 'BuildDetailItem.dart';
+import 'ShowQuantityDialog.dart';
 
 Widget BuildToolCard({
   required bool isappear,

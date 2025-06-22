@@ -50,7 +50,7 @@ class SecondPageChoices extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center, // أضفنا هذا السطر
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Flexible(
@@ -79,8 +79,9 @@ class SecondPageChoices extends StatelessWidget {
                             onTap: () {
                               controller.selectedAssistants.value = 0;
                               controller.showNextButton.value = true;
+                              controller.withoutAssistantClicked.value = true;
                             },
-                            subtitle: controller.selectedAssistants.value == 0
+                            subtitle: controller.withoutAssistantClicked.value
                                 ? '${controller.selectedAssistants.value} assistant(s)'
                                 : '',
                             textColor: background,

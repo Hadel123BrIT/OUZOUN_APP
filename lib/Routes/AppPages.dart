@@ -8,6 +8,7 @@ import 'package:ouzoun/Views/HomePage_View/HomePage_Screen/homePage_screen.dart'
 import 'package:ouzoun/Views/Kits_Views/Kits_Screens/Additional%20Kits.dart';
 import 'package:ouzoun/Views/Kits_Views/Kits_Screens/Implant%20Kits.dart';
 import 'package:ouzoun/Views/Kits_Views/Kits_Screens/Surgical%20%20Kits.dart';
+import 'package:ouzoun/Views/Kits_Views/Kits_Screens/detail%20kit.dart';
 import 'package:ouzoun/Views/Setting_View/Setting_Screen/setting_screen.dart';
 import '../Views/Doctor_Choices_View/Doctor_choices_screens/first_page_choices.dart';
 import '../Views/Doctor_Choices_View/Doctor_choices_screens/second_page_choices.dart';
@@ -25,7 +26,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.splash,
       page: () => SplashScreen(),
-
+    ),
+    GetPage(
+      name: AppRoutes.detail_kit,
+      page: () => ImplantDetailScreen(),
     ),
     GetPage(
       name: AppRoutes.settings,

@@ -6,8 +6,8 @@ import '../../../Core/Services/mediaQuery.dart';
 import '../../../Widgets/CustomDrawer.dart';
 import '../../HomePage_View/HomePage_Controller/homePage_controller.dart';
 import '../Kits_Controller/kits_controller.dart';
-import '../widget/_BuildDetailRow.dart';
-import '../widget/_BuildImplantCard.dart';
+import '../widget/BuildDetailRow.dart';
+import '../widget/BuildImplantCard.dart';
 
 class Implantkits extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -18,6 +18,7 @@ class Implantkits extends StatelessWidget {
       'height': '10 mm',
       'width': '3.5 mm',
       'radius': '3.5 mm',
+      'brand' : "Implant Tech",
       'quantity': 15,
       'description': 'High Quality Premium implant for anterior region',
       'image': 'assets/icons/implant1.png'
@@ -27,6 +28,7 @@ class Implantkits extends StatelessWidget {
       'height': '12 mm',
       'width': '4.1 mm',
       'radius': '4.1 mm',
+      'brand' : "Implant Tech",
       'quantity': 8,
       'description': 'Roxolid SLActive surface for doctor and his operation',
       'image': 'assets/icons/implant2.png'
@@ -36,6 +38,7 @@ class Implantkits extends StatelessWidget {
       'height': '11.5 mm',
       'width': '4.6 mm',
       'radius': '4.6 mm',
+      'brand' : "Implant Tech",
       'quantity': 10,
       'description': 'Laser-Lok microchannel technology',
       'image': 'assets/icons/implant3.png'
@@ -45,6 +48,7 @@ class Implantkits extends StatelessWidget {
       'height': '10 mm',
       'width': '3.5 mm',
       'radius': '3.5 mm',
+      'brand' : "Implant Tech",
       'quantity': 15,
       'description': 'High Quality Premium implant for anterior region',
       'image': 'assets/icons/implant1.png'
@@ -54,6 +58,7 @@ class Implantkits extends StatelessWidget {
       'height': '12 mm',
       'width': '4.1 mm',
       'radius': '4.1 mm',
+      'brand' : "Implant Tech",
       'quantity': 8,
       'description': 'Roxolid SLActive surface',
       'image': 'assets/icons/implant2.png'
@@ -70,6 +75,13 @@ class Implantkits extends StatelessWidget {
       drawer: CustomDrawer(),
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined,
+              color: Colors.white,
+            )),
+          )],
         leading: IconButton(
           onPressed: () => scaffoldKey.currentState?.openDrawer(),
           icon: Icon(Icons.menu, color: Colors.white),

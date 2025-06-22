@@ -5,7 +5,7 @@ class AssistantController extends GetxController {
   RxInt selectedAssistants = 0.obs;
   RxInt tempSelection = 0.obs;
   RxBool showNextButton = false.obs;
-
+  var withoutAssistantClicked = false.obs;
   void selectAssistants(int number) {
     tempSelection.value = number;
     showNextButton.value = true;

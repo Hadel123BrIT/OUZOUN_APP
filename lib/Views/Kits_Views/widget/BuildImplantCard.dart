@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:ouzoun/Routes/AppRoutes.dart';
 
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Services/mediaQuery.dart';
 import '../../../Widgets/CustomButton.dart';
-import '_BuildDetailRow.dart';
+import 'BuildDetailRow.dart';
 
 Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String, dynamic> implant) {
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -99,7 +102,9 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
             ),
             SizedBox(height: 12),
             Custombutton(
-                onTap: (){},
+                onTap: (){
+                  Get.toNamed(AppRoutes.detail_kit, arguments: implant,);
+                },
                 text: "View details",
                 color: green
             ),

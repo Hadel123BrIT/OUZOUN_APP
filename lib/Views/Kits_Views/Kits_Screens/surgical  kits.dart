@@ -77,7 +77,9 @@ class SurgicalKits extends StatelessWidget {
         actions: [
           Padding(
           padding: const EdgeInsets.all(10.0),
-          child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined)),
+          child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined,
+            color: Colors.white,
+          )),
         )],
         leading: IconButton(
           onPressed: () {
