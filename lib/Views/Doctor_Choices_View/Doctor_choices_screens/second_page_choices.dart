@@ -6,8 +6,8 @@ import 'package:ouzoun/Routes/AppRoutes.dart';
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Constances/all_images.dart' show AppAssets;
 import '../../../Widgets/CustomText.dart';
-import '../../../Widgets/choices_page/buildChoiceCard.dart';
-import '../../../Widgets/custom_awesome_dialog.dart';
+import '../../../Widgets/choices_page/BuildChoiceCard.dart';
+import '../../../Widgets/Custom_Awesome_Dialog.dart';
 import '../Doctor_choices_controller/doctor_choices_controller.dart';
 
 class SecondPageChoices extends StatelessWidget {

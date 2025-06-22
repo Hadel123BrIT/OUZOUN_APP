@@ -8,4 +8,5 @@ class AppAssets {
   static const String Choice2='assets/icons/dentist (1).png';
   static const String page2_white='assets/icons/page2_white.png';
   static const String welcomeImage_white = 'assets/icons/page1_white.png';
+  static const String doctorforhomePage = 'assets/animations/doctor1.json';
 }

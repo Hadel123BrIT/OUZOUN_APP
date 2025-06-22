@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart'; // أضف هذا الاستيراد
+import 'package:lottie/lottie.dart';
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Services/mediaQuery.dart';
 import '../../../Widgets/CustomBottomNavigationBar .dart';
 import '../../../Widgets/CustomDrawer.dart';
+import '../../Kits_Views/Kits_Controller/kits_controller.dart';
 import '../HomePage_Controller/homePage_controller.dart';
+import '../widget/build_body.dart';
 
 class HomePage extends StatelessWidget {
-  final HomeController _controller = Get.find<HomeController>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
@@ -49,97 +50,10 @@ class HomePage extends StatelessWidget {
         backgroundColor: green,
         centerTitle: true,
       ),
-      body: _buildBody(context),
       bottomNavigationBar: CustomBottomNavigationBar(),
+      body: buildBody(context),
+
     );
   }
 
-  Widget _buildBody(BuildContext context) {
-    final media = MediaQueryHelper(context);
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          alignment: Alignment.center,
-          child: Lottie.asset(
-            'assets/animations/doctor1.json',
-            fit: BoxFit.contain,
-            repeat: false,
-           width: 350,
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildOptionButton(
-                color: green,
-                context: context,
-                icon: Icons.construction,
-                label: "Surgical  Kits",
-                textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,
-                onTap: () {
-
-                },
-              ),
-              _buildOptionButton(
-                textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,
-                color: green,
-                context: context,
-                icon: Icons.add_circle_outline,
-                label: "Additional Kits",
-                onTap: () {
-                  // Action for Additional Tools
-                },
-              ),
-              _buildOptionButton(
-                textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,
-                color: green,
-                context: context,
-                icon: Icons.agriculture,
-                label: "Implant Kits",
-                onTap: () {
-                  // Action for Farming Tools
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildOptionButton({
-    required Color color,
-    required BuildContext context,
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-    required TextAlign textAlign, TextStyle? style,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(icon, size: 30, color: Colors.white),
-          ),
-          SizedBox(height: 8),
-          Text(
-            textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,
-            label,
-
-          ),
-        ],
-      ),
-    );
-  }
 }

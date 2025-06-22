@@ -5,7 +5,7 @@ import 'package:ouzoun/Routes/AppRoutes.dart';
 import 'package:ouzoun/Widgets/CustomText.dart';
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Constances/all_images.dart';
-import '../../../Widgets/choices_page/buildChoiceCard.dart';
+import '../../../Widgets/choices_page/BuildChoiceCard.dart';
 
 class FirstPageChoices extends StatelessWidget {
   const FirstPageChoices({super.key});

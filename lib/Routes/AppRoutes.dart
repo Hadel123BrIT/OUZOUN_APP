@@ -13,4 +13,8 @@
   static const homepage='/homepage';
   static const settings='/settings';
   static const profile='/profile';
+  static const surgical_kit='/surgical_kit';
+  static const additional_kit='/additional_kit';
+  static const implant_kit='/implant_kit';
+
  }

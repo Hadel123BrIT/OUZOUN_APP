@@ -5,9 +5,10 @@ import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ouzoun/Routes/AppRoutes.dart';
 import 'package:ouzoun/Views/HomePage_View/HomePage_Screen/homePage_screen.dart';
+import 'package:ouzoun/Views/Kits_Views/Kits_Screens/Additional%20Kits.dart';
+import 'package:ouzoun/Views/Kits_Views/Kits_Screens/Implant%20Kits.dart';
+import 'package:ouzoun/Views/Kits_Views/Kits_Screens/Surgical%20%20Kits.dart';
 import 'package:ouzoun/Views/Setting_View/Setting_Screen/setting_screen.dart';
-
-import '../Views/Book_Tools_View/Book_Tools_Screen/book_tools_screen.dart';
 import '../Views/Doctor_Choices_View/Doctor_choices_screens/first_page_choices.dart';
 import '../Views/Doctor_Choices_View/Doctor_choices_screens/second_page_choices.dart';
 import '../Views/ForgetPassword_View/ForgetPassword_Screens/chekemail.dart';
@@ -55,11 +56,6 @@ class AppPages {
 
     ),
     GetPage(
-      name: AppRoutes.bookTool,
-      page: () =>BookToolsScreen(),
-
-    ),
-    GetPage(
       name: AppRoutes.chekEmail,
       page: () =>Chekemail(),
 
@@ -78,8 +74,23 @@ class AppPages {
       name: AppRoutes.homepage,
       page: () =>HomePage(),
       binding: BindingsBuilder(() {
-        Get.lazyPut(() => HomeController());
+        Get.lazyPut(() => HomePageController());
       }),
+    ),
+    GetPage(
+      name: AppRoutes.surgical_kit,
+      page: () =>SurgicalKits(),
+
+    ),
+    GetPage(
+      name: AppRoutes.additional_kit,
+      page: () =>AdditionalKits(),
+
+    ),
+    GetPage(
+      name: AppRoutes.implant_kit,
+      page: () =>Implantkits(),
+
     ),
   ];
 }

@@ -9,6 +9,7 @@ ThemeData lightMode=ThemeData(
   primaryColor:green,
   buttonTheme:ButtonThemeData(buttonColor:green),
   textTheme: TextTheme(
+    bodySmall: TextStyle(fontFamily:'Ubuntu',fontSize: 20,fontWeight: FontWeight.bold,color: green ),
    headlineLarge:TextStyle(fontFamily: 'Montserrat', fontSize: 17, fontWeight: FontWeight.bold, color:background,),
     headlineMedium: TextStyle(fontFamily: 'Montserrat', fontSize: 15, color:background),
    headlineSmall:TextStyle(fontFamily: 'Montserrat', fontSize: 15, color:black,fontWeight:FontWeight.bold),
@@ -21,6 +22,7 @@ ThemeData darkMode=ThemeData(
   appBarTheme: AppBarTheme(color:green),
   colorScheme: ColorScheme.dark(background:black),
   textTheme: TextTheme(
+    bodySmall: TextStyle(fontFamily:'Ubuntu',fontSize: 20,fontWeight: FontWeight.bold,color: green ),
     headlineLarge: TextStyle(fontFamily: 'Montserrat', fontSize: 17, fontWeight: FontWeight.bold, color:background,),
     headlineMedium: TextStyle(fontFamily: 'Montserrat', fontSize: 15, color:greenlight),
     headlineSmall:TextStyle(fontFamily: 'Montserrat', fontSize: 15, color:background,fontWeight:FontWeight.bold),

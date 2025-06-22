@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Widgets/CustomButton.dart';
-import 'package:ouzoun/Widgets/customotp.dart';
+import 'package:ouzoun/Widgets/CustomoTop.dart';
 import '../../../Core/Constances/all_colors.dart';
 import '../../../Core/Services/mediaQuery.dart';
 import '../ForgetPassword_Controller/verfiycodecontroller.dart';
