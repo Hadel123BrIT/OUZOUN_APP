@@ -1,0 +1,104 @@
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/bindings_interface.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:ouzoun/Routes/app_routes.dart';
+import '../views/doctor_choices/doctor_choices_screens/first_page_choices.dart';
+import '../views/doctor_choices/doctor_choices_screens/second_page_choices.dart';
+import '../views/forget_password/forget_password_screens/chekEmail.dart';
+import '../views/forget_password/forget_password_screens/code.dart';
+import '../views/forget_password/forget_password_screens/resetPasswordPage.dart';
+import '../views/forget_password/forget_password_screens/resetpasswordpage.dart' hide ResetPasswordPage;
+import '../views/homePage/HomePage_Controller/homePage_controller.dart';
+import '../views/homePage/homePage_screen/homePage_screen.dart';
+import '../views/kits/kits_screens/additional kits.dart';
+import '../views/kits/kits_screens/detail kit.dart';
+import '../views/kits/kits_screens/implant kits.dart';
+import '../views/kits/kits_screens/surgical  kits.dart';
+import '../views/login/login_screen.dart';
+import '../views/myProfile/myProfile_screen/myProfile_screen.dart';
+import '../views/register/register_screen.dart';
+import '../views/setting/setting_screen/setting_screen.dart';
+import '../views/splash/splash_screens/splash_screen.dart';
+
+class AppPages {
+  static final List<GetPage> pages = [
+    GetPage(
+      name: AppRoutes.splash,
+      page: () => SplashScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.detail_kit,
+      page: () => ImplantDetailScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.settings,
+      page: () => SettingsScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.profile,
+      page: () => MyProfileScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.login,
+      page: () => LoginScreen(),
+
+    ),
+    GetPage(
+      name: AppRoutes.register,
+      page: () => RegisterScreen(),
+
+    ),
+    GetPage(
+      name: AppRoutes.firstchoice,
+      page: () => FirstPageChoices(),
+
+    ),
+    GetPage(
+      name: AppRoutes.secondchoice,
+      page: () =>SecondPageChoices(),
+
+    ),
+    GetPage(
+      name: AppRoutes.chekEmail,
+      page: () =>CheckEmail(),
+
+    ),
+    GetPage(
+      name: AppRoutes.code,
+      page: () =>Code(),
+
+    ),
+    GetPage(
+      name: AppRoutes.resetpage,
+      page: () =>ResetPasswordPage(),
+
+    ),
+    GetPage(
+      name: AppRoutes.homepage,
+      page: () =>HomePageScreen(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => HomePageController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.surgical_kit,
+      page: () =>SurgicalKits(),
+
+    ),
+    GetPage(
+      name: AppRoutes.additional_kit,
+      page: () =>AdditionalKits(),
+
+    ),
+    GetPage(
+      name: AppRoutes.implant_kit,
+      page: () =>Implantkits(),
+
+    ),
+  ];
+}
+
+
+
