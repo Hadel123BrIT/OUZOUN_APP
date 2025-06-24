@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
-import 'package:ouzoun/Widgets/CustomButton.dart' hide CustomButton;
+import 'package:ouzoun/Widgets/custom_button.dart' hide CustomButton;
 
 import '../../../core/constants/app_colors.dart';
-import '../../../widgets/CustomButton.dart';
+import '../../../widgets/custom_button.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_spec_item.dart';
 import '../widget/build_tool_item.dart';
@@ -30,7 +30,7 @@ class ImplantDetailScreen extends StatelessWidget {
                   width: media.width * 0.5,
                   height: media.height * 0.16,
                   decoration: BoxDecoration(
-                    color: green,
+                    color: AppColors.primaryGreen,
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(media.width * 0.2),
                     ),
@@ -100,7 +100,7 @@ class ImplantDetailScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: media.height * 0.01),
-                          Divider(color: green),
+                          Divider(color: AppColors.primaryGreen),
                           SizedBox(height: media.height * 0.01),
                           BuildSpecItem(context, "Height", implant['height']),
                           BuildSpecItem(context, "Width", implant['width']),
@@ -130,7 +130,7 @@ class ImplantDetailScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: media.height * 0.01),
-                          Divider(color: green),
+                          Divider(color: AppColors.primaryGreen),
                           SizedBox(height: media.height * 0.01),
                           BuildSpecItem(context, "Brand", implant['brand']),
                           BuildSpecItem(context, "Quantity", '${implant['quantity']}'),
@@ -159,7 +159,7 @@ class ImplantDetailScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: media.height * 0.01),
-                          Divider(color: green),
+                          Divider(color: AppColors.primaryGreen),
                           SizedBox(height: media.height * 0.01),
                           Text(
                             implant['description'],
@@ -190,7 +190,7 @@ class ImplantDetailScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: media.height * 0.01),
-                          Divider(color: green),
+                          Divider(color: AppColors.primaryGreen),
                           SizedBox(height: media.height * 0.01),
                           BuildToolItem(context, "Surgical Kit"),
                           BuildToolItem(context, "Drill Guide"),
@@ -206,11 +206,11 @@ class ImplantDetailScreen extends StatelessWidget {
                               "Added to Cart",
                               "${implant['name']} has been added to your cart",
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: green,
+                              backgroundColor: AppColors.primaryGreen,
                               colorText: Colors.white,
                             );
                       }, text: 'Add to Cart',
-                        color: green,),
+                        color: AppColors.primaryGreen,),
                     ),
                   ],
                 ),
@@ -221,7 +221,7 @@ class ImplantDetailScreen extends StatelessWidget {
                   width: media.width * 0.5,
                   height: media.height * 0.16,
                   decoration: BoxDecoration(
-                    color: green,
+                    color: AppColors.primaryGreen,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(media.width * 0.2),
                     ),

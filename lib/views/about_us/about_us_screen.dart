@@ -26,7 +26,7 @@ class AboutUsScreen extends StatelessWidget {
           "About app",
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        backgroundColor: green,
+        backgroundColor: AppColors.primaryGreen,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -39,7 +39,7 @@ class AboutUsScreen extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: media.height * 0.025),
               decoration: BoxDecoration(
-                color: green.withOpacity(0.4),
+                color: AppColors.primaryGreen.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(media.width * 0.025),
               ),
               child: Column(
@@ -48,8 +48,8 @@ class AboutUsScreen extends StatelessWidget {
                     "Welcome you in ouzoun app",
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       color: Theme.of(context).brightness == Brightness.dark
-                          ? background
-                          : black,
+                          ? AppColors.whiteBackground
+                          : AppColors.deepBlack,
                     ),
                   ),
                   SizedBox(height: media.height * 0.012),
@@ -109,14 +109,14 @@ class AboutUsScreen extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       color: Theme.of(context).colorScheme.background,
       child: ListTile(
-        leading: Icon(icon, color: green),
+        leading: Icon(icon, color: AppColors.primaryGreen),
         title: Text(
           title,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.normal,
           ),
         ),
-        trailing: Icon(Icons.arrow_forward_ios, size: 16, color: green),
+        trailing: Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.primaryGreen),
         onTap: onTap,
       ),
     );}

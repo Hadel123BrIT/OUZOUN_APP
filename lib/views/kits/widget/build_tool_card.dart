@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomText.dart';
+import '../../../Widgets/custom_text.dart';
 import '../../../core/constants/app_colors.dart';
 import 'build_detail_item.dart';
 import 'show_quantity_dialog.dart';
@@ -88,7 +88,7 @@ Widget BuildToolCard({
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: green,
+                  color: AppColors.primaryGreen,
                   borderRadius: BorderRadius.circular(media.width * 0.02),
                 ),
                 padding: EdgeInsets.symmetric(
@@ -118,7 +118,7 @@ Widget BuildToolCard({
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: green,
+                    color: AppColors.primaryGreen,
                   ),
                   padding: EdgeInsets.all(media.width * 0.02),
                   child: Icon(

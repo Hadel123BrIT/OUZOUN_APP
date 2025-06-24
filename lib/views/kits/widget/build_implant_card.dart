@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
 import '../../../Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomButton.dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
 import 'build_detail_row.dart';
 
@@ -51,7 +51,7 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
                   width: media.width * 0.2,
                   height: media.width * 0.2,
                   decoration: BoxDecoration(
-                    color: green,
+                    color: AppColors.primaryGreen,
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       image: AssetImage(implant['image']),
@@ -105,7 +105,7 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
                   Get.toNamed(AppRoutes.detail_kit, arguments: implant,);
                 },
                 text: "View details",
-                color: green
+                color: AppColors.primaryGreen
             ),
             SizedBox(height: 10),
           ],

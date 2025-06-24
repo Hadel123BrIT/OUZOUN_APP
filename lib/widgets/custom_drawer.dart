@@ -7,7 +7,7 @@ import '../Models/draw_item_model.dart';
 import '../core/constants/app_images.dart';
 import '../views/about_us/about_us_screen.dart';
 import '../views/setting/setting_screen/setting_screen.dart';
-import 'CustomViewItemList.dart';
+import 'custom_view_item_list.dart';
 
 
 class CustomDrawer extends StatefulWidget {
@@ -88,7 +88,7 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
             ),
             child: DrawerHeader(
               child:  Image.asset(
-                AppAssets.page3,
+                AppAssets.onboarding3LightAndDarkBackground,
                  scale: 4.5,
 
               ),

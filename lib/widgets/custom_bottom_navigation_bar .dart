@@ -44,7 +44,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       gapLocation: GapLocation.none,
       notchSmoothness: NotchSmoothness.softEdge,
       tabBuilder: (int index, bool isActive) {
-        final color = isActive ? green : Colors.grey;
+        final color = isActive ? AppColors.primaryGreen : Colors.grey;
         return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +59,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 4),
                 height: 3,
                 width: 20,
-                color: green,
+                color: AppColors.primaryGreen,
               ),
           ],
         );

@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
  // show AppAssets;
 
-import '../../../Widgets/CustomText.dart';
-import '../../../Widgets/BuildChoiceCard.dart';
-import '../../../Widgets/CustomAwesomeDialog.dart';
+import '../../../Widgets/custom_text.dart';
+import '../../../Widgets/build_choice_card.dart';
+import '../../../Widgets/custom_awesome_dialog.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
 import '../Doctor_choices_controller/doctor_choices_controller.dart';
@@ -34,7 +34,7 @@ class SecondPageChoices extends StatelessWidget {
               shape: BoxShape.rectangle,
               image: const DecorationImage(
                 opacity: 0.8,
-                image: AssetImage(AppAssets.choice2Page),
+                image: AssetImage(AppAssets.femaleDentistIcon),
                 fit: BoxFit.fitWidth,
               ),
               color: Theme.of(context).colorScheme.background,
@@ -57,7 +57,7 @@ class SecondPageChoices extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Obx(() => BuildChoiceCard(
-                            color: green,
+                            color: AppColors.primaryGreen,
                             height: isPortrait
                                 ? screenSize.height * 0.20
                                 : screenSize.height * 0.4,
@@ -66,14 +66,14 @@ class SecondPageChoices extends StatelessWidget {
                             subtitle: controller.selectedAssistants.value > 0
                                 ? '${controller.selectedAssistants.value} assistant(s)'
                                 : '',
-                            textColor: background,
+                            textColor: AppColors.whiteBackground,
                             title: 'With an assistant',
                           )),
                         ),
                         const SizedBox(width: 20),
                         Flexible(
                           child:  BuildChoiceCard(
-                            color: green,
+                            color: AppColors.primaryGreen,
                             height: isPortrait
                                 ? screenSize.height * 0.20
                                 : screenSize.height * 0.4,
@@ -86,7 +86,7 @@ class SecondPageChoices extends StatelessWidget {
                             subtitle: controller.withoutAssistantClicked.value
                                 ? '${controller.selectedAssistants.value} assistant(s)'
                                 : '',
-                            textColor: background,
+                            textColor: AppColors.whiteBackground,
                             title: 'without an assistant',
                           ),
                         ),

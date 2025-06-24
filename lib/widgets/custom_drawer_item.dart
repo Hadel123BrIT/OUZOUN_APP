@@ -12,7 +12,7 @@ class CustomDrawerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(customdrawermodel.icon,
-      color: green,
+      color: AppColors.primaryGreen,
       ),
       title: Padding(
         padding: const EdgeInsets.only(left: 16),

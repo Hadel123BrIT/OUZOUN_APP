@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomButton.dart';
-import '../../../Widgets/CustomTextForm.dart';
+import '../../../Widgets/custom_button.dart';
+import '../../../Widgets/custom_text_form.dart';
 import '../../../core/constants/app_colors.dart';
 import '../forget_password_controller/checkemailcontroller.dart';
 
@@ -24,7 +24,7 @@ class CheckEmail extends StatelessWidget {
               height:media.height,
               alignment: Alignment.center,
               child: Column(children: [
-                Icon(FontAwesomeIcons.envelopeCircleCheck,color:green, size: media.width * 0.2,),
+                Icon(FontAwesomeIcons.envelopeCircleCheck,color:AppColors.primaryGreen, size: media.width * 0.2,),
                 SizedBox(height: media.height * 0.03),
                 Text("Forget Password?",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
                 SizedBox(height: media.height * 0.02),
@@ -45,7 +45,7 @@ class CheckEmail extends StatelessWidget {
                 ),
                 SizedBox(height: media.height * 0.05),
                 CustomButton(
-                  color:green,
+                  color:AppColors.primaryGreen,
                   text:"Save",
                   onTap:(){
                   controller.GoToVrefiy();

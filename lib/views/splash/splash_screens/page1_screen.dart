@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomText.dart';
+import '../../../Widgets/custom_text.dart';
 import '../../../core/constants/app_images.dart';
 
 class Page1 extends StatelessWidget {
@@ -29,8 +29,8 @@ class Page1 extends StatelessWidget {
             SizedBox(height: media.height * 0.1),
             Image.asset(
               Theme.of(context).brightness == Brightness.dark
-                  ? AppAssets.page1DarkTheme
-                  : AppAssets.page1LightTheme,
+                  ? AppAssets.onboarding1DarkBackground
+                  : AppAssets.onboarding1LightBackground,
               fit: BoxFit.cover,
             ),
           ],

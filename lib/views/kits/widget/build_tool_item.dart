@@ -21,7 +21,7 @@ Widget BuildToolItem(BuildContext context, String toolName) {
             onChanged: (bool? value) {
               controller.toggleTool(toolName);
             },
-            activeColor: green,
+            activeColor: AppColors.primaryGreen,
             checkColor: Colors.white,
           ),
           SizedBox(width: 10),

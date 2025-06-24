@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../Routes/app_routes.dart';
-import '../../../Widgets/BuildChoiceCard.dart';
+import '../../../Widgets/build_choice_card.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
 
@@ -30,7 +30,7 @@ class FirstPageChoices extends StatelessWidget {
             opacity:0.8,
             scale: 0.40,
             //image: AssetImage(AppAssets.choice1Page),
-            image: AssetImage(AppAssets.choice1Page),
+            image: AssetImage(AppAssets.maleDentistIcon),
             fit: BoxFit.fitWidth,
           ),
           color: Theme.of(context).colorScheme.background,
@@ -47,26 +47,26 @@ class FirstPageChoices extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                      BuildChoiceCard(
-                        color:green,
+                        color:AppColors.primaryGreen,
                         height: isPortrait ? screenSize.height * 0.20 : screenSize.height * 0.4,
                         icon: FontAwesomeIcons.userDoctor,
                         onTap: () {
                          Get.toNamed(AppRoutes.secondchoice);
                         },
                         subtitle: '',
-                        textColor: background,
+                        textColor: AppColors.whiteBackground,
                         title: 'Surgical operation',
                       ),
                     const SizedBox(width: 20),
                    BuildChoiceCard(
-                        color:green,
+                        color:AppColors.primaryGreen,
                         height: isPortrait ? screenSize.height * 0.20 : screenSize.height * 0.4,
                         icon: Icons.inventory_2,
                         onTap: () {
 
                         },
                         subtitle: '',
-                        textColor: background,
+                        textColor: AppColors.whiteBackground,
                         title: 'Medical supplies.',
                       ),
 

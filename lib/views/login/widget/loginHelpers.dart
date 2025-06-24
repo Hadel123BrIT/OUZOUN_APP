@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
-import 'package:ouzoun/Widgets/CustomButton.dart';
-import 'package:ouzoun/Widgets/CustomTextForm.dart';
+import 'package:ouzoun/Widgets/custom_button.dart';
+import 'package:ouzoun/Widgets/custom_text_form.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../register/register_screen.dart';
@@ -88,7 +88,7 @@ class LoginHelpers {
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontSize: media.width * 0.03,
-            color: green,
+            color: AppColors.primaryGreen,
           ),
         ),
       ),
@@ -99,7 +99,7 @@ class LoginHelpers {
     return CustomButton(
       onTap: () => Get.toNamed(AppRoutes.firstchoice),
       text: 'Login'.tr,
-      color: green,
+      color: AppColors.primaryGreen,
     );
   }
 
@@ -121,7 +121,7 @@ class LoginHelpers {
             TextSpan(
               text: "Register".tr,
               style: TextStyle(
-                color: green,
+                color: AppColors.primaryGreen,
                 fontWeight: FontWeight.bold,
                 fontSize: media.width * 0.04,
                 fontFamily: "Montserrat",

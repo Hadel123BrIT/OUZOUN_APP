@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:ouzoun/Widgets/CustomButton.dart';
-import 'package:ouzoun/Widgets/CustomOtp.dart';
+import 'package:ouzoun/Widgets/custom_button.dart';
+import 'package:ouzoun/Widgets/custom_otp.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../core/constants/app_colors.dart';
 import '../forget_password_controller/verfiycodecontroller.dart';
@@ -32,13 +32,13 @@ class Code extends StatelessWidget {
                 controller.verifycode=code;
               },
                 codenumber: 5,
-                  focusedbordercolor: green,
-                  cursorcolor: greenlight,
+                  focusedbordercolor: AppColors.primaryGreen,
+                  cursorcolor: AppColors.lightGreen,
                 keybord:TextInputType.number,
               ),
               SizedBox(height: media.height * 0.05),
               CustomButton(
-                color:green,
+                color:AppColors.primaryGreen,
                 text:"Confirm",
                 onTap:(){
                   controller.goToreset();

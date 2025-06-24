@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomText.dart';
+import '../../../Widgets/custom_text.dart';
 import '../../../core/constants/app_images.dart';
 
 class Page2 extends StatelessWidget {
@@ -31,8 +31,8 @@ class Page2 extends StatelessWidget {
             SizedBox(height: media.height * 0.07),
             Image.asset(
               Theme.of(context).brightness == Brightness.dark
-                  ? AppAssets.page2DarkTheme
-                  : AppAssets.page2LightTheme,
+                  ? AppAssets.onboarding2DarkBackground
+                  : AppAssets.onboarding2LightBackground,
               fit: BoxFit.cover,
             ),
           ],

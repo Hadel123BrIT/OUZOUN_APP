@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomBottomNavigationBar .dart';
-import '../../../Widgets/CustomDrawer.dart';
+import '../../../Widgets/custom_bottom_navigation_bar .dart';
+import '../../../Widgets/custom_drawer.dart';
 import '../../../core/constants/app_colors.dart';
 import '../HomePage_Controller/homePage_controller.dart';
 import '../widget/build_body.dart';
@@ -46,7 +46,7 @@ class HomePageScreen extends StatelessWidget {
         ),
         title: Text("Welcome Doctor",
             style: Theme.of(context).textTheme.titleSmall),
-        backgroundColor: green,
+        backgroundColor: AppColors.primaryGreen,
         centerTitle: true,
       ),
       bottomNavigationBar: CustomBottomNavigationBar(),

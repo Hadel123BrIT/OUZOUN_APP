@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
 import '../../../Routes/app_routes.dart';
-import '../../../Widgets/CustomText.dart';
+import '../../../Widgets/custom_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/constants/app_colors.dart';
 import '../splash_screens/page1_screen.dart';
@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     controller: splashController,
                     count: 3,
                     effect: WormEffect(
-                      activeDotColor: greenlight,
+                      activeDotColor: AppColors.lightGreen,
                       dotColor: Colors.grey,
                     ),
                   ),

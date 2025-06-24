@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomBottomNavigationBar .dart';
-import '../../../Widgets/CustomDrawer.dart';
-import '../../../Widgets/CustomText.dart';
+import '../../../Widgets/custom_bottom_navigation_bar .dart';
+import '../../../Widgets/custom_drawer.dart';
+import '../../../Widgets/custom_text.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_tool_card.dart';
@@ -97,7 +97,7 @@ class AdditionalKits extends StatelessWidget {
         ),
         title: Text("Additional Kits",
             style: Theme.of(context).textTheme.titleSmall),
-        backgroundColor: green,
+        backgroundColor: AppColors.primaryGreen,
         centerTitle: true,
       ),
       body: SingleChildScrollView(

@@ -36,7 +36,7 @@ class BuildChoiceCard extends StatelessWidget {
              alignment:Alignment.center,
             height: 175,
             decoration: BoxDecoration(
-              color: green,
+              color: AppColors.primaryGreen,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(

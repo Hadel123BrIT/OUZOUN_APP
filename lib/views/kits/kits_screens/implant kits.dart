@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ouzoun/Widgets/CustomButton.dart';
+import 'package:ouzoun/Widgets/custom_button.dart';
 import '../../../Core/Services/media_query_service.dart';
-import '../../../Widgets/CustomDrawer.dart';
+import '../../../Widgets/custom_drawer.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_detail_row.dart';
@@ -92,7 +92,7 @@ class Implantkits extends StatelessWidget {
           ),
         ),
         title: Text("Implant Kits", style: Theme.of(context).textTheme.titleSmall),
-        backgroundColor: green,
+        backgroundColor: AppColors.primaryGreen,
         centerTitle: true,
       ),
       body: SingleChildScrollView(

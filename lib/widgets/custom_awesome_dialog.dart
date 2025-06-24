@@ -17,7 +17,7 @@ Future<int?> showQuantityDialog(String toolName) async {
         Text('How many  $toolName  which you want'),
         SizedBox(height: 16),
         TextFormField(
-          cursorColor: green,
+          cursorColor: AppColors.primaryGreen,
           controller: controller,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
@@ -34,11 +34,11 @@ Future<int?> showQuantityDialog(String toolName) async {
               borderSide: BorderSide(color: Colors.green),),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: green),
+              borderSide: BorderSide(color: AppColors.primaryGreen),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: green, width: 2.0),
+              borderSide: BorderSide(color: AppColors.primaryGreen, width: 2.0),
             ),
           ),
           onChanged: (value) {
@@ -49,7 +49,7 @@ Future<int?> showQuantityDialog(String toolName) async {
     ),
     confirm: ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: green,
+        backgroundColor: AppColors.primaryGreen,
       ),
       onPressed: () {
         Get.back(result: quantity);
@@ -79,7 +79,7 @@ void showAssistantDialog(BuildContext context) {
       title: Text(
         "Select Number of Assistants",
         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: green,
+          color: AppColors.primaryGreen,
         ),
         textAlign: TextAlign.center,
       ),
@@ -103,10 +103,10 @@ void showAssistantDialog(BuildContext context) {
                   height: 40,
                   decoration: BoxDecoration(
                     color: controller.tempSelection.value == number
-                        ? green
+                        ? AppColors.primaryGreen
                         : Colors.transparent,
                     border: Border.all(
-                      color: green,
+                      color: AppColors.primaryGreen,
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(10),
@@ -116,8 +116,8 @@ void showAssistantDialog(BuildContext context) {
                       '$number',
                       style: TextStyle(
                         color: controller.tempSelection.value == number
-                            ? background
-                            : green,
+                            ? AppColors.whiteBackground
+                            : AppColors.primaryGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -132,7 +132,7 @@ void showAssistantDialog(BuildContext context) {
             controller.tempSelection.value > 0
                 ? 'Selected: ${controller.tempSelection.value}'
                 : 'Please select a number',
-            style: TextStyle(color: green),
+            style: TextStyle(color: AppColors.primaryGreen),
           )),
         ],
       ),
@@ -144,12 +144,12 @@ void showAssistantDialog(BuildContext context) {
           },
           child: Text(
             "Cancel",
-            style: TextStyle(color: green),
+            style: TextStyle(color: AppColors.primaryGreen),
           ),
         ),
         Obx(() => ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: green,
+            backgroundColor: AppColors.primaryGreen,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -162,7 +162,7 @@ void showAssistantDialog(BuildContext context) {
               : null,
           child: Text(
             "Confirm",
-            style: TextStyle(color: background),
+            style: TextStyle(color: AppColors.whiteBackground),
           ),
         )),
       ],

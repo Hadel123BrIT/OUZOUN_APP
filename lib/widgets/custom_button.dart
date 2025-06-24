@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../core/constants/app_colors.dart';
-import 'CustomText.dart';
+import 'custom_text.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.onTap, required this.text, required this.color,});
@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color:green,
+        color:AppColors.primaryGreen,
         borderRadius: BorderRadius.circular(20),
       ),
       width: double.infinity,

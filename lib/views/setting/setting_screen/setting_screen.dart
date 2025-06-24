@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Routes/app_routes.dart';
-import '../../../Widgets/CustomButton.dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -29,7 +29,7 @@ class SettingsScreen extends StatelessWidget {
           "Setting",
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        backgroundColor: green,
+        backgroundColor: AppColors.primaryGreen,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -48,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 _buildSettingItem(
                   trailing: Switch(value: true, onChanged: (_) {},
-                  activeColor: green,
+                  activeColor: AppColors.primaryGreen,
                   ),
                   context,
                   icon: Icons.color_lens,
@@ -97,7 +97,7 @@ class SettingsScreen extends StatelessWidget {
                 child:   CustomButton(
                   onTap: (){;
                   },
-                  text: 'Log out'.tr, color: green,
+                  text: 'Log out'.tr, color: AppColors.primaryGreen,
 
                 ),
               ),
@@ -111,7 +111,7 @@ class SettingsScreen extends StatelessWidget {
 
   Widget _buildAccountCard(BuildContext context, MediaQueryHelper media) {
     return Card(
-      color: green,
+      color: AppColors.primaryGreen,
       margin: EdgeInsets.only(bottom: media.height * 0.03),
       child: Padding(
         padding: EdgeInsets.all(media.width * 0.04),
@@ -119,7 +119,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: media.width * 0.1,
-              backgroundColor: greenlight,
+              backgroundColor: AppColors.lightGreen,
               child:  Icon(Icons.person,
               color: Colors.grey[300],
               ),
@@ -162,7 +162,7 @@ class SettingsScreen extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Row(
               children: [
-                Icon(icon, color: green),
+                Icon(icon, color: AppColors.primaryGreen),
                 SizedBox(width: 10),
                 Text(
                   title,
@@ -185,12 +185,12 @@ class SettingsScreen extends StatelessWidget {
         Widget? trailing,
         Function()? onTap,
       }) {return ListTile(
-      leading: Icon(icon, color: green),
+      leading: Icon(icon, color: AppColors.primaryGreen),
       title: Text(title, style: Theme.of(context).textTheme.headlineSmall),
       subtitle: value != null
           ? Text(value, style: Theme.of(context).textTheme.titleMedium)
           : null,
-      trailing: trailing ?? Icon(Icons.arrow_forward_ios, size: 16, color: green),
+      trailing: trailing ?? Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.primaryGreen),
       onTap: onTap,
     );}
 

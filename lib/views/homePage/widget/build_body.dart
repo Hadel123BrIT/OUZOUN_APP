@@ -30,7 +30,7 @@ Widget BuildBody(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _buildOptionButton(
-              color: green,
+              color: AppColors.primaryGreen,
               context: context,
               icon: Icons.health_and_safety,
               label: "Surgical  Kits",
@@ -39,7 +39,7 @@ Widget BuildBody(BuildContext context) {
               },
             ),
             _buildOptionButton(
-              color: green,
+              color: AppColors.primaryGreen,
               context: context,
               icon: Icons.add_circle_outline,
               label: "Additional Kits",
@@ -48,7 +48,7 @@ Widget BuildBody(BuildContext context) {
               },
             ),
             _buildOptionButton(
-              color: green,
+              color: AppColors.primaryGreen,
               context: context,
               icon: Icons.medical_services,
               label: "Implant Kits",
