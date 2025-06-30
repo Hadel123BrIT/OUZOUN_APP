@@ -9,17 +9,16 @@ class AboutUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQueryHelper(context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         leading: IconButton(icon:Icon(Icons.arrow_back),
           color: Colors.white, onPressed: () { Get.back(); },
         ),
-        toolbarHeight: media.height* 0.1, // 80 replaced
+        toolbarHeight: context.height* 0.1, // 80 replaced
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(media.width * 0.06), // 22 replaced
+            bottom: Radius.circular(context.width * 0.06), // 22 replaced
           ),
         ),
         title: Text(
@@ -30,17 +29,17 @@ class AboutUsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(media.width * 0.06),
+        padding: EdgeInsets.all(context.width * 0.06),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header Section
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: media.height * 0.025),
+              padding: EdgeInsets.symmetric(vertical: context.height * 0.025),
               decoration: BoxDecoration(
                 color: AppColors.primaryGreen.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(media.width * 0.025),
+                borderRadius: BorderRadius.circular(context.width * 0.025),
               ),
               child: Column(
                 children: [
@@ -52,7 +51,7 @@ class AboutUsScreen extends StatelessWidget {
                           : AppColors.deepBlack,
                     ),
                   ),
-                  SizedBox(height: media.height * 0.012),
+                  SizedBox(height: context.height * 0.012),
                   Text(
                     "A platform for selling dental surgical tools",
                     style: Theme.of(context).textTheme.titleMedium,
@@ -60,7 +59,7 @@ class AboutUsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: media.height * 0.03),
+            SizedBox(height: context.height * 0.03),
 
             _buildSection(
               context: context,
@@ -84,7 +83,7 @@ class AboutUsScreen extends StatelessWidget {
             ),
 
             Padding(
-              padding: EdgeInsets.only(top: media.height * 0.05),
+              padding: EdgeInsets.only(top: context.height * 0.05),
               child: Center(
                 child: Text(
                   "© 2025 Ouzoun. All rights reserved",

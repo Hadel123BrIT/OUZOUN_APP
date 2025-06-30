@@ -15,21 +15,17 @@ class FirstPageChoices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-
     return Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background,
       body: Container(
-        width: screenSize.width,
-        height: screenSize.height,
+        width: context.width,
+        height: context.height,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           image: const DecorationImage(
             opacity:0.8,
             scale: 0.40,
-            //image: AssetImage(AppAssets.choice1Page),
             image: AssetImage(AppAssets.maleDentistIcon),
             fit: BoxFit.fitWidth,
           ),
@@ -38,8 +34,8 @@ class FirstPageChoices extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 70),
-            Text("Welcome to your app.\n Please select your need.",textAlign:TextAlign.center,style:Theme.of(context).textTheme.titleLarge),
-            SizedBox(height: screenSize.height * 0.4),
+            Text("Welcome to your app.\n Please select your needed.",textAlign:TextAlign.center,style:Theme.of(context).textTheme.titleLarge),
+            SizedBox(height: context.height * 0.4),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -48,7 +44,7 @@ class FirstPageChoices extends StatelessWidget {
                   children: [
                      BuildChoiceCard(
                         color:AppColors.primaryGreen,
-                        height: isPortrait ? screenSize.height * 0.20 : screenSize.height * 0.4,
+                        height: context.isPortrait ? context.height * 0.20 : context.height * 0.4,
                         icon: FontAwesomeIcons.userDoctor,
                         onTap: () {
                          Get.toNamed(AppRoutes.secondchoice);
@@ -60,7 +56,7 @@ class FirstPageChoices extends StatelessWidget {
                     const SizedBox(width: 20),
                    BuildChoiceCard(
                         color:AppColors.primaryGreen,
-                        height: isPortrait ? screenSize.height * 0.20 : screenSize.height * 0.4,
+                        height: context.isPortrait ? context.height * 0.20 : context.height * 0.4,
                         icon: Icons.inventory_2,
                         onTap: () {
 

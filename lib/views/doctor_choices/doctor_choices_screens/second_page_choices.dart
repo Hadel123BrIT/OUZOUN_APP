@@ -19,16 +19,14 @@ class SecondPageChoices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
         children: [
           Container(
-            width: screenSize.width,
-            height: screenSize.height,
+            width: context.width,
+            height: context.height,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
@@ -47,7 +45,7 @@ class SecondPageChoices extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                SizedBox(height: screenSize.height * 0.4),
+                SizedBox(height: context.height * 0.4),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,9 +56,9 @@ class SecondPageChoices extends StatelessWidget {
                         Flexible(
                           child: Obx(() => BuildChoiceCard(
                             color: AppColors.primaryGreen,
-                            height: isPortrait
-                                ? screenSize.height * 0.20
-                                : screenSize.height * 0.4,
+                            height: context.isPortrait
+                                ? context.height * 0.20
+                                : context.height * 0.4,
                             icon: FontAwesomeIcons.handsHelping,
                             onTap: () => showAssistantDialog(context),
                             subtitle: controller.selectedAssistants.value > 0
@@ -74,9 +72,9 @@ class SecondPageChoices extends StatelessWidget {
                         Flexible(
                           child:  BuildChoiceCard(
                             color: AppColors.primaryGreen,
-                            height: isPortrait
-                                ? screenSize.height * 0.20
-                                : screenSize.height * 0.4,
+                            height: context.isPortrait
+                                ? context.height * 0.20
+                                : context.height * 0.4,
                             icon: FontAwesomeIcons.userSlash,
                             onTap: () {
                               controller.selectedAssistants.value = 0;
