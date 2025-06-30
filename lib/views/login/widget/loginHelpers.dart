@@ -24,28 +24,27 @@ class LoginHelpers {
     );
   }
 
-  static Widget buildHeader(BuildContext context, MediaQueryHelper media) {
+  static Widget buildHeader(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: media.height * 0.06),
+        SizedBox(height: context.height * 0.06),
         Text(
           "Log in".tr,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        SizedBox(height: media.height * 0.04),
+        SizedBox(height: context.height * 0.04),
         Text(
           "Log in to your account\n and then continue using this app".tr,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        SizedBox(height: media.height * 0.08),
+        SizedBox(height: context.height * 0.08),
       ],
     );
   }
 
-  static Widget buildEmailField(
-      MediaQueryHelper media, TextEditingController controller) {
+  static Widget buildEmailField(TextEditingController controller) {
     return CustomTextForm(
       prefixIcon: Icon(Icons.email,
           color: Colors.grey[500]
@@ -57,8 +56,7 @@ class LoginHelpers {
     );
   }
 
-  static Widget buildPasswordField(
-      MediaQueryHelper media, TextEditingController controller) {
+  static Widget buildPasswordField(TextEditingController controller) {
     return CustomTextForm(
       prefixIcon: Icon(Icons.lock,
           color: Colors.grey[500]
@@ -74,20 +72,20 @@ class LoginHelpers {
     );
   }
 
-  static Widget buildForgotPasswordLink(MediaQueryHelper media) {
+  static Widget buildForgotPasswordLink(BuildContext context) {
     return InkWell(
       onTap: () => Get.toNamed(AppRoutes.chekEmail),
       child: Container(
         alignment: Alignment.topRight,
         margin: EdgeInsets.only(
-          top: media.height * 0.01,
-          bottom: media.height * 0.02,
+          top: context.height * 0.01,
+          bottom: context.height * 0.02,
         ),
         child: Text(
           "Forgot Password ?".tr,
           style: TextStyle(
             fontFamily: 'Montserrat',
-            fontSize: media.width * 0.03,
+            fontSize: context.width * 0.03,
             color: AppColors.primaryGreen,
           ),
         ),
@@ -103,7 +101,7 @@ class LoginHelpers {
     );
   }
 
-  static Widget buildRegisterLink(BuildContext context, MediaQueryHelper media) {
+  static Widget buildRegisterLink(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       child: InkWell(
@@ -114,7 +112,7 @@ class LoginHelpers {
               text: "Don't have an account ? ".tr,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: media.width * 0.04,
+                fontSize: context.width * 0.04,
                 fontFamily: "Montserrat",
               ),
             ),
@@ -123,7 +121,7 @@ class LoginHelpers {
               style: TextStyle(
                 color: AppColors.primaryGreen,
                 fontWeight: FontWeight.bold,
-                fontSize: media.width * 0.04,
+                fontSize: context.width * 0.04,
                 fontFamily: "Montserrat",
               ),
             ),

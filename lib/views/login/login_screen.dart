@@ -6,24 +6,23 @@ import 'Widget/buildLoginForm.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  final LoginController _controller = Get.put(LoginController());
+  final LoginController controller = Get.put(LoginController());
 
   LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQueryHelper(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: _buildBody(context, media),
+      body: _buildBody(context),
     );
   }
 
-  Widget _buildBody(BuildContext context, MediaQueryHelper media) {
-    return Obx(() => _controller.isLoading.value
+  Widget _buildBody(BuildContext context) {
+    return Obx(() => controller.isLoading.value
         ? LoginHelpers.buildLoadingIndicator()
-        : buildLogin.buildLoginForm(context, media));
+        : buildLogin.buildLoginForm(context));
   }
 
 }

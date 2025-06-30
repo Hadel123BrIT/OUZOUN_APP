@@ -25,27 +25,27 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildHeader(BuildContext context, MediaQueryHelper media) {
+  static Widget buildHeader(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: media.height * 0.04),
+        SizedBox(height: context.height * 0.04),
         Text(
           "Sign Up".tr,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        SizedBox(height: media.height * 0.04),
+        SizedBox(height: context.height * 0.04),
         Text(
           "Sign in to your account and then continue using this app".tr,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        SizedBox(height: media.height * 0.04),
+        SizedBox(height: context.height * 0.04),
       ],
     );
   }
 
-  static Widget buildNameField(MediaQueryHelper media, TextEditingController controller) {
+  static Widget buildNameField( TextEditingController controller) {
     return CustomTextForm(
       prefixIcon: Icon(Icons.person,
           color: Colors.grey[500]
@@ -57,7 +57,7 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildLocationField(MediaQueryHelper media, RegisterController controller,) {
+  static Widget buildLocationField( RegisterController controller,) {
     return InkWell(
       onTap: () async {
         Get.dialog(
@@ -101,7 +101,7 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildPhoneField(MediaQueryHelper media, TextEditingController controller) {
+  static Widget buildPhoneField( TextEditingController controller) {
     return CustomTextForm(
       prefixIcon: Icon(Icons.phone,
           color: Colors.grey[500]
@@ -113,7 +113,7 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildEmailField(MediaQueryHelper media, TextEditingController controller) {
+  static Widget buildEmailField( TextEditingController controller) {
     return CustomTextForm(
       prefixIcon: Icon(Icons.email,
           color: Colors.grey[500]
@@ -125,7 +125,7 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildPasswordField(MediaQueryHelper media, TextEditingController controller) {
+  static Widget buildPasswordField( TextEditingController controller) {
     return CustomTextForm(
       prefixIcon: Icon(Icons.lock,
           color: Colors.grey[500]
@@ -141,20 +141,20 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildForgotPasswordLink(MediaQueryHelper media) {
+  static Widget buildForgotPasswordLink(BuildContext context) {
     return InkWell(
       onTap: () => Get.toNamed(AppRoutes.chekEmail),
       child: Container(
         alignment: Alignment.topRight,
         margin: EdgeInsets.only(
-          top: media.height * 0.01,
-          bottom: media.height * 0.02,
+          top: context.height * 0.01,
+          bottom: context.height * 0.02,
         ),
         child: Text(
           "Forgot Password ?".tr,
           style: TextStyle(
             fontFamily: 'Montserrat',
-            fontSize: media.width * 0.03,
+            fontSize: context.width * 0.03,
             color: AppColors.primaryGreen,
           ),
         ),
@@ -170,7 +170,7 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildLoginLink(BuildContext context, MediaQueryHelper media) {
+  static Widget buildLoginLink(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       child: InkWell(
@@ -181,7 +181,7 @@ class RegisterHelpers {
               text: "you have an account ? ".tr,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: media.width * 0.04,
+                fontSize: context.width * 0.04,
                 fontFamily: "Montserrat",
               ),
             ),
@@ -190,7 +190,7 @@ class RegisterHelpers {
               style: TextStyle(
                 color: AppColors.primaryGreen,
                 fontWeight: FontWeight.bold,
-                fontSize: media.width * 0.04,
+                fontSize: context.width * 0.04,
                 fontFamily: "Montserrat",
               ),
             ),

@@ -14,21 +14,36 @@ class Page3 extends StatelessWidget {
 
     return Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Don't worry".tr,textAlign: TextAlign.center,style: Theme.of(context).textTheme.titleLarge,),
-            SizedBox(height: media.height * 0.02),
-            Text("this App helps you, Let's start".tr,textAlign: TextAlign.center,style: Theme.of(context).textTheme.titleMedium,),
-            SizedBox(height: media.height * 0.065),
-            Image.asset(
+      body: OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) {
+          return  Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Don't worry".tr,textAlign: TextAlign.center,style: Theme.of(context).textTheme.titleLarge,),
+                SizedBox(height: context.height * 0.02),
+                Text("this App helps you, Let's start".tr,textAlign: TextAlign.center,style: Theme.of(context).textTheme.titleMedium,),
+                SizedBox(height: context.height * (context.isPortrait ? 0.065 : 0.04)),
+               context.isPortrait
+                ? Image.asset(
               AppAssets.onboarding3LightAndDarkBackground,
-              scale: media.width * 0.005,
+              width: context.width * 0.9,
               fit: BoxFit.contain,
+            )
+                : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  AppAssets.onboarding3LightAndDarkBackground,
+                  width: context.width * 0.5,
+                  fit: BoxFit.contain,
+                ),
+                SizedBox(width: context.width * 0.05),
+              ],
             ),
-          ],
-        ),
+          ]));
+        },
+
       ),
     );
   }

@@ -7,26 +7,26 @@ import '../login_controller.dart';
 import 'loginHelpers.dart';
 
 class buildLogin{
-  static Widget buildLoginForm(BuildContext context, MediaQueryHelper media) {
-    final LoginController _controller = Get.put(LoginController());
+  static Widget buildLoginForm(BuildContext context) {
+    final LoginController controller = Get.put(LoginController());
     return Container(
-      padding: EdgeInsets.all(media.width * 0.05),
+      padding: EdgeInsets.all(context.width * 0.05),
       child: ListView(
         children: [
           Form(
-            key: _controller.formKey,
+            key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                LoginHelpers.buildHeader(context, media),
-                LoginHelpers.buildEmailField(media, _controller.emailController),
-                SizedBox(height: media.height * 0.05),
-                LoginHelpers.buildPasswordField(media, _controller.passwordController),
-                LoginHelpers.buildForgotPasswordLink(media),
-                SizedBox(height: media.height * 0.08),
+                LoginHelpers.buildHeader(context),
+                LoginHelpers.buildEmailField( controller.emailController),
+                SizedBox(height: context.height * 0.05),
+                LoginHelpers.buildPasswordField( controller.passwordController),
+                LoginHelpers.buildForgotPasswordLink(context),
+                SizedBox(height: context.height * 0.08),
                 LoginHelpers.buildLoginButton(),
-                SizedBox(height: media.height * 0.15),
-                LoginHelpers.buildRegisterLink(context, media),
+                SizedBox(height: context.height * 0.15),
+                LoginHelpers.buildRegisterLink(context),
               ],
             ),
           ),
