@@ -27,8 +27,8 @@ class Page3 extends StatelessWidget {
                context.isPortrait
                 ? Image.asset(
               AppAssets.onboarding3LightAndDarkBackground,
-              width: context.width * 0.9,
-              fit: BoxFit.contain,
+                 scale: media.width * 0.005,
+              fit: BoxFit.cover,
             )
                 : Row(
               mainAxisAlignment: MainAxisAlignment.center,

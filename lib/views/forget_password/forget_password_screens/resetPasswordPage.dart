@@ -12,22 +12,21 @@ class ResetPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media=MediaQueryHelper(context);
     ResetPageController controller=Get.find();
     return  Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background ,
       body:SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical:media.height*0.15,horizontal:media.width*0.06),
+          padding: EdgeInsets.symmetric(vertical:context.height*0.15,horizontal:context.width*0.06),
           child:Container(
             alignment: Alignment.center,
             child: Column(children: [
-              Icon(FontAwesomeIcons.key,color:AppColors.primaryGreen, size: media.width * 0.2,),
-              SizedBox(height: media.height * 0.03),
+              Icon(FontAwesomeIcons.key,color:AppColors.primaryGreen, size: context.width * 0.2,),
+              SizedBox(height: context.height * 0.03),
               Text("Reset Password",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
-              SizedBox(height: media.height * 0.02),
+              SizedBox(height: context.height * 0.02),
               Text("Please Reset your Password to Access\nOuzoun App ",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
-              SizedBox(height: media.height * 0.05),
+              SizedBox(height: context.height * 0.05),
               CustomTextForm(
                 hinttext:"Enter your Password",
                 suffixIcon:Icon(Icons.remove_red_eye_outlined),
@@ -40,12 +39,12 @@ class ResetPasswordPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(height: media.height * 0.05),
+              SizedBox(height: context.height * 0.05),
               CustomTextForm(
                 hinttext:"confirm your Password",
                 suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,
-                mycontroller:controller.confirmresetPassword,
+                mycontroller:controller.confirmResetPassword,
                 validator:(val) {
                   if (val == null || val.isEmpty) {
                     return "confirm password must not be empty";
@@ -54,7 +53,7 @@ class ResetPasswordPage extends StatelessWidget {
                 },
 
               ),
-              SizedBox(height: media.height * 0.05),
+              SizedBox(height: context.height * 0.05),
               CustomButton(
                 color:AppColors.primaryGreen,
                 text:"done",

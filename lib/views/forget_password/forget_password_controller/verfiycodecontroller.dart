@@ -2,11 +2,11 @@ import 'package:get/get.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
 
 class VerfiyCodeController extends GetxController {
- String ? verifycode;
-void verfiycode(){
+ String ? verifyCode;
+void verfiyCode(){
 
 }
-void goToreset(){
+void goToReset(){
   Get.toNamed(AppRoutes.resetpage);
 }
 

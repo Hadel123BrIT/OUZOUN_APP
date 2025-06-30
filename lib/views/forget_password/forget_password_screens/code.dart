@@ -13,35 +13,34 @@ class Code extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media=MediaQueryHelper(context);
     VerfiyCodeController controller=Get.find();
     return Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background,
       body:SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical:media.height*0.15,horizontal:media.width*0.06),
+          padding: EdgeInsets.symmetric(vertical:context.height*0.15,horizontal:context.width*0.06),
           child:Container(
             alignment: Alignment.center,
             child: Column(children: [
               Text("Enter Verification Code",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleLarge,),
-              SizedBox(height: media.height * 0.02),
+              SizedBox(height: context.height * 0.02),
               Text("Enter the 5-digit that we have sent via the \nEmail ",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
-              SizedBox(height: media.height * 0.04),
+              SizedBox(height: context.height * 0.04),
               CustomOtp(
                   onChanged:(code){
-                controller.verifycode=code;
+                controller.verifyCode=code;
               },
                 codenumber: 5,
                   focusedbordercolor: AppColors.primaryGreen,
                   cursorcolor: AppColors.lightGreen,
                 keybord:TextInputType.number,
               ),
-              SizedBox(height: media.height * 0.05),
+              SizedBox(height: context.height * 0.05),
               CustomButton(
                 color:AppColors.primaryGreen,
                 text:"Confirm",
                 onTap:(){
-                  controller.goToreset();
+                  controller.goToReset();
                 },)
         
             ],),

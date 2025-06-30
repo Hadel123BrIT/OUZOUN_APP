@@ -8,11 +8,11 @@ import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
 import 'build_detail_row.dart';
 
-Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String, dynamic> implant) {
+Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
   return Container(
-    margin: EdgeInsets.symmetric(vertical: media.height * 0.01),
+    margin: EdgeInsets.symmetric(vertical: context.height * 0.01),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(15),
       boxShadow: [
@@ -38,7 +38,7 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
       margin: EdgeInsets.zero,
       color: isDarkMode ? Colors.grey[900] : Colors.white,
       child: Padding(
-        padding: EdgeInsets.all(media.width * 0.03),
+        padding: EdgeInsets.all(context.width * 0.03),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,8 +48,8 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  width: media.width * 0.2,
-                  height: media.width * 0.2,
+                  width: context.width * 0.2,
+                  height: context.width * 0.2,
                   decoration: BoxDecoration(
                     color: AppColors.primaryGreen,
                     borderRadius: BorderRadius.circular(10),
@@ -59,7 +59,7 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
                     ),
                   ),
                 ),
-                SizedBox(width: media.width * 0.03),
+                SizedBox(width: context.width * 0.03),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +68,7 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
                         implant['name'],
                         style: Theme.of(context).textTheme.bodySmall
                     ),
-                    SizedBox(height: media.height * 0.01),
+                    SizedBox(height: context.height * 0.01),
                     Row(
                       children: [
                         BuildDetailRow('height:', implant['height']),
@@ -83,7 +83,7 @@ Widget BuildImplantCard(BuildContext context, MediaQueryHelper media, Map<String
                         BuildDetailRow('quantity:', '${implant['quantity']}'),
                       ],
                     ),
-                    SizedBox(height: media.height * 0.01),
+                    SizedBox(height: context.height * 0.01),
                   ],
                 ),
               ],

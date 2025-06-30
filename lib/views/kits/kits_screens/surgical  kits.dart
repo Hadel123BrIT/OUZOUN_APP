@@ -11,7 +11,7 @@ import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_tool_card.dart';
 
 class SurgicalKits extends StatelessWidget {
-  final KitsController _controller = Get.put(KitsController());
+  final KitsController controller = Get.put(KitsController());
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   final List<Map<String, dynamic>> additionalTools = [
     {
@@ -66,7 +66,6 @@ class SurgicalKits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final media = MediaQueryHelper(context);
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomDrawer(),
@@ -85,10 +84,10 @@ class SurgicalKits extends StatelessWidget {
           },
           icon: Icon(Icons.menu, color: Colors.white),
         ),
-        toolbarHeight: media.height * 0.1,
+        toolbarHeight: context.height * 0.1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(media.width * 0.06),
+            bottom: Radius.circular(context.width * 0.06),
           ),
         ),
         title: Text("Surgical Kits",
@@ -99,14 +98,14 @@ class SurgicalKits extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: media.width * 0.04, vertical: media.height * 0.02),
+              horizontal: context.width * 0.04, vertical: context.height * 0.02),
           child: Column(
             children: [
               // Welcome message
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(media.width * 0.04),
-                margin: EdgeInsets.only(bottom: media.height * 0.02),
+                padding: EdgeInsets.all(context.width * 0.04),
+                margin: EdgeInsets.only(bottom: context.height * 0.02),
                 decoration: BoxDecoration(
                   color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                   borderRadius: BorderRadius.circular(10),
@@ -118,17 +117,17 @@ class SurgicalKits extends StatelessWidget {
                       "Hello Doctor,",
                       style: TextStyle(
                         fontFamily: "Montserrat",
-                        fontSize: media.width * 0.045,
+                        fontSize: context.width * 0.045,
                         fontWeight: FontWeight.bold,
                         color: isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
-                    SizedBox(height: media.height * 0.01),
+                    SizedBox(height: context.height * 0.01),
                     Text(
                       "This page is dedicated to fixed surgical tools, which must be present in every operation..",
                       style: TextStyle(
                         fontFamily: "Montserrat",
-                        fontSize: media.width * 0.035,
+                        fontSize: context.width * 0.035,
                         color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
                       ),
                     ),
@@ -153,9 +152,9 @@ class SurgicalKits extends StatelessWidget {
                             length: additionalTools[index]['length'],
                             width: additionalTools[index]['width'],
                             thickness: additionalTools[index]['thickness'],
-                            selectedQuantity: _controller.toolQuantities[index],
+                            selectedQuantity: controller.toolQuantities[index],
                             onQuantitySelected: (quantity) {
-                              _controller.updateToolQuantity(index, quantity);
+                              controller.updateToolQuantity(index, quantity);
                             },
                           )),
                         ),

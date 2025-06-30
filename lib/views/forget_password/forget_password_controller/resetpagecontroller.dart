@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 class ResetPageController extends GetxController{
   late TextEditingController resetPassword;
-  late TextEditingController confirmresetPassword;
+  late TextEditingController confirmResetPassword;
   late  GlobalKey<FormState>key;
-  void Sucesspage(){
+  void sucessPage(){
 
   }
-  void goToChoosingpage(){
+  void goToChoosingPage(){
 
   }
   @override
@@ -16,7 +16,7 @@ class ResetPageController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     resetPassword=TextEditingController();
-    confirmresetPassword=TextEditingController();
+    confirmResetPassword=TextEditingController();
     key=GlobalKey<FormState>();
   }
 }

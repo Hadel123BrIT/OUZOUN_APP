@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
-import 'package:ouzoun/Widgets/custom_button.dart' hide CustomButton;
-
+import 'package:ouzoun/Widgets/custom_button.dart' hide  CustomButton;
 import '../../../core/constants/app_colors.dart';
 import '../../../widgets/custom_button.dart';
 import '../Kits_Controller/kits_controller.dart';
@@ -16,7 +15,6 @@ class ImplantDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQueryHelper(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
@@ -27,19 +25,19 @@ class ImplantDetailScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  width: media.width * 0.5,
-                  height: media.height * 0.16,
+                  width: context.width * 0.5,
+                  height: context.height * 0.16,
                   decoration: BoxDecoration(
                     color: AppColors.primaryGreen,
                     borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(media.width * 0.2),
+                      bottomRight: Radius.circular(context.width * 0.2),
                     ),
                   ),
 
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(media.width * 0.05),
+                padding: EdgeInsets.all(context.width * 0.05),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -47,8 +45,8 @@ class ImplantDetailScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            width: media.width * 0.4,
-                            height: media.width * 0.4,
+                            width: context.width * 0.4,
+                            height: context.width * 0.4,
                             decoration: BoxDecoration(
                               color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                               borderRadius: BorderRadius.circular(20),
@@ -65,12 +63,12 @@ class ImplantDetailScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: media.height * 0.02),
+                          SizedBox(height: context.height * 0.02),
                           Text(
                             implant['name'],
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           Text(
                             "Quantity: ${implant['quantity']}",
                             style: Theme.of(context).textTheme.titleMedium,
@@ -78,9 +76,9 @@ class ImplantDetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: media.height * 0.03),
+                    SizedBox(height: context.height * 0.03),
                     Container(
-                      padding: EdgeInsets.all(media.width * 0.04),
+                      padding: EdgeInsets.all(context.width * 0.04),
                       decoration: BoxDecoration(
                         color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                         borderRadius: BorderRadius.circular(15),
@@ -99,18 +97,18 @@ class ImplantDetailScreen extends StatelessWidget {
                             "Specifications",
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           BuildSpecItem(context, "Height", implant['height']),
                           BuildSpecItem(context, "Width", implant['width']),
                           BuildSpecItem(context, "Radius", implant['radius']),
                         ],
                       ),
                     ),
-                    SizedBox(height: media.height * 0.03),
+                    SizedBox(height: context.height * 0.03),
                     Container(
-                      padding: EdgeInsets.all(media.width * 0.04),
+                      padding: EdgeInsets.all(context.width * 0.04),
                       decoration: BoxDecoration(
                         color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                         borderRadius: BorderRadius.circular(15),
@@ -129,17 +127,17 @@ class ImplantDetailScreen extends StatelessWidget {
                             "Brand and Quantity",
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           BuildSpecItem(context, "Brand", implant['brand']),
                           BuildSpecItem(context, "Quantity", '${implant['quantity']}'),
                         ],
                       ),
                     ),
-                    SizedBox(height: media.height * 0.03),
+                    SizedBox(height: context.height * 0.03),
                     Container(
-                      padding: EdgeInsets.all(media.width * 0.04),
+                      padding: EdgeInsets.all(context.width * 0.04),
                       decoration: BoxDecoration(
                         color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                         borderRadius: BorderRadius.circular(15),
@@ -158,9 +156,9 @@ class ImplantDetailScreen extends StatelessWidget {
                             "Description",
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           Text(
                             implant['description'],
                             style: Theme.of(context).textTheme.titleMedium,
@@ -168,9 +166,9 @@ class ImplantDetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: media.height * 0.03),
+                    SizedBox(height: context.height * 0.03),
                     Container(
-                      padding: EdgeInsets.all(media.width * 0.04),
+                      padding: EdgeInsets.all(context.width * 0.04),
                       decoration: BoxDecoration(
                         color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                         borderRadius: BorderRadius.circular(15),
@@ -189,9 +187,9 @@ class ImplantDetailScreen extends StatelessWidget {
                             "Required Tools",
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
-                          SizedBox(height: media.height * 0.01),
+                          SizedBox(height: context.height * 0.01),
                           BuildToolItem(context, "Surgical Kit"),
                           BuildToolItem(context, "Drill Guide"),
                           BuildToolItem(context, "Healing Abutment"),
@@ -199,7 +197,7 @@ class ImplantDetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: media.height * 0.04),
+                    SizedBox(height: context.height * 0.04),
                     Center(
                       child: CustomButton(onTap: (){
                             Get.snackbar(
@@ -218,12 +216,12 @@ class ImplantDetailScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Container(
-                  width: media.width * 0.5,
-                  height: media.height * 0.16,
+                  width: context.width * 0.5,
+                  height: context.height * 0.16,
                   decoration: BoxDecoration(
                     color: AppColors.primaryGreen,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(media.width * 0.2),
+                      topLeft: Radius.circular(context.width * 0.2),
                     ),
                   ),
                 ),

@@ -15,11 +15,11 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: _buildBody(context),
+      body: buildBody(context),
     );
   }
 
-  Widget _buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return Obx(() => controller.isLoading.value
         ? LoginHelpers.buildLoadingIndicator()
         : buildLogin.buildLoginForm(context));

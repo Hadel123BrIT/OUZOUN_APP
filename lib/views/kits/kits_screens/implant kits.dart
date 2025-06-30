@@ -66,7 +66,6 @@ class Implantkits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQueryHelper(context);
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -85,10 +84,10 @@ class Implantkits extends StatelessWidget {
           onPressed: () => scaffoldKey.currentState?.openDrawer(),
           icon: Icon(Icons.menu, color: Colors.white),
         ),
-        toolbarHeight: media.height * 0.1,
+        toolbarHeight: context.height * 0.1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(media.width * 0.06),
+            bottom: Radius.circular(context.width * 0.06),
           ),
         ),
         title: Text("Implant Kits", style: Theme.of(context).textTheme.titleSmall),
@@ -96,13 +95,13 @@ class Implantkits extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(media.width * 0.04),
+        padding: EdgeInsets.all(context.width * 0.04),
         child: Column(
           children: [
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(media.width * 0.04),
-              margin: EdgeInsets.only(bottom: media.height * 0.02),
+              padding: EdgeInsets.all(context.width * 0.04),
+              margin: EdgeInsets.only(bottom: context.height * 0.02),
               decoration: BoxDecoration(
                 color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                 borderRadius: BorderRadius.circular(10),
@@ -118,27 +117,27 @@ class Implantkits extends StatelessWidget {
                     "Hello Doctor,",
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: media.width * 0.045,
+                      fontSize: context.width * 0.045,
                       fontWeight: FontWeight.bold,
                       color: isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
-                  SizedBox(height: media.height * 0.01),
+                  SizedBox(height: context.height * 0.01),
                   Text(
                     "This page allows you to select the appropriate implant and the tools needed for each procedure. "
                         "You can view the specific tools required for each implant by clicking 'View details'.",
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: media.width * 0.035,
+                      fontSize: context.width * 0.035,
                       color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
                     ),
                   ),
-                  SizedBox(height: media.height * 0.01),
+                  SizedBox(height: context.height * 0.01),
                   Text(
                     "Note: The required tools for each implant can be found in the details section.",
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: media.width * 0.035,
+                      fontSize: context.width * 0.035,
                       fontStyle: FontStyle.italic,
                       color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
                     ),
@@ -147,7 +146,7 @@ class Implantkits extends StatelessWidget {
               ),
             ),
             Column(
-              children: implants.map((implant) => BuildImplantCard(context, media, implant)).toList(),
+              children: implants.map((implant) => BuildImplantCard(context, implant)).toList(),
             ),
           ],
         ),

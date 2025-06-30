@@ -9,9 +9,9 @@ import 'package:ouzoun/Routes/app_routes.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
+import 'buildOptionButton.dart';
 
 Widget BuildBody(BuildContext context) {
-  final media = MediaQueryHelper(context);
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +29,7 @@ Widget BuildBody(BuildContext context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildOptionButton(
+            buildOptionButton(
               color: AppColors.primaryGreen,
               context: context,
               icon: Icons.health_and_safety,
@@ -38,7 +38,7 @@ Widget BuildBody(BuildContext context) {
                 Get.toNamed(AppRoutes.surgical_kit);
               },
             ),
-            _buildOptionButton(
+            buildOptionButton(
               color: AppColors.primaryGreen,
               context: context,
               icon: Icons.add_circle_outline,
@@ -47,7 +47,7 @@ Widget BuildBody(BuildContext context) {
                 Get.toNamed(AppRoutes.additional_kit);
               },
             ),
-            _buildOptionButton(
+            buildOptionButton(
               color: AppColors.primaryGreen,
               context: context,
               icon: Icons.medical_services,
@@ -63,33 +63,3 @@ Widget BuildBody(BuildContext context) {
   );
 }
 
-Widget _buildOptionButton( {
-  required Color color,
-  required BuildContext context,
-  required IconData icon,
-  required String label,
-  required VoidCallback onTap,
-}) {
-  return InkWell(
-    onTap: onTap,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(icon, size: 30, color: Colors.white),
-        ),
-        SizedBox(height: 8),
-        Text(
-          textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,
-          label,
-
-        ),
-      ],
-    ),
-  );
-}

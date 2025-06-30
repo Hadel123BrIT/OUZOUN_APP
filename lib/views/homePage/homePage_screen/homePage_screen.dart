@@ -13,7 +13,6 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQueryHelper(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey[300],
@@ -38,10 +37,10 @@ class HomePageScreen extends StatelessWidget {
           },
           icon: Icon(Icons.menu, color: Colors.white),
         ),
-        toolbarHeight: media.height * 0.1,
+        toolbarHeight: context.height * 0.1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(media.width * 0.06),
+            bottom: Radius.circular(context.width * 0.06),
           ),
         ),
         title: Text("Welcome Doctor",

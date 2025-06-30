@@ -30,14 +30,14 @@ class Page1 extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  SizedBox(height: context.isPortrait ? context.height * 0.1 : context.height * 0.05),
-                  context.isPortrait
+                  SizedBox(height: context.height * (context.isPortrait ? 0.07 : 0.05)),                  context.isPortrait
                       ? Image.asset(
                     Theme.of(context).brightness == Brightness.dark
                         ? AppAssets.onboarding1DarkBackground
                         : AppAssets.onboarding1LightBackground,
-                    fit: BoxFit.contain,
                     width: context.width * 0.9,
+                    fit: BoxFit.contain,
+
                   )
                       : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +52,7 @@ class Page1 extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height:context.height * 0.2),
+
                 ],
               ),
             ),
