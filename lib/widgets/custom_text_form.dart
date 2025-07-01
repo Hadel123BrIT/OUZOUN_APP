@@ -4,15 +4,15 @@ import '../core/constants/app_colors.dart';
 
 class CustomTextForm extends StatelessWidget {
    CustomTextForm(
-      {super.key, required this.mycontroller,
-        required this.hinttext,
+      {super.key, required this.myController,
+        required this.hintText,
         required this.validator,
         required bool obscureText,
         this.suffixIcon,
         this.prefixIcon,
       });
-  final TextEditingController mycontroller;
-  final String hinttext;
+  final TextEditingController myController;
+  final String hintText;
   final String? Function(String?) validator;
   final Widget? suffixIcon;
    final Widget? prefixIcon;
@@ -22,9 +22,9 @@ class CustomTextForm extends StatelessWidget {
     return TextFormField(
       cursorColor: AppColors.primaryGreen,
       validator: validator,
-      controller: mycontroller,
+      controller: myController,
       decoration: InputDecoration(
-        hintText: hinttext,
+        hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 16,
           color: Colors.grey[500],

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../core/constants/app_colors.dart';
 
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  CustomAppBar({super.key, required this.ScaffoldKey,this.keytool=220,required this.title,required this.text,
+  CustomAppBar({super.key, required this.ScaffoldKey,this.keyTool=220,required this.title,required this.text,
    });
    final GlobalKey<ScaffoldState>? ScaffoldKey;
-     double keytool;
+     double keyTool;
      String title="";
       String text="";
 
   @override
-  Size get preferredSize => Size.fromHeight(keytool);
+  Size get preferredSize => Size.fromHeight(keyTool);
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -40,14 +40,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       Text("${text}",
                         style: TextStyle(
-                          fontSize: mediaQuery.size.width * 0.06,
+                          fontSize: context.width * 0.06,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 15),
                       Text("${title}",
                         style: TextStyle(
-                            fontSize: mediaQuery.size.width * 0.09,
+                            fontSize: context.width * 0.09,
                             color: Colors.black
                         ),
                       )

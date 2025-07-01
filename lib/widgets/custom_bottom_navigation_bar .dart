@@ -35,7 +35,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    final mediaQuery = MediaQuery.of(context);
 
 
     return Obx(() => AnimatedBottomNavigationBar.builder(

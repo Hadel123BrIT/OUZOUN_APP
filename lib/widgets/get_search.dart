@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 class Getsearch extends StatelessWidget {
   const Getsearch({super.key});
 
@@ -12,7 +13,7 @@ class Getsearch extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.06,
+              height: context.height * 0.06,
               decoration: BoxDecoration(color: Colors.grey[300]),
               child: TextField(
                 decoration: InputDecoration(
@@ -31,10 +32,10 @@ class Getsearch extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+          SizedBox(width: context.width * 0.05),
           Container(
-            height: MediaQuery.of(context).size.height * 0.06,
-            width: MediaQuery.of(context).size.width * 0.1,
+            height: context.height * 0.06,
+            width: context.width * 0.1,
             decoration: BoxDecoration(color: Colors.grey[300]),
             child: Center(
               // child: SvgPicture.asset(

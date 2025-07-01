@@ -73,7 +73,6 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final media=MediaQueryHelper(context);
     return Drawer(
       backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 0,

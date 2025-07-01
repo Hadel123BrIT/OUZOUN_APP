@@ -59,7 +59,7 @@ class FirstPageChoices extends StatelessWidget {
                         height: context.isPortrait ? context.height * 0.20 : context.height * 0.4,
                         icon: Icons.inventory_2,
                         onTap: () {
-
+                          Get.toNamed(AppRoutes.secondchoice);
                         },
                         subtitle: '',
                         textColor: AppColors.whiteBackground,
