@@ -30,10 +30,10 @@ class Code extends StatelessWidget {
                   onChanged:(code){
                 controller.verifyCode=code;
               },
-                codenumber: 5,
-                  focusedbordercolor: AppColors.primaryGreen,
-                  cursorcolor: AppColors.lightGreen,
-                keybord:TextInputType.number,
+                codeNumber: 5,
+                  focusedBorderColor: AppColors.primaryGreen,
+                  cursorColor: AppColors.lightGreen,
+                keyBoard:TextInputType.number,
               ),
               SizedBox(height: context.height * 0.05),
               CustomButton(

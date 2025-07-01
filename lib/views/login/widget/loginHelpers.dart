@@ -10,6 +10,7 @@ import 'package:ouzoun/Widgets/custom_text_form.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../register/register_screen.dart';
+import '../login_controller.dart';
 
 class LoginHelpers {
   static Widget buildLoadingIndicator() {
@@ -50,8 +51,8 @@ class LoginHelpers {
           color: Colors.grey[500]
       ),
       validator: (val) => val?.isEmpty ?? true ? "Email must not be empty".tr : null,
-      mycontroller: controller,
-      hinttext: "Enter your Email".tr,
+      myController: controller,
+      hintText: "Enter your Email".tr,
       obscureText: false,
     );
   }
@@ -67,8 +68,8 @@ class LoginHelpers {
       ),
       validator: (val) => val?.isEmpty ?? true ? "Password must not be empty".tr : null,
       obscureText: true,
-      mycontroller: controller,
-      hinttext: 'Enter Your Password'.tr,
+      myController: controller,
+      hintText: 'Enter Your Password'.tr,
     );
   }
 
@@ -93,11 +94,19 @@ class LoginHelpers {
     );
   }
 
-  static Widget buildLoginButton() {
-    return CustomButton(
-      onTap: () => Get.toNamed(AppRoutes.firstchoice),
-      text: 'Login'.tr,
-      color: AppColors.primaryGreen,
+  static Widget buildLoginButton(LoginController controller) {
+    return Obx(
+          () => CustomButton(
+        onTap: () async {
+          if (controller.isLoading.value) return;
+          await controller.login();
+          if (!controller.isLoading.value) {
+            Get.toNamed(AppRoutes.firstchoice);
+          }
+        },
+        text: controller.isLoading.value ? 'Loading...'.tr : 'Login'.tr,
+        color: AppColors.primaryGreen,
+      ),
     );
   }
 

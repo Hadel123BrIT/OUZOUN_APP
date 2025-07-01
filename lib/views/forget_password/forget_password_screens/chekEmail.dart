@@ -30,10 +30,10 @@ class CheckEmail extends StatelessWidget {
                 Text("Please Enter your email to check\nif it is available ",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
                 SizedBox(height: context.height * 0.05),
                 CustomTextForm(
-                  hinttext:"Enter your Email",
+                  hintText:"Enter your Email",
                   suffixIcon:Icon(Icons.email_outlined),
                   obscureText:false,
-                  mycontroller:controller.checkEmail,
+                  myController:controller.checkEmail,
                   validator:(val) {
                     if (val == null || val.isEmpty) {
                       return "Email must not be empty".tr;

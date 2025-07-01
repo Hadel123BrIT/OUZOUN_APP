@@ -24,7 +24,7 @@ class buildLogin{
                 LoginHelpers.buildPasswordField( controller.passwordController),
                 LoginHelpers.buildForgotPasswordLink(context),
                 SizedBox(height: context.height * 0.08),
-                LoginHelpers.buildLoginButton(),
+                LoginHelpers.buildLoginButton(controller),
                 SizedBox(height: context.height * 0.15),
                 LoginHelpers.buildRegisterLink(context),
               ],

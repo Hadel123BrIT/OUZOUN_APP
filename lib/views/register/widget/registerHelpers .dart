@@ -51,8 +51,8 @@ class RegisterHelpers {
           color: Colors.grey[500]
       ),
       validator: (val) => val?.isEmpty ?? true ? "Name must not be empty".tr : null,
-      mycontroller: controller,
-      hinttext: "Enter your Name".tr,
+      myController: controller,
+      hintText: "Enter your Name".tr,
       obscureText: false,
     );
   }
@@ -87,8 +87,7 @@ class RegisterHelpers {
         child: CustomTextForm(
           prefixIcon: Icon(Icons.location_on, color: Colors.grey[500]),
           validator: (val) => val?.isEmpty ?? true ? "Location must not be empty".tr : null,
-          mycontroller: controller.locationController,
-          hinttext: controller.selectedLocation.value == null
+          hintText: controller.selectedLocation.value == null
               ? "Tap to select location".tr
               : "Location selected. Tap to change".tr,
           obscureText: false,
@@ -96,6 +95,7 @@ class RegisterHelpers {
           suffixIcon: controller.selectedLocation.value != null
               ? Icon(Icons.check_circle, color: Colors.green)
               : null,
+          myController: controller.locationController,
         ),
       ),
     );
@@ -107,8 +107,8 @@ class RegisterHelpers {
           color: Colors.grey[500]
       ),
       validator: (val) => val?.isEmpty ?? true ? "Phone must not be empty".tr : null,
-      mycontroller: controller,
-      hinttext: "Enter your phone".tr,
+      myController: controller,
+      hintText: "Enter your phone".tr,
       obscureText: false,
     );
   }
@@ -119,8 +119,8 @@ class RegisterHelpers {
           color: Colors.grey[500]
       ),
       validator: (val) => val?.isEmpty ?? true ? "Email must not be empty".tr : null,
-      mycontroller: controller,
-      hinttext: "Enter your Email".tr,
+      myController: controller,
+      hintText: "Enter your Email".tr,
       obscureText: false,
     );
   }
@@ -136,8 +136,8 @@ class RegisterHelpers {
       ),
       validator: (val) => val?.isEmpty ?? true ? "Password must not be empty".tr : null,
       obscureText: true,
-      mycontroller: controller,
-      hinttext: 'Enter Your Password'.tr,
+      myController: controller,
+      hintText: 'Enter Your Password'.tr,
     );
   }
 
@@ -162,11 +162,19 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildSignUpButton() {
-    return CustomButton(
-      onTap: () => Get.toNamed(AppRoutes.firstchoice),
-      text: 'Sign Up'.tr,
-      color: AppColors.primaryGreen,
+  static Widget buildSignUpButton(RegisterController controller) {
+    return Obx(
+          () => CustomButton(
+        onTap: () async {
+          if (controller.isLoading.value) return;
+          await controller.register();
+          if (!controller.isLoading.value) {
+            Get.toNamed(AppRoutes.firstchoice);
+          }
+        },
+        text: controller.isLoading.value ? 'Loading...'.tr : 'Sign Up'.tr,
+        color: AppColors.primaryGreen,
+      ),
     );
   }
 

@@ -51,7 +51,7 @@ class RegisterScreen extends StatelessWidget {
                 RegisterHelpers.buildPasswordField( controller.passwordController),
                 RegisterHelpers.buildForgotPasswordLink(context),
                 SizedBox(height: context.height * 0.02),
-                RegisterHelpers.buildSignUpButton(),
+                RegisterHelpers.buildSignUpButton(controller),
                 SizedBox(height: context.height * 0.05),
                 RegisterHelpers.buildLoginLink(context),
               ],

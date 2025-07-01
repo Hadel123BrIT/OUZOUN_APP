@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
+import 'package:ouzoun/views/kits/Kits_Controller/kits_controller.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
 import 'build_detail_row.dart';
 
 Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
+  KitsController controller=Get.put(KitsController());
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-  return Container(
+  final implantId = implant['id']?.toString() ?? UniqueKey().toString();
+  return  Container(
     margin: EdgeInsets.symmetric(vertical: context.height * 0.01),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(15),
@@ -26,91 +28,111 @@ Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
         ),
       ],
     ),
-    child: Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-        side: BorderSide(
-          color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
-          width: 1.5,
-        ),
-      ),
-      elevation: 0,
-      margin: EdgeInsets.zero,
-      color: isDarkMode ? Colors.grey[900] : Colors.white,
-      child: Padding(
-        padding: EdgeInsets.all(context.width * 0.03),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    child: Stack(
+      children: [
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: BorderSide(
+              color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+              width: 1.5,
+            ),
+          ),
+          elevation: 0,
+          margin: EdgeInsets.zero,
+          color: isDarkMode ? Colors.grey[900] : Colors.white,
+          child: Padding(
+            padding: EdgeInsets.all(context.width * 0.03),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: context.width * 0.2,
-                  height: context.width * 0.2,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryGreen,
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: AssetImage(implant['image']),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                SizedBox(width: context.width * 0.03),
-                Column(
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                        implant['name'],
-                        style: Theme.of(context).textTheme.bodySmall
+                    Container(
+                      width: context.width * 0.2,
+                      height: context.width * 0.2,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryGreen,
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: AssetImage(implant['image']),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
-                    SizedBox(height: context.height * 0.01),
-                    Row(
+                    SizedBox(width: context.width * 0.03),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        BuildDetailRow('height:', implant['height']),
-                        SizedBox(width: 20),
-                        BuildDetailRow('width:', implant['width']),
+                        Text(
+                            implant['name'],
+                            style: Theme.of(context).textTheme.bodySmall
+                        ),
+                        SizedBox(height: context.height * 0.01),
+                        Row(
+                          children: [
+                            BuildDetailRow('height:', implant['height']),
+                            SizedBox(width: 20),
+                            BuildDetailRow('width:', implant['width']),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            BuildDetailRow('radius:', implant['radius']),
+                            SizedBox(width: 20),
+                            BuildDetailRow('quantity:', '${implant['quantity']}'),
+                          ],
+                        ),
+                        SizedBox(height: context.height * 0.01),
                       ],
                     ),
-                    Row(
-                      children: [
-                        BuildDetailRow('radius:', implant['radius']),
-                        SizedBox(width: 20),
-                        BuildDetailRow('quantity:', '${implant['quantity']}'),
-                      ],
-                    ),
-                    SizedBox(height: context.height * 0.01),
                   ],
                 ),
+                Text(
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  implant['description'],
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.grey,
+                      fontFamily: 'Montserrat'
+                  ),
+                ),
+                SizedBox(height: 12),
+                CustomButton(
+                    onTap: (){
+                      Get.toNamed(AppRoutes.detail_kit, arguments: implant);
+                    },
+                    text: "View details",
+                    color: AppColors.primaryGreen
+                ),
+                SizedBox(height: 10),
               ],
             ),
-            Text(
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              implant['description'],
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  color: Colors.grey,
-                  fontFamily: 'Montserrat'
-              ),
-            ),
-            SizedBox(height: 12),
-            CustomButton(
-                onTap: (){
-                  Get.toNamed(AppRoutes.detail_kit, arguments: implant,);
-                },
-                text: "View details",
-                color: AppColors.primaryGreen
-            ),
-            SizedBox(height: 10),
-          ],
+          ),
         ),
-      ),
+  Positioned(
+  top: 3,
+  right: 8,
+  child: Transform.scale(
+  scale: 1.3,
+  child: Obx(() => Checkbox(
+    value: controller.isImplantSelected(implantId),
+    onChanged: (val) => controller.toggleImplantSelection(implantId),
+  activeColor: AppColors.primaryGreen,
+  checkColor: Colors.white,
+  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(4),
+  ),
+  )),
+  ),
+  ),
+      ],
     ),
   );
 }

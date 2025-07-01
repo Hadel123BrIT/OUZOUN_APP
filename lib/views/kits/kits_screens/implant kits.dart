@@ -20,7 +20,7 @@ class Implantkits extends StatelessWidget {
       'brand' : "Implant Tech",
       'quantity': 15,
       'description': 'High Quality Premium implant for anterior region',
-      'image': 'assets/icons/implant1.png'
+      'image': 'assets/images/implant1.png'
     },
     {
       'name': 'Straumann ',
@@ -30,7 +30,7 @@ class Implantkits extends StatelessWidget {
       'brand' : "Implant Tech",
       'quantity': 8,
       'description': 'Roxolid SLActive surface for doctor and his operation',
-      'image': 'assets/icons/implant2.png'
+      'image': 'assets/images/implant2.png'
     },
     {
       'name': 'BioHorizons ',
@@ -40,7 +40,7 @@ class Implantkits extends StatelessWidget {
       'brand' : "Implant Tech",
       'quantity': 10,
       'description': 'Laser-Lok microchannel technology',
-      'image': 'assets/icons/implant3.png'
+      'image': 'assets/images/implant3.png'
     },
     {
       'name': 'Nobel Biocare ',
@@ -50,7 +50,7 @@ class Implantkits extends StatelessWidget {
       'brand' : "Implant Tech",
       'quantity': 15,
       'description': 'High Quality Premium implant for anterior region',
-      'image': 'assets/icons/implant1.png'
+      'image': 'assets/images/implant1.png'
     },
     {
       'name': 'Straumann ',
@@ -60,7 +60,7 @@ class Implantkits extends StatelessWidget {
       'brand' : "Implant Tech",
       'quantity': 8,
       'description': 'Roxolid SLActive surface',
-      'image': 'assets/icons/implant2.png'
+      'image': 'assets/images/implant2.png'
     },
   ];
 

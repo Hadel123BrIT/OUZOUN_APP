@@ -28,10 +28,10 @@ class ResetPasswordPage extends StatelessWidget {
               Text("Please Reset your Password to Access\nOuzoun App ",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
               SizedBox(height: context.height * 0.05),
               CustomTextForm(
-                hinttext:"Enter your Password",
+                hintText:"Enter your Password",
                 suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,
-                mycontroller:controller.resetPassword,
+                myController:controller.resetPassword,
                 validator:(val) {
                   if (val == null || val.isEmpty) {
                     return "password must not be empty";
@@ -41,10 +41,10 @@ class ResetPasswordPage extends StatelessWidget {
               ),
               SizedBox(height: context.height * 0.05),
               CustomTextForm(
-                hinttext:"confirm your Password",
+                hintText:"confirm your Password",
                 suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,
-                mycontroller:controller.confirmResetPassword,
+                myController:controller.confirmResetPassword,
                 validator:(val) {
                   if (val == null || val.isEmpty) {
                     return "confirm password must not be empty";
