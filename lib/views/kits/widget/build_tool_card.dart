@@ -8,13 +8,15 @@ import 'build_detail_item.dart';
 import 'show_quantity_dialog.dart';
 
 Widget BuildToolCard({
-  required bool isappear,
+  required bool isAppear,
   required BuildContext context,
   required String imagePath,
   required String toolName,
   required String length,
   required String width,
   required String thickness,
+   dynamic quantity,
+  bool showQuantityDetail = false,
   required Function(int) onQuantitySelected,
   int? selectedQuantity,
 }) {
@@ -61,10 +63,10 @@ Widget BuildToolCard({
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Customtext(
+                CustomText(
                   fontFamily: "Montserrat",
                   fontSize: media.width * 0.045,
-                  isbold: true,
+                  isBold: true,
                   color: isDarkMode ? Colors.white : Colors.black,
                   text: toolName.tr, textAlign: TextAlign.start,
                 ),
@@ -72,10 +74,18 @@ Widget BuildToolCard({
                 Row(
                   children: [
                     BuildDetailItem(context, "Length", length),
-                    SizedBox(width: media.width * 0.04),
+                    SizedBox(width: media.width * 0.03),
                     BuildDetailItem(context, "Width", width),
-                    SizedBox(width: media.width * 0.04),
+                    SizedBox(width: media.width * 0.03),
                     BuildDetailItem(context, "Thickness", thickness),
+                    if (showQuantityDetail) SizedBox(width: media.width * 0.03),
+                    if (showQuantityDetail)
+                      BuildDetailItem(
+                          context,
+                          "Quantity",
+                          quantity is int ? quantity.toString() : quantity,
+                          isNumeric: quantity is int
+                      ),
                   ],
                 ),
               ],
@@ -83,7 +93,7 @@ Widget BuildToolCard({
           ),
 
           // Quantity Section
-          if(isappear)
+          if(isAppear)
           Column(
             children: [
               Container(
@@ -92,7 +102,7 @@ Widget BuildToolCard({
                   borderRadius: BorderRadius.circular(media.width * 0.02),
                 ),
                 padding: EdgeInsets.symmetric(
-                  horizontal: media.width * 0.02,
+                  horizontal: media.width * 0.03,
                   vertical: media.height * 0.005,
                 ),
                 child: Text(

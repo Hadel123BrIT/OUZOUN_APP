@@ -3,8 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_button.dart';
-import '../../../Widgets/custom_text_form.dart';
+import '../../../Widgets/custom_text_form_field.dart';
 import '../../../core/constants/app_colors.dart';
+import '../../../widgets/custom_text_form_field.dart' hide CustomTextFormField;
 import '../forget_password_controller/checkemailcontroller.dart';
 
 class CheckEmail extends StatelessWidget {
@@ -29,7 +30,7 @@ class CheckEmail extends StatelessWidget {
                 SizedBox(height: context.height * 0.02),
                 Text("Please Enter your email to check\nif it is available ",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
                 SizedBox(height: context.height * 0.05),
-                CustomTextForm(
+                CustomTextFormField(
                   hintText:"Enter your Email",
                   suffixIcon:Icon(Icons.email_outlined),
                   obscureText:false,

@@ -9,6 +9,7 @@ import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_tool_card.dart';
 import '../widget/build_detail_item.dart';
+import '../widget/show_additional_tools_dialog.dart';
 import '../widget/show_quantity_dialog.dart';
 
 class AdditionalKits extends StatelessWidget {
@@ -81,13 +82,33 @@ class AdditionalKits extends StatelessWidget {
           },
           icon: Icon(Icons.menu, color: Colors.white),
         ),
+
         actions: [
           Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined,
-          color: Colors.white,
-          )),
-        )],
+            padding: const EdgeInsets.all(10.0),
+            child: Stack(
+              alignment: Alignment.topRight,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    show_additional_tools_dialog(context, additionalTools, controller);
+                  },
+                  icon: Icon(Icons.shopping_cart_checkout_outlined, color: Colors.white),
+                ),
+                Obx(() => controller.selectedToolsCount > 0
+                    ? CircleAvatar(
+                  radius: 10,
+                  backgroundColor: Colors.red,
+                  child: Text(
+                    controller.selectedToolsCount.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                )
+                    : SizedBox.shrink()),
+              ],
+            ),
+          )
+        ],
         toolbarHeight: context.height * 0.1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -149,7 +170,8 @@ class AdditionalKits extends StatelessWidget {
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
                           child: Obx(() => BuildToolCard(
-                            isappear: true,
+                            showQuantityDetail: false,
+                            isAppear: true,
                             context: context,
                             imagePath: additionalTools[index]['image'],
                             toolName: additionalTools[index]['name'],

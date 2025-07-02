@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget BuildDetailItem(BuildContext context, String title, String value) {
+Widget BuildDetailItem(BuildContext context, String title, dynamic value, {bool isNumeric = false}) {
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Text(
         title,
@@ -16,7 +16,8 @@ Widget BuildDetailItem(BuildContext context, String title, String value) {
         ),
       ),
       Text(
-        value,
+        textAlign: TextAlign.center,
+        value.toString(),
         style: TextStyle(
           fontSize: 14,
           fontFamily: "Montserrat",

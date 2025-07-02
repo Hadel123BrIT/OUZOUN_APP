@@ -6,8 +6,9 @@ import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
 import 'package:ouzoun/Widgets/custom_button.dart';
-import 'package:ouzoun/Widgets/custom_text_form.dart';
+import 'package:ouzoun/Widgets/custom_text_form_field.dart' hide CustomTextFormField;
 import '../../../core/constants/app_colors.dart';
+import '../../../widgets/custom_text_form_field.dart';
 import '../../login/login_screen.dart';
 import '../register_controller.dart';
 import 'LocationPicker/locationPicker .dart';
@@ -46,7 +47,7 @@ class RegisterHelpers {
   }
 
   static Widget buildNameField( TextEditingController controller) {
-    return CustomTextForm(
+    return CustomTextFormField(
       prefixIcon: Icon(Icons.person,
           color: Colors.grey[500]
       ),
@@ -84,7 +85,7 @@ class RegisterHelpers {
         }
       },
       child: IgnorePointer(
-        child: CustomTextForm(
+        child: CustomTextFormField(
           prefixIcon: Icon(Icons.location_on, color: Colors.grey[500]),
           validator: (val) => val?.isEmpty ?? true ? "Location must not be empty".tr : null,
           hintText: controller.selectedLocation.value == null
@@ -102,7 +103,7 @@ class RegisterHelpers {
   }
 
   static Widget buildPhoneField( TextEditingController controller) {
-    return CustomTextForm(
+    return CustomTextFormField(
       prefixIcon: Icon(Icons.phone,
           color: Colors.grey[500]
       ),
@@ -114,7 +115,7 @@ class RegisterHelpers {
   }
 
   static Widget buildEmailField( TextEditingController controller) {
-    return CustomTextForm(
+    return CustomTextFormField(
       prefixIcon: Icon(Icons.email,
           color: Colors.grey[500]
       ),
@@ -126,7 +127,7 @@ class RegisterHelpers {
   }
 
   static Widget buildPasswordField( TextEditingController controller) {
-    return CustomTextForm(
+    return CustomTextFormField(
       prefixIcon: Icon(Icons.lock,
           color: Colors.grey[500]
       ),

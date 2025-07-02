@@ -3,8 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_button.dart';
-import '../../../Widgets/custom_text_form.dart';
+import '../../../Widgets/custom_text_form_field.dart';
 import '../../../core/constants/app_colors.dart';
+import '../../../widgets/custom_text_form_field.dart' hide CustomTextFormField;
 import '../forget_password_controller/resetpagecontroller.dart';
 
 class ResetPasswordPage extends StatelessWidget {
@@ -27,7 +28,7 @@ class ResetPasswordPage extends StatelessWidget {
               SizedBox(height: context.height * 0.02),
               Text("Please Reset your Password to Access\nOuzoun App ",textAlign: TextAlign.center,style:Theme.of(context).textTheme.titleMedium,),
               SizedBox(height: context.height * 0.05),
-              CustomTextForm(
+              CustomTextFormField(
                 hintText:"Enter your Password",
                 suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,
@@ -40,7 +41,7 @@ class ResetPasswordPage extends StatelessWidget {
                 },
               ),
               SizedBox(height: context.height * 0.05),
-              CustomTextForm(
+              CustomTextFormField(
                 hintText:"confirm your Password",
                 suffixIcon:Icon(Icons.remove_red_eye_outlined),
                 obscureText:false,

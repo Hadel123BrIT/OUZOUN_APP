@@ -12,7 +12,6 @@ class CustomOtp extends StatelessWidget {
   final Function(String?) onChanged;
   @override
   Widget build(BuildContext context) {
-    final media=MediaQueryHelper(context);
     return OtpTextField(
       numberOfFields: codeNumber,
       cursorColor:cursorColor,
@@ -21,18 +20,7 @@ class CustomOtp extends StatelessWidget {
       autoFocus: true,
       showFieldAsBox: true,
       onCodeChanged:onChanged,
-      //runs when every textfield is filled
-      /* onSubmit: (String verificationCode){
-              showDialog(
-                  context: context,
-                  builder: (context){
-                    return AlertDialog(
-                      title: Text("Verification Code"),
-                      content: Text('Code entered is $verificationCode'),
-                    );
-                  }
-              );
-            },*/ // end onSubmit
+
     );
 
   }

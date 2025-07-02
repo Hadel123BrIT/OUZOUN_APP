@@ -14,7 +14,7 @@ class AppAssets {
 
   // Onboarding Screens (Light And Dark Theme)
   static const String onboarding3LightAndDarkBackground = 'assets/images/dental-care.png';
-
+  static const String logoForApp="assets/images/logo.png";
   //Icons
   static const String  maleDentistIcon = 'assets/images/dentist_man.png';
   static const String femaleDentistIcon = 'assets/images/dentist_women.png';

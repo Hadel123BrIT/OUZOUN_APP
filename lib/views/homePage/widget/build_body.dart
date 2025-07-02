@@ -32,7 +32,7 @@ Widget BuildBody(BuildContext context) {
             buildOptionButton(
               color: AppColors.primaryGreen,
               context: context,
-              icon: Icons.health_and_safety,
+              icon: FontAwesomeIcons.tooth,
               label: "Surgical  Kits",
               onTap: () {
                 Get.toNamed(AppRoutes.surgical_kit);
@@ -41,7 +41,7 @@ Widget BuildBody(BuildContext context) {
             buildOptionButton(
               color: AppColors.primaryGreen,
               context: context,
-              icon: Icons.add_circle_outline,
+              icon: FontAwesomeIcons.briefcaseMedical,
               label: "Additional Kits",
               onTap: () {
                 Get.toNamed(AppRoutes.additional_kit);
@@ -50,7 +50,7 @@ Widget BuildBody(BuildContext context) {
             buildOptionButton(
               color: AppColors.primaryGreen,
               context: context,
-              icon: Icons.medical_services,
+              icon: FontAwesomeIcons.screwdriverWrench,
               label: "Implant Kits",
               onTap: () {
                 Get.toNamed(AppRoutes.implant_kit);

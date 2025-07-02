@@ -9,18 +9,19 @@ import '../../../Widgets/custom_drawer.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_tool_card.dart';
+import '../widget/show_surgical_tool_quantity.dart';
 
 class SurgicalKits extends StatelessWidget {
   final KitsController controller = Get.put(KitsController());
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-  final List<Map<String, dynamic>> additionalTools = [
+  final List<Map<String, dynamic>> surgicalTools = [
     {
       'name': 'Dental Drill',
       'image': 'assets/images/forceps.png',
       'length': '15 cm',
       'width': '3 cm',
       'thickness': '2 cm',
-      'quantity': 0,
+      'quantity': "0",
     },
     {
       'name': 'Surgical Scissors',
@@ -28,7 +29,7 @@ class SurgicalKits extends StatelessWidget {
       'length': '12 cm',
       'width': '4 cm',
       'thickness': '0.5 cm',
-      'quantity': 0,
+      'quantity': "3",
     },
     {
       'name': 'Bone File',
@@ -36,7 +37,7 @@ class SurgicalKits extends StatelessWidget {
       'length': '18 cm',
       'width': '2 cm',
       'thickness': '0.8 cm',
-      'quantity': 0,
+      'quantity': "2",
     },
     {
       'name': 'Retractor',
@@ -44,7 +45,7 @@ class SurgicalKits extends StatelessWidget {
       'length': '20 cm',
       'width': '5 cm',
       'thickness': '1 cm',
-      'quantity': 0,
+      'quantity': "1",
     },
     {
       'name': 'Dental Drill',
@@ -52,7 +53,7 @@ class SurgicalKits extends StatelessWidget {
       'length': '15 cm',
       'width': '3 cm',
       'thickness': '2 cm',
-      'quantity': 0,
+      'quantity': "4",
     },
     {
       'name': 'Surgical Scissors',
@@ -60,7 +61,7 @@ class SurgicalKits extends StatelessWidget {
       'length': '12 cm',
       'width': '4 cm',
       'thickness': '0.5 cm',
-      'quantity': 0,
+      'quantity': "5",
     },
   ];
   @override
@@ -74,7 +75,9 @@ class SurgicalKits extends StatelessWidget {
         actions: [
           Padding(
           padding: const EdgeInsets.all(10.0),
-          child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined,
+          child: IconButton(onPressed: (){
+            showSurgicalToolsDialog(context,surgicalTools);
+          }, icon: Icon(Icons.shopping_cart_checkout_outlined,
             color: Colors.white,
           )),
         )],
@@ -137,7 +140,7 @@ class SurgicalKits extends StatelessWidget {
               AnimationLimiter(
                 child: Column(
                   children: List.generate(
-                    additionalTools.length,
+                    surgicalTools.length,
                         (index) => AnimationConfiguration.staggeredList(
                       position: index,
                       duration: const Duration(milliseconds: 500),
@@ -145,13 +148,15 @@ class SurgicalKits extends StatelessWidget {
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
                           child: Obx(() => BuildToolCard(
-                            isappear: false,
+                            showQuantityDetail: true,
+                            isAppear: false,
                             context: context,
-                            imagePath: additionalTools[index]['image'],
-                            toolName: additionalTools[index]['name'],
-                            length: additionalTools[index]['length'],
-                            width: additionalTools[index]['width'],
-                            thickness: additionalTools[index]['thickness'],
+                            imagePath: surgicalTools[index]['image'],
+                            toolName: surgicalTools[index]['name'],
+                            length: surgicalTools[index]['length'],
+                            width: surgicalTools[index]['width'],
+                            thickness: surgicalTools[index]['thickness'],
+                            quantity: surgicalTools[index]['quantity'],
                             selectedQuantity: controller.toolQuantities[index],
                             onQuantitySelected: (quantity) {
                               controller.updateToolQuantity(index, quantity);

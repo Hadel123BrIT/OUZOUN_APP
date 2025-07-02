@@ -89,14 +89,7 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
               child:  Image.asset(
                 AppAssets.onboarding3LightAndDarkBackground,
                  scale: 4.5,
-
               ),
-              // child: Icon(
-              //   // FontAwesomeIcons.solidHeart,
-              //
-              //   size: 56,
-              //   color: green,
-              // ),
             ),
           ),
           const SizedBox(height: 45),

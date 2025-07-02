@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 
-class Customtext extends StatelessWidget {
+class CustomText extends StatelessWidget {
    final int max;
   final String fontFamily;
   final double fontSize;
-  final bool isbold;
+  final bool isBold;
   final TextAlign textAlign;
   final Color color;
   final String text;
-   Customtext({super.key,
+   CustomText({super.key,
      this.max=2,
     required this.fontFamily,
     required this.fontSize
-    , required this.isbold,
+    , required this.isBold,
     required this.color,
     required this.text,
      required this.textAlign
@@ -25,7 +25,7 @@ class Customtext extends StatelessWidget {
     style: TextStyle(
       fontSize:fontSize,
       fontFamily: fontFamily,
-      fontWeight: isbold?FontWeight.bold:FontWeight.normal,
+      fontWeight: isBold?FontWeight.bold:FontWeight.normal,
       color: color,
     ),
 textAlign: textAlign,

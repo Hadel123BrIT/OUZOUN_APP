@@ -24,7 +24,7 @@ class CustomViewItemList extends StatelessWidget {
           child: Opacity(
             opacity: items[index].animated ? 1 : 0,
            // duration: Duration(milliseconds: 500 + (index * 100)),
-            child: CustomDrawerItem(customdrawermodel: items[index]),
+            child: CustomDrawerItem(customDrawerModel: items[index]),
           ),
         );
       },

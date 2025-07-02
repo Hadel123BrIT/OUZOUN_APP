@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ouzoun/core/constants/app_images.dart';
 
-class logo extends StatelessWidget {
-  const logo({super.key});
+class Logo extends StatelessWidget {
+  const Logo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class logo extends StatelessWidget {
           borderRadius: BorderRadius.circular(70),
         ),
         child: Image.asset(
-          "assets/images/logo.png",
+          AppAssets.logoForApp,
           height: 50,
         ),
       ),

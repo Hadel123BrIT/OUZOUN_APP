@@ -6,9 +6,10 @@ import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
 import 'package:ouzoun/Widgets/custom_button.dart';
-import 'package:ouzoun/Widgets/custom_text_form.dart';
+import 'package:ouzoun/Widgets/custom_text_form_field.dart' hide CustomTextFormField;
 
 import '../../../core/constants/app_colors.dart';
+import '../../../widgets/custom_text_form_field.dart';
 import '../../register/register_screen.dart';
 import '../login_controller.dart';
 
@@ -16,7 +17,7 @@ class LoginHelpers {
   static Widget buildLoadingIndicator() {
     return Center(
       child: Lottie.asset(
-        'assets/animations/Animation - 1740348375718.json',
+        '',
         fit: BoxFit.cover,
         repeat: true,
         height: 150,
@@ -46,7 +47,7 @@ class LoginHelpers {
   }
 
   static Widget buildEmailField(TextEditingController controller) {
-    return CustomTextForm(
+    return CustomTextFormField(
       prefixIcon: Icon(Icons.email,
           color: Colors.grey[500]
       ),
@@ -58,7 +59,7 @@ class LoginHelpers {
   }
 
   static Widget buildPasswordField(TextEditingController controller) {
-    return CustomTextForm(
+    return CustomTextFormField(
       prefixIcon: Icon(Icons.lock,
           color: Colors.grey[500]
       ),
