@@ -12,10 +12,10 @@ import '../views/forget_password/forget_password_screens/resetPasswordPage.dart'
 import '../views/forget_password/forget_password_screens/resetpasswordpage.dart' hide ResetPasswordPage;
 import '../views/homePage/HomePage_Controller/homePage_controller.dart';
 import '../views/homePage/homePage_screen/homePage_screen.dart';
-import '../views/kits/kits_screens/additional kits.dart';
-import '../views/kits/kits_screens/detail kit.dart';
-import '../views/kits/kits_screens/implant kits.dart';
-import '../views/kits/kits_screens/surgical  kits.dart';
+import '../views/kits/kits_screens/additional_kits.dart';
+import '../views/kits/kits_screens/detail_kit.dart';
+import '../views/kits/kits_screens/implant_kits.dart';
+import '../views/kits/kits_screens/surgical_kits.dart';
 import '../views/login/login_screen.dart';
 import '../views/myProfile/myProfile_screen/myProfile_screen.dart';
 import '../views/register/register_screen.dart';

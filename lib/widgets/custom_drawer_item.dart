@@ -6,12 +6,12 @@ import '../core/constants/app_colors.dart';
 
 
 class CustomDrawerItem extends StatelessWidget {
-  const CustomDrawerItem({super.key, required this.customDrawerModel});
-  final DrawItemModel  customDrawerModel ;
+  const CustomDrawerItem({super.key, required this.item});
+  final DrawItemModel  item ;
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(customDrawerModel.icon,
+      leading: Icon(item.icon,
       color: AppColors.primaryGreen,
       ),
       title: Padding(
@@ -19,15 +19,15 @@ class CustomDrawerItem extends StatelessWidget {
         child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
-            child: Text(customDrawerModel.text.tr,
+            child: Text(item.text.tr,
             style: TextStyle(
               fontFamily: 'Montserrat',
             ),
             )),
       ),
-    onTap: () {
-      print("Tapped on ${customDrawerModel.text}");
-      customDrawerModel.function?.call();
+      onTap: () {
+      print("Tapped on ${item.text}");
+      item.function.call();
     }
     //item.function?.call();
     );
