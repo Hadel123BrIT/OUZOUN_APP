@@ -13,7 +13,7 @@ class CheckEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CheckEmailController controller=Get.find();
+    CheckEmailController controller=Get.put(CheckEmailController());
     return Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background ,
       body:SafeArea(

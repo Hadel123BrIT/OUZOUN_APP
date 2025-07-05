@@ -13,7 +13,7 @@ class ResetPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ResetPageController controller=Get.find();
+    ResetPageController controller=Get.put(ResetPageController());
     return  Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background ,
       body:SafeArea(

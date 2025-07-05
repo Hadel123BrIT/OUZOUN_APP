@@ -15,6 +15,9 @@ class ImplantDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      final implantId = implant['id']?.toString() ?? UniqueKey().toString();
+      print("---------------------------------Implant ID: $implantId");
+      print("---------------------------Current Tools: ${Get.put(KitsController()).selectedToolsForImplants[implantId]}");
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
@@ -190,10 +193,10 @@ class ImplantDetailScreen extends StatelessWidget {
                           SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
                           SizedBox(height: context.height * 0.01),
-                          BuildToolItem(context, "Surgical Kit"),
-                          BuildToolItem(context, "Drill Guide"),
-                          BuildToolItem(context, "Healing Abutment"),
-                          BuildToolItem(context, "Torque Wrench"),
+                          _buildToolItem(context, implantId, "Surgical Kit"),
+                          _buildToolItem(context, implantId, "Drill Guide"),
+                          _buildToolItem(context, implantId, "Healing Abutment"),
+                          _buildToolItem(context, implantId, "Torque Wrench"),
                         ],
                       ),
                     ),
@@ -231,5 +234,15 @@ class ImplantDetailScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  Widget _buildToolItem(BuildContext context, String implantId, String toolName) {
+    final controller = Get.find<KitsController>();
+
+    return Obx(() => CheckboxListTile(
+      title: Text(toolName),
+      value: controller.isToolSelectedForImplant(implantId, toolName),
+      onChanged: (value) => controller.toggleToolForImplant(implantId, toolName),
+      activeColor: AppColors.primaryGreen,
+    ));
   }
 }

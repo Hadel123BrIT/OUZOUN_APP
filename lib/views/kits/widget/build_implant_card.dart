@@ -123,8 +123,8 @@ Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
   scale: 1.3,
   child: Obx(() => Checkbox(
     value: controller.isImplantSelected(implantId),
-    onChanged: (val) => controller.toggleImplantSelection(implantId),
-  activeColor: AppColors.primaryGreen,
+    onChanged: (val) => controller.toggleImplantSelection(implantId, implant),
+    activeColor: AppColors.primaryGreen,
   checkColor: Colors.white,
   shape: RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(4),

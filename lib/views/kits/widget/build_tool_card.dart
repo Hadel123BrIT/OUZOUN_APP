@@ -20,44 +20,42 @@ Widget BuildToolCard({
   required Function(int) onQuantitySelected,
   int? selectedQuantity,
 }) {
-  final media = MediaQueryHelper(context);
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
   return Card(
-    margin: EdgeInsets.symmetric(vertical: media.height * 0.01),
+    margin: EdgeInsets.symmetric(vertical: context.height * 0.01),
     color: isDarkMode ? Theme.of(context).cardColor : Colors.white,
     elevation: 3,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(media.width * 0.025),
+      borderRadius: BorderRadius.circular(context.width * 0.025),
       side: BorderSide(
         color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
         width: 2,
       ),
     ),
     child: Padding(
-      padding: EdgeInsets.all(media.width * 0.03),
+      padding: EdgeInsets.all(context.width * 0.03),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Tool Image
           Container(
-            width: media.width * 0.2,
-            height: media.width * 0.2,
+            width: context.width * 0.2,
+            height: context.width * 0.2,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(media.width * 0.02),
+              borderRadius: BorderRadius.circular(context.width * 0.02),
               color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
             ),
             child: Center(
               child: Image.asset(
                 imagePath,
-                width: media.width * 0.15,
-                height: media.width * 0.15,
+                width: context.width * 0.15,
+                height: context.width * 0.15,
                 color:  null,
               ),
             ),
           ),
-          SizedBox(width: media.width * 0.04),
-
+          SizedBox(width: context.width * 0.04),
           // Tool Details
           Expanded(
             child: Column(
@@ -65,21 +63,21 @@ Widget BuildToolCard({
               children: [
                 CustomText(
                   fontFamily: "Montserrat",
-                  fontSize: media.width * 0.045,
+                  fontSize: context.width * 0.045,
                   isBold: true,
                   color: isDarkMode ? Colors.white : Colors.black,
                   text: toolName.tr, textAlign: TextAlign.start,
                 ),
-                SizedBox(height: media.height * 0.01),
+                SizedBox(height: context.height * 0.01),
                 Row(
                   children: [
                     BuildDetailItem(context, "Length", length),
-                    SizedBox(width: media.width * 0.03),
+                    SizedBox(width: context.width * 0.03),
                     BuildDetailItem(context, "Width", width),
-                    SizedBox(width: media.width * 0.03),
+                    SizedBox(width: context.width * 0.03),
                     BuildDetailItem(context, "Thickness", thickness),
-                    if (showQuantityDetail) SizedBox(width: media.width * 0.03),
                     if (showQuantityDetail)
+                      SizedBox(width: context.width * 0.03),
                       BuildDetailItem(
                           context,
                           "Quantity",
@@ -99,11 +97,11 @@ Widget BuildToolCard({
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.primaryGreen,
-                  borderRadius: BorderRadius.circular(media.width * 0.02),
+                  borderRadius: BorderRadius.circular(context.width * 0.02),
                 ),
                 padding: EdgeInsets.symmetric(
-                  horizontal: media.width * 0.03,
-                  vertical: media.height * 0.005,
+                  horizontal: context.width * 0.03,
+                  vertical: context.height * 0.005,
                 ),
                 child: Text(
                   selectedQuantity != null && selectedQuantity > 0
@@ -112,12 +110,12 @@ Widget BuildToolCard({
                   style: TextStyle(
                     fontFamily: "Montserrat",
                     color: Colors.white,
-                    fontSize: media.width * 0.035,
+                    fontSize: context.width * 0.035,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(height: media.height * 0.01),
+              SizedBox(height: context.height * 0.01),
               GestureDetector(
                 onTap: () async {
                   final quantity = await ShowQuantityDialog(toolName);
@@ -130,13 +128,13 @@ Widget BuildToolCard({
                     shape: BoxShape.circle,
                     color: AppColors.primaryGreen,
                   ),
-                  padding: EdgeInsets.all(media.width * 0.02),
+                  padding: EdgeInsets.all(context.width * 0.02),
                   child: Icon(
                     selectedQuantity == null || selectedQuantity == 0
                         ? Icons.add
                         : Icons.edit,
                     color: Colors.white,
-                    size: media.width * 0.05,
+                    size: context.width * 0.05,
                   ),
                 ),
               ),

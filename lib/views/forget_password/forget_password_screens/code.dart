@@ -13,7 +13,7 @@ class Code extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VerfiyCodeController controller=Get.find();
+    VerfiyCodeController controller=Get.put(VerfiyCodeController());
     return Scaffold(
       backgroundColor:Theme.of(context).colorScheme.background,
       body:SafeArea(

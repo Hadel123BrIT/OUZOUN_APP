@@ -16,8 +16,8 @@ Widget BuildDetailItem(BuildContext context, String title, dynamic value, {bool 
         ),
       ),
       Text(
-        textAlign: TextAlign.center,
         value.toString(),
+        textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 14,
           fontFamily: "Montserrat",

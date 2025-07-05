@@ -7,10 +7,11 @@ import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_detail_row.dart';
 import '../widget/build_implant_card.dart';
+import '../widget/showImplantDialog.dart';
 
 class Implantkits extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-
+  KitsController controller=Get.put(KitsController());
   final List<Map<String, dynamic>> implants = [
     {
       'name': 'Nobel Biocare ',
@@ -76,9 +77,13 @@ class Implantkits extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_checkout_outlined,
-              color: Colors.white,
-            )),
+            child: IconButton(
+              onPressed: () => showImplantDialog(context),
+              icon: Badge(
+                label: Obx(() => Text('${controller.selectedImplants.length}')),
+                child: Icon(Icons.shopping_cart_checkout_outlined, color: Colors.white),
+              ),
+            ),
           )],
         leading: IconButton(
           onPressed: () => scaffoldKey.currentState?.openDrawer(),

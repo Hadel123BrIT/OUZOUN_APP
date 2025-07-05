@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as dio;
+import 'package:ouzoun/models/procedure_model.dart';
 
 class ApiServices  {
 final Dio dio=Dio();
@@ -19,12 +20,7 @@ try{
       'longtitude': longitude,
       'latitude': latitude,
     },
-    options: Options(
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    ),
+
   );
   return response;
 }
@@ -63,6 +59,25 @@ Future<Response> loginUser({required String email,required String password}) asy
   }
 }
 
+//Add Procedure
+Future<Response> addProcedure(Procedure procedure) async{
+   try{
+     final response= await dio.post("$baseUrl/Procedures/AddProcedure",
+      data: [
+        procedure.toJson(),
+      ]
+     );
+     print(response.data +"   "+  response.statusCode +" "+ response.statusMessage);
+     return response.data;
 
+   }
+   on DioException catch(e){
+     if (e.response != null) {
+       return e.response!;
+     } else {
+       throw Exception('Failed to connect to the server: ${e.message}');
+     }
+   }
+}
 
 }
