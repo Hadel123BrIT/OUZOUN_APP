@@ -1,5 +1,3 @@
-// utils/login_helpers.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -48,9 +46,7 @@ class LoginHelpers {
 
   static Widget buildEmailField(TextEditingController controller) {
     return CustomTextFormField(
-      prefixIcon: Icon(Icons.email,
-          color: Colors.grey[500]
-      ),
+      prefixIcon: Icon(Icons.email, color: Colors.grey[500]),
       validator: (val) => val?.isEmpty ?? true ? "Email must not be empty".tr : null,
       myController: controller,
       hintText: "Enter your Email".tr,
@@ -60,13 +56,8 @@ class LoginHelpers {
 
   static Widget buildPasswordField(TextEditingController controller) {
     return CustomTextFormField(
-      prefixIcon: Icon(Icons.lock,
-          color: Colors.grey[500]
-      ),
-      suffixIcon: Icon(
-        Icons.remove_red_eye_outlined,
-        color: Colors.grey[500],
-      ),
+      prefixIcon: Icon(Icons.lock, color: Colors.grey[500]),
+      suffixIcon: Icon(Icons.remove_red_eye_outlined, color: Colors.grey[500]),
       validator: (val) => val?.isEmpty ?? true ? "Password must not be empty".tr : null,
       obscureText: true,
       myController: controller,
@@ -95,15 +86,12 @@ class LoginHelpers {
     );
   }
 
-  static Widget buildLoginButton(LoginController controller) {
+  static Widget buildLoginButton(LoginController controller, GlobalKey<FormState> formKey) {
     return Obx(
           () => CustomButton(
         onTap: () async {
           if (controller.isLoading.value) return;
-          await controller.login();
-          if (!controller.isLoading.value) {
-            Get.toNamed(AppRoutes.firstchoice);
-          }
+          await controller.login(formKey);
         },
         text: controller.isLoading.value ? 'Loading...'.tr : 'Login'.tr,
         color: AppColors.primaryGreen,

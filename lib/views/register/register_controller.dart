@@ -22,7 +22,8 @@ class RegisterController extends GetxController {
   }
 
   Future<void> register()async {
-   if(formKey.currentState!.validate() && selectedLocation!=null){
+    // الصحيح:
+    if(formKey.currentState!.validate() && selectedLocation.value != null){
      isLoading(true);
      try{
        final response=await apiServices.registerUser(
@@ -38,12 +39,14 @@ class RegisterController extends GetxController {
            final box = GetStorage();
            box.write('token', response.data['token']);
          }
+         print("----------------------------------------sucess");
          Get.snackbar('Success', 'Registration successful');
          Get.offAllNamed(AppRoutes.firstchoice);
        }
      }
      catch(e){
        Get.snackbar('Error', 'An error occurred: $e');
+       print(e.toString());
      }
      finally {
        isLoading(false);

@@ -170,7 +170,7 @@ class RegisterHelpers {
           if (controller.isLoading.value) return;
           await controller.register();
           if (!controller.isLoading.value) {
-            Get.toNamed(AppRoutes.firstchoice);
+            //Get.toNamed(AppRoutes.firstchoice);
           }
         },
         text: controller.isLoading.value ? 'Loading...'.tr : 'Sign Up'.tr,

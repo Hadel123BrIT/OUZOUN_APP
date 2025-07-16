@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:ouzoun/views/homePage/homePage_screen/homePage_screen.dart';
 import 'package:ouzoun/views/splash/splash_screens/splash_screen.dart';
 import 'routes/app_pages.dart';
 import 'core/constants/theme.dart';
@@ -8,6 +10,7 @@ import 'core/constants/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -20,7 +23,8 @@ class MyApp extends StatelessWidget {
         theme:lightMode,
         darkTheme: darkMode,
         debugShowCheckedModeBanner: false,
-        home: SplashScreen()
+        // home: SplashScreen()
+      home: HomePageScreen(),
 
     );
   }

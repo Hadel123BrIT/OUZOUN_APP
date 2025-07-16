@@ -14,6 +14,7 @@ class Implantkits extends StatelessWidget {
   KitsController controller=Get.put(KitsController());
   final List<Map<String, dynamic>> implants = [
     {
+      "id":1,
       'name': 'Nobel Biocare ',
       'height': '10 mm',
       'width': '3.5 mm',
@@ -24,6 +25,7 @@ class Implantkits extends StatelessWidget {
       'image': 'assets/images/implant1.png'
     },
     {
+      "id":2,
       'name': 'Straumann ',
       'height': '12 mm',
       'width': '4.1 mm',
@@ -33,7 +35,7 @@ class Implantkits extends StatelessWidget {
       'description': 'Roxolid SLActive surface for doctor and his operation',
       'image': 'assets/images/implant2.png'
     },
-    {
+    {  "id":3,
       'name': 'BioHorizons ',
       'height': '11.5 mm',
       'width': '4.6 mm',
@@ -44,6 +46,7 @@ class Implantkits extends StatelessWidget {
       'image': 'assets/images/implant3.png'
     },
     {
+      "id":4,
       'name': 'Nobel Biocare ',
       'height': '10 mm',
       'width': '3.5 mm',
@@ -54,6 +57,7 @@ class Implantkits extends StatelessWidget {
       'image': 'assets/images/implant1.png'
     },
     {
+      "id":5,
       'name': 'Straumann ',
       'height': '12 mm',
       'width': '4.1 mm',
@@ -68,7 +72,7 @@ class Implantkits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
+    final KitsController controller = Get.find<KitsController>();
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomDrawer(),
@@ -78,7 +82,9 @@ class Implantkits extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: IconButton(
-              onPressed: () => showImplantDialog(context),
+              onPressed: () =>{
+                showImplantsDialog(context),
+              },
               icon: Badge(
                 label: Obx(() => Text('${controller.selectedImplants.length}')),
                 child: Icon(Icons.shopping_cart_checkout_outlined, color: Colors.white),

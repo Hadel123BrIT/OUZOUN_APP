@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_bottom_navigation_bar .dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_drawer.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
@@ -16,6 +17,7 @@ class SurgicalKits extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   final List<Map<String, dynamic>> surgicalTools = [
     {
+       "id":1,
       'name': 'Dental Drill',
       'image': 'assets/images/forceps.png',
       'length': '15 cm',
@@ -24,6 +26,7 @@ class SurgicalKits extends StatelessWidget {
       'quantity': "0",
     },
     {
+      "id":2,
       'name': 'Surgical Scissors',
       'image': 'assets/images/mouth-mirror.png',
       'length': '12 cm',
@@ -32,6 +35,7 @@ class SurgicalKits extends StatelessWidget {
       'quantity': "3",
     },
     {
+      "id":3,
       'name': 'Bone File',
       'image': 'assets/images/probe.png',
       'length': '18 cm',
@@ -40,6 +44,7 @@ class SurgicalKits extends StatelessWidget {
       'quantity': "2",
     },
     {
+      "id":4,
       'name': 'Retractor',
       'image': 'assets/images/tooth.png',
       'length': '20 cm',
@@ -48,6 +53,7 @@ class SurgicalKits extends StatelessWidget {
       'quantity': "1",
     },
     {
+      "id":5,
       'name': 'Dental Drill',
       'image': 'assets/images/forceps.png',
       'length': '15 cm',
@@ -56,6 +62,7 @@ class SurgicalKits extends StatelessWidget {
       'quantity': "4",
     },
     {
+      "id":6,
       'name': 'Surgical Scissors',
       'image': 'assets/images/mouth-mirror.png',
       'length': '12 cm',
@@ -72,15 +79,6 @@ class SurgicalKits extends StatelessWidget {
       drawer: CustomDrawer(),
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        actions: [
-          Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: IconButton(onPressed: (){
-            showSurgicalToolsDialog(context,surgicalTools);
-          }, icon: Icon(Icons.shopping_cart_checkout_outlined,
-            color: Colors.white,
-          )),
-        )],
         leading: IconButton(
           onPressed: () {
             scaffoldKey.currentState?.openDrawer();
@@ -105,7 +103,7 @@ class SurgicalKits extends StatelessWidget {
           child: Column(
             children: [
               // Welcome message
-              Container(
+                   Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(context.width * 0.04),
                 margin: EdgeInsets.only(bottom: context.height * 0.02),
@@ -137,7 +135,7 @@ class SurgicalKits extends StatelessWidget {
                   ],
                 ),
               ),
-              AnimationLimiter(
+                 AnimationLimiter(
                 child: Column(
                   children: List.generate(
                     surgicalTools.length,
@@ -147,8 +145,8 @@ class SurgicalKits extends StatelessWidget {
                       child: SlideAnimation(
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
-                          child: Obx(() => BuildToolCard(
-                            showQuantityDetail: true,
+                          child:  BuildToolCard(
+                            showQuantityDetail: false,
                             isAppear: false,
                             context: context,
                             imagePath: surgicalTools[index]['image'],
@@ -157,9 +155,9 @@ class SurgicalKits extends StatelessWidget {
                             width: surgicalTools[index]['width'],
                             thickness: surgicalTools[index]['thickness'],
                             quantity: surgicalTools[index]['quantity'],
-                            selectedQuantity: controller.toolQuantities[index],
+                             selectedQuantity: controller.surgicalToolQuantities[index],
                             onQuantitySelected: (quantity) {
-                              controller.updateToolQuantity(index, quantity);
+                              controller.updateSurgicalToolQuantity(index, quantity);
                             },
                           )),
                         ),
@@ -167,11 +165,21 @@ class SurgicalKits extends StatelessWidget {
                     ),
                   ),
                 ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: CustomButton(
+                  onTap: () {
+
+                    Get.back();
+
+                  },
+                  text: "Save Selection",
+                  color: AppColors.primaryGreen,
+                ),
               ),
-            ],
-          ),
+      ],
         ),
       ),
-    );
+    ));
   }
 }

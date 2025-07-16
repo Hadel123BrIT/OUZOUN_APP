@@ -21,9 +21,8 @@ class RegisterScreen extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Obx(() => controller.isLoading.value
-        ? RegisterHelpers.buildLoadingIndicator()
-        : _buildRegisterForm(context));
+    return Obx(() =>
+        _buildRegisterForm(context));
   }
 
   Widget _buildRegisterForm(BuildContext context) {

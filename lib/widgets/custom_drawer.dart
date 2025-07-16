@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:ouzoun/views/homePage/homePage_screen/homePage_screen.dart';
 import '../Core/Services/media_query_service.dart';
 import '../Models/draw_item_model.dart';
 import '../core/constants/app_images.dart';
@@ -20,7 +21,7 @@ class _CustomDrawerState extends State<CustomDrawer> with SingleTickerProviderSt
   late AnimationController _animationController;
   final List<DrawItemModel> items=[
     DrawItemModel(text: 'HOMEPAGE', icon: Icons.home, function: (){
-
+      Get.to(HomePageScreen());
     }, ),
     DrawItemModel(text: 'MYPROFILE', icon: Icons.person,function: (){
     // Get.to(DoctorProfilePage());

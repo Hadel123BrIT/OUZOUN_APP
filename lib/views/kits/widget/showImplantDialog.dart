@@ -1,108 +1,126 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 
-void showImplantDialog(BuildContext context) {
-  final controller = Get.find<KitsController>();
-  final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+void showImplantsDialog(BuildContext context) {
+  final KitsController controller = Get.find<KitsController>();
 
   Get.dialog(
-      AlertDialog(
-          title: Text("Your Cart",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryGreen
-              )),
-          content: Obx(() {
+    Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Obx(() {
             if (controller.selectedImplants.isEmpty) {
-              return Center(
-                child: Text("Your cart is empty",
-                    style: TextStyle(fontSize: 16)),
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 32),
+                child: Center(child: Text('No implants selected')),
               );
             }
-            return SizedBox(
-              width: double.maxFinite,
-              child: ListView(
-                shrinkWrap: true,
-                children: controller.selectedImplants.entries.map((entry) {
-                  final implant = entry.value;
-                  final implantId = entry.key;
-                  final tools = controller.selectedToolsForImplants[implantId] ?? [];
 
-                  return Card(
-                    margin: EdgeInsets.symmetric(vertical: 8),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    child: ExpansionTile(
-                      title: Text(implant['name'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16
-                          )),
-                      leading: Icon(Icons.medication, color: AppColors.primaryGreen),
-                      childrenPadding: EdgeInsets.symmetric(horizontal: 16),
-                      children: [
-                        if (tools.isEmpty)
-                          Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text("No tools selected",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontStyle: FontStyle.italic
-                                )),
-                          )
-                        else
-                          ...tools.map((tool) => Padding(
-                            padding: EdgeInsets.symmetric(vertical: 4),
-                            child: ListTile(
-                              dense: true,
-                              leading: Icon(Icons.check_circle_outline,
-                                  color: AppColors.primaryGreen),
-                              title: Text(tool),
-                              visualDensity: VisualDensity.compact,
-                            ),
-                          )).toList(),
-                        SizedBox(height: 8),
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Selected Implants',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 24),
+                ...controller.selectedImplants.entries.map((entry) {
+                  final implant = entry.value;
+                  final tools = controller.getToolsForImplant(entry.key);
+
+                  return Container(
+                    margin: EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 6,
+                          spreadRadius: 1,
+                        )
                       ],
                     ),
+                    child: Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  implant['name'],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.delete, color: Colors.red),
+                                onPressed: () => controller.toggleImplantSelection(entry.key, implant),
+                              ),
+                            ],
+                          ),
+                          if (tools.isNotEmpty) ...[
+                            Divider(height: 20),
+                            Text(
+                              'Selected Tools:',
+                              style: TextStyle(
+                                color: Theme.of(context).textTheme.bodySmall?.color,
+                                fontSize: 14,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: tools.map((tool) => Chip(
+                                label: Text(tool),
+                                backgroundColor: Theme.of(context).highlightColor,
+                                labelStyle: TextStyle(
+                                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                                ),
+                              )).toList(),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
                   );
-                }).toList(),
-              ),
+                }),
+                SizedBox(height: 24),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () => Get.back(),
+                        text: 'Close',
+                        color: AppColors.primaryGreen,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             );
           }),
-          actions: [
-          TextButton(
-          onPressed: () => Get.back(),
-  child: Text("CONTINUE SHOPPING",
-  style: TextStyle(color: Colors.grey.shade600)),
-
-  ),
-            ElevatedButton(
-              onPressed: () {
-                // Handle checkout
-                Get.back();
-                Get.snackbar(
-                  "Order Submitted",
-                  "Your implants and tools have been ordered",
-                  backgroundColor: AppColors.primaryGreen,
-                  colorText: Colors.white,
-                );
-              },
-              child: Text("CHECKOUT"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryGreen,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
-
-          ],
-  ),
+        ),
+      ),
+    ),
+    barrierDismissible: true,
   );
 }

@@ -5,11 +5,17 @@ import 'package:ouzoun/models/procedure_model.dart';
 
 class ApiServices  {
 final Dio dio=Dio();
-static const String baseUrl="{{baseUrl}}/api/";
+static const String baseUrl="https://31ab-185-165-240-75.ngrok-free.app/api";
 
 // RegisterUser
  Future<Response> registerUser(
-{required String userName,required String email,required String phoneNumber,required String password,required double longitude,required double latitude,}) async {
+{required String userName,required String email,
+  required String phoneNumber,
+  required String password,
+  required double longitude,
+  required double latitude,
+  String role = 'User',
+}) async {
 try{
   final response=await dio.post("$baseUrl/User/RegisterUser",
     data:{
@@ -19,16 +25,20 @@ try{
       'phoneNumber': phoneNumber,
       'longtitude': longitude,
       'latitude': latitude,
+      "role": role,
     },
 
   );
+   print("***********************************************yes");
+   print(response.data);
+   print(response.statusCode);
   return response;
 }
 on DioException catch (e) {
   if (e.response != null) {
     return e.response!;
   } else {
-    throw Exception('Failed to connect to the server: ${e.message}');
+    throw Exception('-------------------------------------------Failed to connect to the server: ${e.message}');
   }
 }
 }
@@ -48,6 +58,8 @@ Future<Response> loginUser({required String email,required String password}) asy
       },
     ),
     );
+    print("--------------------------------login");
+    print(response.data);
     return response;
   }
   on DioException catch(e){

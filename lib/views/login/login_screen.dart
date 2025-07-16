@@ -5,24 +5,22 @@ import 'Widget/loginHelpers.dart';
 import 'Widget/buildLoginForm.dart';
 import 'login_controller.dart';
 
-class LoginScreen extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
-  LoginScreen({super.key});
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: buildBody(context),
+      body: buildLogin.buildLoginForm(context, _formKey, controller),
     );
   }
-
-  Widget buildBody(BuildContext context) {
-    return Obx(() => controller.isLoading.value
-        ? LoginHelpers.buildLoadingIndicator()
-        : buildLogin.buildLoginForm(context));
-  }
-
 }

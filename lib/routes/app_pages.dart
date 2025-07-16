@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
+import 'package:ouzoun/views/procedure/procedure_screen/add_procedure.dart';
 import '../views/doctor_choices/doctor_choices_screens/first_page_choices.dart';
 import '../views/doctor_choices/doctor_choices_screens/second_page_choices.dart';
 import '../views/forget_password/forget_password_screens/chekEmail.dart';
@@ -95,6 +96,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.implant_kit,
       page: () =>Implantkits(),
+
+    ),
+    GetPage(
+      name: AppRoutes.addprocedure,
+      page: () =>AddProcedure(),
 
     ),
   ];

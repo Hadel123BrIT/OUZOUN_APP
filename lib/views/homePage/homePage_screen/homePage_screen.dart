@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ouzoun/Routes/app_routes.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_bottom_navigation_bar .dart';
 import '../../../Widgets/custom_drawer.dart';
@@ -31,6 +32,16 @@ class HomePageScreen extends StatelessWidget {
       drawer: CustomDrawer(),
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: IconButton(onPressed: (){
+              Get.toNamed(AppRoutes.addprocedure);
+            }, icon: Icon(Icons.add_comment,
+            color: Colors.white,
+            )),
+          ),
+        ],
         leading: IconButton(
           onPressed: () {
             scaffoldKey.currentState?.openDrawer();
