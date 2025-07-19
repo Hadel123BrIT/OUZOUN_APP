@@ -5,6 +5,8 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../Routes/app_routes.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
+import '../../kits/kits_screens/detail_kit.dart';
+import '../../kits/kits_screens/implant_kits.dart';
 import '../../kits/kits_screens/surgical_kits.dart';
 import '../procedure_controller/procedure_controller.dart';
 import '../../kits/Kits_Controller/kits_controller.dart';
@@ -211,48 +213,56 @@ Widget buildDateTimeSelectionRow(BuildContext context) {
 Widget buildKitsToolsButtonsRow(BuildContext context) {
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
   final KitsController controller = Get.put(KitsController());
+
   return Column(
     children: [
-      Container(
-        width: double.infinity,
-        constraints: BoxConstraints(minHeight: 200),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
-            width: 2,
-          ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Mandatory Surgical Tools',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: isDarkMode ? Colors.white : Colors.black,
-                ),
-              ),
-              SizedBox(height: 10),
-              ...controller.surgicalKits.map((tool) => ListTile(
-                title: Text(
-                  tool['name'],
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-                ),
-              )).toList(),
-            ],
-          ),
-        ),
+      //Surgical kits
+    Container(
+    width: double.infinity,
+    constraints: BoxConstraints(minHeight: 200),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(
+        color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+        width: 2,
       ),
-      SizedBox(height: 20),
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Mandatory Surgical Tools',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 15,
+              color: AppColors.primaryGreen,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          SizedBox(height: 10),
+          ...controller.surgicalKits.map((tool) => ListTile(
+            title: Text(
+              tool['name'],
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 14,
+                color: Colors.grey,
+              ),
+            ),
+          )).toList(),
+        ],
+      ),
+    ),
+  ),
+
+
+    SizedBox(height: 20),
+
+
+    //Full implant Kits
+      // في ملف addProcedure.dart
       Obx(() => Container(
         width: double.infinity,
         constraints: BoxConstraints(minHeight: 200),
@@ -264,188 +274,194 @@ Widget buildKitsToolsButtonsRow(BuildContext context) {
           ),
         ),
         child: controller.selectedImplants.isEmpty
-            ? ElevatedButton(
-          onPressed: () => Get.toNamed(AppRoutes.implant_kit),
-          child: Text('Tap to choose Implants',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 15,
-              fontFamily: 'Montserrat',
-            ),
-          ),
-        )
-            : Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Selected Implants:',
-             style: TextStyle(
-             color: Colors.grey,
-             fontSize: 15,
-              fontFamily: 'Montserrat',
-              ),
-              ),
-              SizedBox(height: 10),
-              //هون رح نفك المصفوفة ونعمل ادراج لعناصرها
-              ...controller.selectedImplants.entries.map((entry) {
-                final implant = entry.value;
-                return Column(
-                  children: [
-                    ListTile(
-                      title: Text(implant['name'],
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Montserrat',
-                        ),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete,
-                        color: Colors.red,
-                        ),
-                        onPressed: () => controller.toggleImplantSelection(
-                            entry.key, implant),
-                      ),
-                    ),
-                    ExpansionTile(
-                      iconColor: Colors.grey,
-                      collapsedIconColor: Colors.grey,
-                      title: Text('Tools for ${implant['name']}',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                          fontFamily: 'Montserrat',
-                        ),
-                      ),
-                      children: controller.getToolsForImplant(entry.key)
-                          .map((tool) => ListTile(
-                        title: Text(tool,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Montserrat',
-                          ),
-                        ),
-                      ))
-                          .toList(),
-                    ),
-                    Divider(),
-                  ],
-                );
-              }),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: TextButton(
-                  onPressed: () async {
-                    await Get.toNamed(AppRoutes.implant_kit);
-                  },
-                  child: Text(
-                    'Edit Selection',
-                    style: TextStyle(
-                      color: AppColors.primaryGreen,
-                      fontSize: 15,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ),
-              ),
-            ],
-
-          ),
-        ),
-      )),
-      SizedBox(height: Get.height * 0.03),
-      Obx(() => Container(
-        width: double.infinity,
-        height: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
-            width: 2,
-          ),
-        ),
-        child: controller.selectedTools.isEmpty
-            ? ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: isDarkMode ? Theme.of(context).cardColor : Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          onPressed: ()  {
-            Get.toNamed(AppRoutes.additional_kit);
-            controller.updateSelectedTools();
-            controller.update();
+            ? TextButton(
+          onPressed: () async {
+            final result = await Get.to(() => Implantkits());
+            if (result != null) {
+            }
           },
-          child: Text(
-            'Tap to choose Tools',
+          child: Text('Tap to choose Full Implant Kits',
             style: TextStyle(
-              color: Colors.grey,
-              fontSize: 15,
               fontFamily: 'Montserrat',
+              fontSize: 14,
+              color: Colors.grey,
             ),
           ),
         )
-            : Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: controller.selectedTools.length,
-                  itemBuilder: (context, index) {
-                    final tool = controller.selectedTools[index];
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            tool['name'],
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Montserrat',
-                              color: isDarkMode ? Colors.white : Colors.black,
-                            ),
-                          ),
-
-                          Text(
-                            'x ${tool['quantity']}',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryGreen,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: TextButton(
-                  onPressed: () async {
-                    await Get.toNamed(AppRoutes.additional_kit);
-                  },
-                  child: Text(
-                    'Edit Selection',
-                    style: TextStyle(
-                      color: AppColors.primaryGreen,
-                      fontSize: 15,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+            : _buildSelectedImplantsList(context, controller.selectedImplants),
       )),
+
+
+    SizedBox(height: 20),
+
+
+    //Additional tools
+    Obx(() => Container(
+  width: double.infinity,
+  height: 200,
+  decoration: BoxDecoration(
+  borderRadius: BorderRadius.circular(10),
+  border: Border.all(
+  color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+  width: 2,
+  ),
+  ),
+  child: controller.selectedTools.isEmpty
+  ? ElevatedButton(
+      onPressed: () {
+        Get.toNamed(AppRoutes.additional_kit);
+        controller.updateSelectedTools();
+        controller.update();
+      },
+      child: Text(
+        'Tap to choose Additional Tools',
+        style: TextStyle(
+          color: Colors.grey,
+          fontSize: 15,
+          fontFamily: 'Montserrat',
+        ),
+      ),
+  style: ElevatedButton.styleFrom(
+  backgroundColor: isDarkMode ? Theme.of(context).cardColor : Colors.white,
+  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(10),
+  ),
+  )
+    )  : Padding(
+  padding: EdgeInsets.all(16),
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.stretch,
+  children: [
+  Expanded(
+  child: ListView.builder(
+  itemCount: controller.selectedTools.length,
+  itemBuilder: (context, index) {
+  final tool = controller.selectedTools[index];
+  return Padding(
+  padding: EdgeInsets.symmetric(vertical: 4),
+  child: Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+  Text(
+  tool['name'],
+  style: TextStyle(
+  fontSize: 15,
+  fontFamily: 'Montserrat',
+  color: isDarkMode ? Colors.white : Colors.black,
+  ),
+  ),
+  Text(
+  'x ${tool['quantity']}',
+  style: TextStyle(
+  fontSize: 15,
+  fontFamily: 'Montserrat',
+  fontWeight: FontWeight.bold,
+  color: AppColors.primaryGreen,
+  ),
+  ),
+  ],
+  ),
+  );
+  },
+  ),
+  ),
+  Align(
+  alignment: Alignment.bottomRight,
+  child: TextButton(
+  onPressed: () async {
+  await Get.toNamed(AppRoutes.additional_kit);
+  },
+  child: Text(
+  'Edit Selection',
+  style: TextStyle(
+  color: AppColors.primaryGreen,
+  fontSize: 15,
+  fontFamily: 'Montserrat',
+  ),
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  )),
+
+
+    SizedBox(height: 20),
+
+
+
+    //Implants or Tools
+      Obx(() {
+        return Container(
+          width: double.infinity,
+          constraints: BoxConstraints(minHeight: 200),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+              width: 2,
+            ),
+          ),
+          child: controller.selectedPartialImplants.isEmpty
+              ? Center(
+             child:  TextButton(
+               onPressed: () async {
+                 final selectedImplant = await showDialog<Map<String, dynamic>>(
+                   context: context,
+                   builder: (context) => AlertDialog(
+                     title: Text("Select Implant"),
+                     content: SizedBox(
+                       width: double.maxFinite,
+                       child: ListView.builder(
+                         shrinkWrap: true,
+                         itemCount: controller.implants.length,
+                         itemBuilder: (context, index) {
+                           final implant = controller.implants[index];
+                           return ListTile(
+                             title: Text(implant['name'],
+                               style: TextStyle(
+                                 fontFamily: 'Montserrat',
+                                 fontSize: 14,
+                                 color: Colors.grey,
+                               ),
+                             ),
+                             onTap: () => Get.back(result: implant),
+                           );
+                         },
+                       ),
+                     ),
+                   ),
+                 );
+
+                 if (selectedImplant != null) {
+                   final result = await Get.to(
+                         () => ImplantDetailScreen(implant: selectedImplant),
+                   );
+                   if (result != null && result is Map) {
+                     controller.addPartialImplant(
+                       result['implantId'].toString(),
+                       result['implantName'],
+                       tools: result['selectedTools']?.cast<String>() ?? [],
+                     );
+                   }
+                 }
+               },
+               child: Text('Tap to choose Partial Implants / Tools',
+                 style: TextStyle(
+                   fontFamily: 'Montserrat',
+                   fontSize: 14,
+                   color: Colors.grey,
+                 ),
+               ),
+             )
+          )
+              : _buildPartialImplantsList(context, controller.selectedPartialImplants),
+        );
+      })
     ],
+
+
   );
 }
 
@@ -455,4 +471,181 @@ Widget buildSubmitButton(BuildContext context) {
     controller.submitProcedure;
   }, text: 'Confirm Procedure', color: AppColors.primaryGreen);
 
+}
+
+Widget _buildSelectedImplantsList(BuildContext context, RxMap<String, Map<String, dynamic>> implants) {
+  final controller = Get.find<KitsController>();
+  final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+  return Padding(
+    padding: EdgeInsets.all(16),
+    child: Column(
+      children: [
+        Text('Selected Full Implant Kits:',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryGreen,
+            fontFamily: 'Montserrat',
+          ),
+        ),
+        SizedBox(height: 10),
+        ...implants.entries.map((entry) => Card(
+          margin: EdgeInsets.symmetric(vertical: 4),
+          child: ListTile(
+            title: Text(
+              entry.value['name']?.toString() ?? 'Unknown Implant',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                color: isDarkMode ? Colors.white : Colors.black,
+              ),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.delete, color: Colors.red),
+              onPressed: () => controller.toggleImplantSelection(entry.key, entry.value),
+            ),
+          ),
+        )).toList(),
+        SizedBox(height: 10),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryGreen,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () async {
+            final result = await Get.to(() => Implantkits());
+            if (result != null) {
+              // تحديث القائمة إذا لزم الأمر
+            }
+          },
+          child: Text(
+            'Edit Selection',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Montserrat',
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _buildPartialImplantsList(BuildContext context, List<Map<String, dynamic>> implants) {
+  final controller = Get.find<KitsController>();
+
+  return ConstrainedBox(
+    constraints: BoxConstraints(
+      minHeight: 200,
+      maxHeight: MediaQuery.of(context).size.height * 0.4,
+    ),
+    child: Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(8),
+          child: Text(
+            'Selected Partial Implants with Tools',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: AppColors.primaryGreen,
+              fontFamily: 'Montserrat',
+            ),
+          ),
+        ),
+        Expanded(
+          child: Obx(() => ListView.builder(
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
+            itemCount: controller.selectedPartialImplants.length,
+            itemBuilder: (context, index) {
+              final implant = controller.selectedPartialImplants[index];
+              return Card(
+                margin: EdgeInsets.all(8),
+                child: ListTile(
+                  title: Text(
+                    implant['implantName'] ?? 'Unknown Implant',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (implant['tools'] != null && implant['tools'].isNotEmpty)
+                        Text(
+                          'Tools: ${implant['tools'].join(', ')}',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontFamily: 'Montserrat',
+                          ),
+                        ),
+                    ],
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red),
+                    onPressed: () => controller.removePartialImplant(implant['implantId']),
+                  ),
+                ),
+              );
+            },
+          )),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryGreen,
+            ),
+            onPressed: () async {
+              // عرض قائمة الزرعات للاختيار
+              final selectedImplant = await showDialog<Map<String, dynamic>>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("Select Implant"),
+                  content: SizedBox(
+                    width: double.maxFinite,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.implants.length,
+                      itemBuilder: (context, index) {
+                        final implant = controller.implants[index];
+                        return ListTile(
+                          title: Text(implant['name']),
+                          onTap: () => Navigator.pop(context, implant),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              );
+
+              if (selectedImplant != null) {
+                final result = await Get.to(
+                      () => ImplantDetailScreen(implant: selectedImplant),
+                );
+                if (result != null && result is Map) {
+                  controller.addPartialImplant(
+                    result['implantId'].toString(),
+                    result['implantName'],
+                    tools: result['selectedTools']?.cast<String>() ?? [],
+                  );
+                }
+              }
+            },
+            child: Text(
+              'Add Another',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Montserrat',
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Core/Services/media_query_service.dart';
-import 'package:ouzoun/Widgets/custom_button.dart' hide  CustomButton;
+import 'package:ouzoun/Widgets/custom_button.dart' hide CustomButton;
 import '../../../core/constants/app_colors.dart';
 import '../../../widgets/custom_button.dart';
 import '../Kits_Controller/kits_controller.dart';
@@ -13,23 +13,19 @@ class ImplantDetailScreen extends StatelessWidget {
   final Map<String, dynamic> implant;
   final KitsController controller = Get.find<KitsController>();
 
-  ImplantDetailScreen({Key? key})
-      : implant = Get.arguments ?? {},
-        super(key: key);
+  ImplantDetailScreen({super.key, required this.implant});
 
   @override
   Widget build(BuildContext context) {
     final implantId = implant['id']?.toString() ?? UniqueKey().toString();
-    print("---------------------------------Implant ID: $implantId");
-    final isDarkMode = Theme
-        .of(context)
-        .brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    final implantTools = controller.implants
+        .firstWhere((imp) => imp['id'] == implant['id'], orElse: () => {})['tools'] ?? [];
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -44,7 +40,6 @@ class ImplantDetailScreen extends StatelessWidget {
                       bottomRight: Radius.circular(context.width * 0.2),
                     ),
                   ),
-
                 ),
               ),
               Padding(
@@ -59,8 +54,7 @@ class ImplantDetailScreen extends StatelessWidget {
                             width: context.width * 0.4,
                             height: context.width * 0.4,
                             decoration: BoxDecoration(
-                              color: isDarkMode ? Colors.grey[800] : Colors
-                                  .grey[200],
+                              color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
@@ -78,19 +72,9 @@ class ImplantDetailScreen extends StatelessWidget {
                           SizedBox(height: context.height * 0.02),
                           Text(
                             implant['name'],
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleLarge,
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           SizedBox(height: context.height * 0.01),
-                          Text(
-                            "Quantity: ${implant['quantity']}",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleMedium,
-                          ),
                         ],
                       ),
                     ),
@@ -113,10 +97,7 @@ class ImplantDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Specifications",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .headlineSmall,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
@@ -146,10 +127,7 @@ class ImplantDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Brand and Quantity",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .headlineSmall,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
@@ -179,10 +157,7 @@ class ImplantDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Description",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .headlineSmall,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
@@ -216,35 +191,40 @@ class ImplantDetailScreen extends StatelessWidget {
                         children: [
                           Text(
                             "Required Tools",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .headlineSmall,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(height: context.height * 0.01),
                           Divider(color: AppColors.primaryGreen),
                           SizedBox(height: context.height * 0.01),
-                          _buildToolItem(context, implantId, "Surgical Kit"),
-                          _buildToolItem(context, implantId, "Drill Guide",),
-                          _buildToolItem(
-                            context, implantId, "Healing Abutment",),
-                          _buildToolItem(context, implantId, "Torque Wrench",),
+
+                          ...implantTools.map((tool) =>
+                              buildToolItem(context, implantId, tool['name'])
+                          ).toList(),
                         ],
                       ),
                     ),
                     SizedBox(height: context.height * 0.04),
                     Center(
-                      child: CustomButton(onTap: () {
-                        Get.snackbar(
-                          "Added to Cart",
-                          "${implant['name']} has been added to your cart",
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: AppColors.primaryGreen,
-                          colorText: Colors.white,
-                        );
-                      }, text: 'Add to Cart',
-                        color: AppColors.primaryGreen,),
-                    ),
+                      child:CustomButton(
+                        onTap: () {
+                          final hasSelectedTools = (controller.selectedToolsForImplants[implantId]?.isNotEmpty ?? false);
+
+                          if ( hasSelectedTools) {
+                            final result = {
+                              'implantId': implantId,
+                              'implantName': implant['name'],
+                              'selectedTools': controller.selectedToolsForImplants[implantId] ?? [],
+                            };
+                            print('Sending back result: $result');
+                            Get.back(result: result);
+                            Get.snackbar("Added", "${implant['name']} added to cart");
+                          } else {
+                            Get.snackbar("Warning", "Please select at least one option");
+                          }
+                        },
+                        text: 'Add to Cart', color: AppColors.primaryGreen,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -268,28 +248,5 @@ class ImplantDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildToolItem(BuildContext context, String implantId,
-      String toolName) {
-    return Obx(() {
-      final isSelected = controller.selectedToolsForImplants[implantId]
-          ?.contains(toolName) ?? false;
-      print('Building $toolName - isSelected: $isSelected');
 
-      return ListTile(
-        title: Text(toolName),
-        trailing: Checkbox(
-          value: isSelected,
-          onChanged: (value) {
-            controller.toggleToolForImplant(implantId, toolName);
-            controller.selectedToolsForImplants.refresh();
-          },
-          activeColor: AppColors.primaryGreen,
-        ),
-        onTap: () {
-          controller.toggleToolForImplant(implantId, toolName);
-          controller.selectedToolsForImplants.refresh();
-        },
-      );
-    });
-  }
 }

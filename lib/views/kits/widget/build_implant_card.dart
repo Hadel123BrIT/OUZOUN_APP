@@ -10,7 +10,7 @@ import '../../../core/constants/app_colors.dart';
 import 'build_detail_row.dart';
 
 Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
-  KitsController controller=Get.put(KitsController());
+  KitsController controller=Get.find<KitsController>();
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
   final implantId = implant['id']?.toString() ?? UniqueKey().toString();
   return  Container(
@@ -116,22 +116,28 @@ Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
             ),
           ),
         ),
-  Positioned(
-  top: 3,
-  right: 8,
-  child: Transform.scale(
-  scale: 1.3,
-  child: Obx(() => Checkbox(
-    value: controller.isImplantSelected(implantId),
-    onChanged: (val) => controller.toggleImplantSelection(implantId, implant),
-    activeColor: AppColors.primaryGreen,
-  checkColor: Colors.white,
-  shape: RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(4),
-  ),
-  )),
-  ),
-  ),
+        Positioned(
+          top: 3,
+          right: 8,
+          child: Transform.scale(
+            scale: 1.3,
+            child: Obx(() {
+              final isSelected = controller.selectedImplants.containsKey(implantId);
+              return Checkbox(
+                value: isSelected,
+                onChanged: (val) {
+                  controller.toggleImplantSelection(implantId, implant);
+                  controller.selectedImplants.refresh();
+                },
+                activeColor: AppColors.primaryGreen,
+                checkColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              );
+            }),
+          ),
+        ),
       ],
     ),
   );

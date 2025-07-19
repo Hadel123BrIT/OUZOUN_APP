@@ -31,7 +31,10 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.detail_kit,
-      page: () => ImplantDetailScreen(),
+      page: () {
+        final implant = Get.arguments ?? {};
+        return ImplantDetailScreen(implant: implant);
+      },
     ),
     GetPage(
       name: AppRoutes.settings,
@@ -95,8 +98,10 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.implant_kit,
-      page: () =>Implantkits(),
-
+      page: () {
+        final implant = Get.arguments ?? {};
+        return ImplantDetailScreen(implant: implant);
+      },
     ),
     GetPage(
       name: AppRoutes.addprocedure,

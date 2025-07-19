@@ -7,67 +7,12 @@ import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 import '../widget/build_detail_row.dart';
 import '../widget/build_implant_card.dart';
-import '../widget/showImplantDialog.dart';
+import '../widget/show_implant_dialog.dart';
 
 class Implantkits extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   KitsController controller=Get.put(KitsController());
-  final List<Map<String, dynamic>> implants = [
-    {
-      "id":1,
-      'name': 'Nobel Biocare ',
-      'height': '10 mm',
-      'width': '3.5 mm',
-      'radius': '3.5 mm',
-      'brand' : "Implant Tech",
-      'quantity': 15,
-      'description': 'High Quality Premium implant for anterior region',
-      'image': 'assets/images/implant1.png'
-    },
-    {
-      "id":2,
-      'name': 'Straumann ',
-      'height': '12 mm',
-      'width': '4.1 mm',
-      'radius': '4.1 mm',
-      'brand' : "Implant Tech",
-      'quantity': 8,
-      'description': 'Roxolid SLActive surface for doctor and his operation',
-      'image': 'assets/images/implant2.png'
-    },
-    {  "id":3,
-      'name': 'BioHorizons ',
-      'height': '11.5 mm',
-      'width': '4.6 mm',
-      'radius': '4.6 mm',
-      'brand' : "Implant Tech",
-      'quantity': 10,
-      'description': 'Laser-Lok microchannel technology',
-      'image': 'assets/images/implant3.png'
-    },
-    {
-      "id":4,
-      'name': 'Nobel Biocare ',
-      'height': '10 mm',
-      'width': '3.5 mm',
-      'radius': '3.5 mm',
-      'brand' : "Implant Tech",
-      'quantity': 15,
-      'description': 'High Quality Premium implant for anterior region',
-      'image': 'assets/images/implant1.png'
-    },
-    {
-      "id":5,
-      'name': 'Straumann ',
-      'height': '12 mm',
-      'width': '4.1 mm',
-      'radius': '4.1 mm',
-      'brand' : "Implant Tech",
-      'quantity': 8,
-      'description': 'Roxolid SLActive surface',
-      'image': 'assets/images/implant2.png'
-    },
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +102,7 @@ class Implantkits extends StatelessWidget {
               ),
             ),
             Column(
-              children: implants.map((implant) => BuildImplantCard(context, implant)).toList(),
+              children: controller.implants.map((implant) => BuildImplantCard(context, implant)).toList(),
             ),
           ],
         ),

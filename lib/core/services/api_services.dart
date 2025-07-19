@@ -43,6 +43,7 @@ on DioException catch (e) {
 }
 }
 
+
 //LoginUser
 Future<Response> loginUser({required String email,required String password}) async {
   try{
@@ -71,25 +72,8 @@ Future<Response> loginUser({required String email,required String password}) asy
   }
 }
 
-//Add Procedure
-Future<Response> addProcedure(Procedure procedure) async{
-   try{
-     final response= await dio.post("$baseUrl/Procedures/AddProcedure",
-      data: [
-        procedure.toJson(),
-      ]
-     );
-     print(response.data +"   "+  response.statusCode +" "+ response.statusMessage);
-     return response.data;
 
-   }
-   on DioException catch(e){
-     if (e.response != null) {
-       return e.response!;
-     } else {
-       throw Exception('Failed to connect to the server: ${e.message}');
-     }
-   }
-}
+
+
 
 }

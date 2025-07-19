@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/constants/app_colors.dart';
+
+import '../../kits/Kits_Controller/kits_controller.dart';
 
 class AddProcedureController extends GetxController {
+  final KitsController kitsController = Get.put(KitsController());
+
+  // متغيرات إدخال البيانات
   final patientNameController = TextEditingController();
-  var needsAssistance = false.obs;
-  var assistantsCount = 1.obs;
-  var procedureType = 1.obs;
-  var procedureDate = Rx<DateTime?>(null);
-  var procedureTime = Rx<TimeOfDay?>(null);
+  final needsAssistance = false.obs;
+  final assistantsCount = 1.obs;
+  final procedureType = 1.obs;
+  final procedureDate = Rx<DateTime?>(null);
+  final procedureTime = Rx<TimeOfDay?>(null);
 
-
+  // اختيار التاريخ
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -40,7 +44,7 @@ class AddProcedureController extends GetxController {
     }
   }
 
-
+  // اختيار الوقت
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
@@ -75,6 +79,7 @@ class AddProcedureController extends GetxController {
     }
   }
 
+  // إرسال الإجراء
   void submitProcedure() {
     if (patientNameController.text.isEmpty) {
       Get.snackbar('Error', 'Patient name is required');
@@ -84,6 +89,21 @@ class AddProcedureController extends GetxController {
       Get.snackbar('Error', 'Procedure date and time are required');
       return;
     }
+
+    // تحضير البيانات
+    final procedureData = {
+      'patientName': patientNameController.text,
+      'needsAssistance': needsAssistance.value,
+      'numberOfAssistants': assistantsCount.value,
+      'date': procedureDate.value!.toIso8601String(),
+      'time': '${procedureTime.value!.hour}:${procedureTime.value!.minute}',
+      'categoryId': procedureType.value,
+      ...kitsController.prepareProcedureData(),
+    };
+
+    // هنا يمكنك إضافة كود إرسال البيانات إلى الخادم
+    print('Submitting procedure data: $procedureData');
+
     Get.snackbar('Success', 'Procedure added successfully');
     Get.back();
   }
