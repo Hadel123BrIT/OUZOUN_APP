@@ -20,9 +20,9 @@ class LoginController extends GetxController {
         );
         if (response.statusCode == 200 || response.statusCode == 201) {
           final token = response.data['token'];
-          print("Token: $token");
+          print("***********************************Token: $token");
           final box = GetStorage();
-          await box.write('user_token', token);
+          await box.write('--------------------------user_token', token);
           Get.snackbar('Success', 'Login successful');
           Get.offAllNamed(AppRoutes.firstchoice);
         }

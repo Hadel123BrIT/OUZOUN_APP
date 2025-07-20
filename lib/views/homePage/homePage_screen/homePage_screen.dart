@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -37,7 +38,7 @@ class HomePageScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: IconButton(onPressed: (){
               Get.toNamed(AppRoutes.addprocedure);
-            }, icon: Icon(Icons.add_comment,
+            }, icon: Icon(CupertinoIcons.plus_app,
             color: Colors.white,
             )),
           ),

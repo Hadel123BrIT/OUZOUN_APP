@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,6 +11,8 @@ class RegisterController extends GetxController {
   final passwordController = TextEditingController();
   final locationController = TextEditingController();
   final phoneController = TextEditingController();
+  final clinicNameController=TextEditingController();
+  final addressController=TextEditingController();
   final formKey = GlobalKey<FormState>();
   var isLoading = false.obs;
   var selectedLocation = Rxn<LatLng>();
@@ -21,40 +24,66 @@ class RegisterController extends GetxController {
     locationController.text = address;
   }
 
-  Future<void> register()async {
-    // الصحيح:
-    if(formKey.currentState!.validate() && selectedLocation.value != null){
-     isLoading(true);
-     try{
-       final response=await apiServices.registerUser(
-           userName: nameController.text,
-           email: emailController.text,
-           phoneNumber: phoneController.text,
-           password: passwordController.text,
-           longitude: selectedLocation.value!.longitude,
-           latitude: selectedLocation.value!.latitude,
-       );
-       if(response.statusCode==200|| response.statusCode==201){
-         if (response.data['token'] != null) {
-           final box = GetStorage();
-           box.write('token', response.data['token']);
-         }
-         print("----------------------------------------sucess");
-         Get.snackbar('Success', 'Registration successful');
-         Get.offAllNamed(AppRoutes.firstchoice);
-       }
-     }
-     catch(e){
-       Get.snackbar('Error', 'An error occurred: $e');
-       print(e.toString());
-     }
-     finally {
-       isLoading(false);
-     }
-   }
-   else {
-     Get.snackbar('Error', 'Please fill all fields and select a location');
-   }
+  Future<void> register() async {
+    if (!formKey.currentState!.validate()) {
+      Get.snackbar('Error'.tr, 'Please fill all fields correctly'.tr);
+      return;
+    }
+
+    if (selectedLocation.value == null) {
+      Get.snackbar('Error'.tr, 'Please select a location'.tr);
+      return;
+    }
+
+    isLoading(true);
+    errorMessage('');
+
+    try {
+      final response = await apiServices.registerUser(
+        userName: nameController.text,
+        email: emailController.text,
+        phoneNumber: phoneController.text,
+        password: passwordController.text,
+        clinicName: clinicNameController.text,
+        address: addressController.text,
+        longitude: selectedLocation.value!.longitude,
+        latitude: selectedLocation.value!.latitude,
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Get.offAllNamed(AppRoutes.firstchoice);
+        Get.snackbar('Success'.tr, 'Registration successful'.tr);
+      } else {
+        final errorData = response.data;
+        if (errorData is List && errorData.isNotEmpty) {
+          errorMessage(errorData[0]['description'] ?? 'Registration failed'.tr);
+        } else if (errorData is Map) {
+          errorMessage(errorData['message'] ?? 'Registration failed'.tr);
+        } else {
+          errorMessage('Registration failed'.tr);
+        }
+        Get.snackbar('Error'.tr, errorMessage.value);
+      }
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final errorData = e.response?.data;
+        if (errorData is List && errorData.isNotEmpty) {
+          errorMessage(errorData[0]['description'] ?? e.message ?? 'Registration failed'.tr);
+        } else {
+          errorMessage(e.message ?? 'Registration failed'.tr);
+        }
+      } else {
+        errorMessage(e.message ?? 'Registration failed'.tr);
+      }
+      Get.snackbar('Error'.tr, errorMessage.value);
+      print('Dio Error: ${e.toString()}');
+    } catch (e) {
+      errorMessage('An error occurred: ${e.toString()}'.tr);
+      Get.snackbar('Error'.tr, errorMessage.value);
+      print('General Error: ${e.toString()}');
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override

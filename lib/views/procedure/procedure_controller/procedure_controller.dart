@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../../../core/services/api_services.dart';
+import '../../../models/procedure_model.dart';
 import '../../kits/Kits_Controller/kits_controller.dart';
 
-class AddProcedureController extends GetxController {
+class ProcedureController extends GetxController {
   final KitsController kitsController = Get.put(KitsController());
-
-  // متغيرات إدخال البيانات
+  final ApiServices apiServices = Get.put(ApiServices());
   final patientNameController = TextEditingController();
   final needsAssistance = false.obs;
   final assistantsCount = 1.obs;
   final procedureType = 1.obs;
   final procedureDate = Rx<DateTime?>(null);
   final procedureTime = Rx<TimeOfDay?>(null);
+  final RxList<Procedure> procedures = <Procedure>[].obs;
+  final RxString searchQuery = ''.obs;
+  final RxInt statusFilter = 0.obs;
+  final RxBool showMainKitsOnly = false.obs;
+  final RxBool isLoading = false.obs;
 
   // اختيار التاريخ
   Future<void> selectDate(BuildContext context) async {
@@ -79,33 +86,125 @@ class AddProcedureController extends GetxController {
     }
   }
 
-  // إرسال الإجراء
-  void submitProcedure() {
+ //جلب كافة المعلومات
+  Map<String, dynamic> getProcedureData() {
+    final combinedDateTime = DateTime(
+      procedureDate.value!.year,
+      procedureDate.value!.month,
+      procedureDate.value!.day,
+      procedureTime.value!.hour,
+      procedureTime.value!.minute,
+    );
+    return {
+      "numberOfAssistants": needsAssistance.value ? assistantsCount.value : 0,
+      "date": combinedDateTime.toIso8601String(),
+      "categoryId": procedureType.value,
+      "toolsIds": getAdditionalToolsData(),
+      "kitIds": getFullKitsData(),
+      "implantTools": getPartialImplantsData(),
+    };
+  }
+
+  List<Map<String, dynamic>> getAdditionalToolsData() {
+    return kitsController.selectedTools.where((tool) => tool['id'] != null).map((tool) => {
+      "toolId": tool['id'],
+      "quantity": int.tryParse(tool['quantity']?.toString() ?? '1') ?? 1,
+    }).toList();
+  }
+
+  List<int> getFullKitsData() {
+    return kitsController.selectedImplants.keys
+        .map((id) => int.tryParse(id.toString()) ?? 0)
+        .where((id) => id > 0) // استبعاد الأصفار
+        .toList();
+  }
+
+  List<Map<String, dynamic>> getPartialImplantsData() {
+    return kitsController.selectedPartialImplants.map((item) {
+      List<int> toolIds = [];
+      if (!(item['tools'] as List<String>).contains('No tools')) {
+        toolIds = (item['tools'] as List<String>)
+            .map((toolName) => kitsController.getToolIdByName(toolName))
+            .toList();
+      }
+
+      return {
+        "implantId": int.parse(item['implantId']),
+        "toolIds": toolIds,
+      };
+    }).toList();
+  }
+
+  //تابع ال post
+  Future<void> postProcedure() async {
+    // التحقق من الحقول المطلوبة
     if (patientNameController.text.isEmpty) {
-      Get.snackbar('Error', 'Patient name is required');
+      Get.snackbar('Error'.tr, 'Patient name is required'.tr);
       return;
     }
     if (procedureDate.value == null || procedureTime.value == null) {
-      Get.snackbar('Error', 'Procedure date and time are required');
+      Get.snackbar('Error'.tr, 'Procedure date and time are required'.tr);
       return;
     }
 
-    // تحضير البيانات
-    final procedureData = {
-      'patientName': patientNameController.text,
-      'needsAssistance': needsAssistance.value,
-      'numberOfAssistants': assistantsCount.value,
-      'date': procedureDate.value!.toIso8601String(),
-      'time': '${procedureTime.value!.hour}:${procedureTime.value!.minute}',
-      'categoryId': procedureType.value,
-      ...kitsController.prepareProcedureData(),
-    };
+    try {
+      // الحصول على البيانات
+      final procedureData = getProcedureData();
+      print('Sending procedure data: $procedureData');
 
-    // هنا يمكنك إضافة كود إرسال البيانات إلى الخادم
-    print('Submitting procedure data: $procedureData');
+      // الحصول على التوكن
+      final box = GetStorage();
+      final token = box.read('auth_token');
 
-    Get.snackbar('Success', 'Procedure added successfully');
-    Get.back();
+      // إرسال البيانات مع التوكن
+      final response = await apiServices.addProcedure(
+        procedureData,
+        token: token, // إرسال التوكن
+      );
+
+      // معالجة الرد
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Get.snackbar('Success'.tr, 'Procedure added successfully'.tr);
+        Get.back();
+      } else {
+        final errorMsg = response.data['message'] ??
+            response.data['error'] ??
+            'Failed with status ${response.statusCode}';
+        Get.snackbar('Error'.tr, errorMsg.toString().tr);
+      }
+    } catch (e) {
+      Get.snackbar('Error'.tr, 'An error occurred: ${e.toString()}'.tr);
+      print('Full error details: $e');
+    }
+  }
+
+   //تابع ال fetch for all procedures
+  Future<void> fetchProcedures() async {
+    isLoading.value = true;
+    try {
+      final response = await apiServices.getAllProcedures();
+      procedures.assignAll(response);
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to load procedures');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  List<Procedure> get filteredProcedures {
+    return procedures.where((procedure) {
+      final matchesSearch = procedure.doctor.userName
+          .toLowerCase()
+          .contains(searchQuery.value.toLowerCase());
+
+      final matchesStatus = statusFilter.value == 0 ||
+          procedure.status == statusFilter.value;
+
+      final matchesKitFilter = !showMainKitsOnly.value ||
+          procedure.kits.any((kit) => kit.isMainKit);
+
+      return matchesSearch && matchesStatus && matchesKitFilter;
+    }).toList();
   }
 
   @override

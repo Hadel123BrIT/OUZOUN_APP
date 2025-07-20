@@ -208,4 +208,24 @@ class RegisterHelpers {
       ),
     );
   }
+
+  static Widget buildClinicField(TextEditingController controller) {
+    return CustomTextFormField(
+      prefixIcon: Icon(Icons.medical_services, color: Colors.grey[500]),
+      validator: (val) => val?.isEmpty ?? true ? "Clinic name must not be empty".tr : null,
+      myController: controller,
+      hintText: "Enter clinic name".tr,
+      obscureText: false,
+    );
+  }
+
+  static Widget buildAddressField(TextEditingController controller) {
+    return CustomTextFormField(
+      prefixIcon: Icon(Icons.location_city, color: Colors.grey[500]),
+      validator: (val) => val?.isEmpty ?? true ? "Address must not be empty".tr : null,
+      myController: controller,
+      hintText: "Enter your address".tr,
+      obscureText: false,
+    );
+  }
 }

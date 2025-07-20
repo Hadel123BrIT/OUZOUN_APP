@@ -20,7 +20,7 @@ class NavigationController extends GetxController {
     '/settings',
     '/profile',
     '/homepage',
-    '/orders',
+    '/get_all_procedure',
     '/notifications',
   ];
   void changeIndex(int index) {

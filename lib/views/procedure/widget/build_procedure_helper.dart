@@ -14,7 +14,7 @@ import '../../kits/Kits_Controller/kits_controller.dart';
 Widget buildPatientNameField(BuildContext context) {
   final isDark = Theme.of(context).brightness == Brightness.dark;
   final borderColor = isDark ? Colors.white : Colors.grey;
-  final controller = Get.put(AddProcedureController());
+  final controller = Get.put(ProcedureController());
   return TextField(
     cursorColor: Colors.grey,
     controller: controller.patientNameController,
@@ -45,7 +45,7 @@ Widget buildPatientNameField(BuildContext context) {
 Widget buildNeedsAssistanceDropdown(BuildContext context) {
   final isDark = Theme.of(context).brightness == Brightness.dark;
   final borderColor = isDark ? Colors.white : Colors.grey;
-  final controller = Get.put(AddProcedureController());
+  final controller = Get.put(ProcedureController());
   return Obx(() => DropdownButtonFormField<bool>(
     items: [
       DropdownMenuItem(
@@ -82,7 +82,7 @@ Widget buildNeedsAssistanceDropdown(BuildContext context) {
 Widget buildAssistantsCountDropdown(BuildContext context) {
   final isDark = Theme.of(context).brightness == Brightness.dark;
   final borderColor = isDark ? Colors.white : Colors.grey;
-  final controller = Get.put(AddProcedureController());
+  final controller = Get.put(ProcedureController());
   return Obx(() => controller.needsAssistance.value
       ? DropdownButtonFormField<int>(
     items: List.generate(5, (index) => index + 1)
@@ -119,7 +119,7 @@ Widget buildAssistantsCountDropdown(BuildContext context) {
 Widget buildProcedureTypeDropdown(BuildContext context) {
   final isDark = Theme.of(context).brightness == Brightness.dark;
   final borderColor = isDark ? Colors.white : Colors.grey;
-  final controller = Get.put(AddProcedureController());
+  final controller = Get.put(ProcedureController());
   return Obx(() => DropdownButtonFormField<int>(
     items: [
       DropdownMenuItem(
@@ -152,7 +152,7 @@ Widget buildProcedureTypeDropdown(BuildContext context) {
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: borderColor, width: 2.0),
       ),
-      labelText: 'Patient Name',
+      labelText: 'Procedure Type',
       labelStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
         color: isDark ? Colors.white70 : Colors.black54,
       ),
@@ -161,7 +161,7 @@ Widget buildProcedureTypeDropdown(BuildContext context) {
 }
 
 Widget buildDateTimeSelectionRow(BuildContext context) {
-  final controller = Get.put(AddProcedureController());
+  final controller = Get.put(ProcedureController());
   return Row(
     children: [
       Expanded(
@@ -262,7 +262,6 @@ Widget buildKitsToolsButtonsRow(BuildContext context) {
 
 
     //Full implant Kits
-      // في ملف addProcedure.dart
       Obx(() => Container(
         width: double.infinity,
         constraints: BoxConstraints(minHeight: 200),
@@ -466,9 +465,18 @@ Widget buildKitsToolsButtonsRow(BuildContext context) {
 }
 
 Widget buildSubmitButton(BuildContext context) {
-  final controller = Get.put(AddProcedureController());
-  return CustomButton(onTap: (){
-    controller.submitProcedure;
+  final controller = Get.put(ProcedureController());
+  return CustomButton(
+      onTap: (){
+        controller.postProcedure();
+        Get.snackbar(
+          'Processing',
+          'Your request is being processed...',
+          backgroundColor: Colors.grey,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 2),
+        );
   }, text: 'Confirm Procedure', color: AppColors.primaryGreen);
 
 }

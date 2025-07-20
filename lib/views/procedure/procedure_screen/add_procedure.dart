@@ -9,7 +9,7 @@ import '../widget/build_procedure_helper.dart';
 
 class AddProcedure extends StatelessWidget {
   AddProcedure({super.key});
-  final controller = Get.put(AddProcedureController());
+  final controller = Get.put(ProcedureController());
 
   @override
   Widget build(BuildContext context) {

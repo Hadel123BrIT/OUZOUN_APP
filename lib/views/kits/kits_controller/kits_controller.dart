@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 class KitsController extends GetxController {
   final List<Map<String, dynamic>> additionalTools = [
     {
+      "id":1,
       'name': 'Dental Drill',
       'image': 'assets/images/forceps.png',
       'length': '15 cm',
@@ -11,6 +12,7 @@ class KitsController extends GetxController {
       'quantity': "0",
     },
     {
+      "id":2,
       'name': 'Surgical Scissors',
       'image': 'assets/images/mouth-mirror.png',
       'length': '12 cm',
@@ -19,6 +21,7 @@ class KitsController extends GetxController {
       'quantity': "3",
     },
     {
+      "id":3,
       'name': 'Bone File',
       'image': 'assets/images/probe.png',
       'length': '18 cm',
@@ -27,6 +30,7 @@ class KitsController extends GetxController {
       'quantity': "2",
     },
     {
+      "id": 4,
       'name': 'Retractor',
       'image': 'assets/images/tooth.png',
       'length': '20 cm',
@@ -35,6 +39,7 @@ class KitsController extends GetxController {
       'quantity': "1",
     },
     {
+      "id":5,
       'name': 'Dental Drill',
       'image': 'assets/images/forceps.png',
       'length': '15 cm',
@@ -43,6 +48,7 @@ class KitsController extends GetxController {
       'quantity': "4",
     },
     {
+      "id": 6,
       'name': 'Surgical Scissors',
       'image': 'assets/images/mouth-mirror.png',
       'length': '12 cm',
@@ -536,14 +542,24 @@ class KitsController extends GetxController {
 
 
   int getToolIdByName(String toolName) {
+    if (toolName == 'No tools') return 0;
+
     for (var implant in implants) {
       for (var tool in implant['tools']) {
-        if (tool['name'] == toolName) {
+        if (tool['name'] == toolName && tool['id'] != null) {
           return tool['id'];
         }
       }
     }
-    return 0;
+
+    // البحث في الأدوات العامة إذا لم يتم العثور في أدوات الزرعات
+    for (var tool in [...additionalTools, ...surgicalKits]) {
+      if (tool['name'] == toolName && tool['id'] != null) {
+        return tool['id'];
+      }
+    }
+
+    return 0; // إذا لم يتم العثور
   }
 
   bool isImplantFullKit(String implantId) {

@@ -5,6 +5,7 @@ import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
 import 'package:ouzoun/views/procedure/procedure_screen/add_procedure.dart';
+import '../models/procedure_model.dart';
 import '../views/doctor_choices/doctor_choices_screens/first_page_choices.dart';
 import '../views/doctor_choices/doctor_choices_screens/second_page_choices.dart';
 import '../views/forget_password/forget_password_screens/chekEmail.dart';
@@ -19,6 +20,8 @@ import '../views/kits/kits_screens/implant_kits.dart';
 import '../views/kits/kits_screens/surgical_kits.dart';
 import '../views/login/login_screen.dart';
 import '../views/myProfile/myProfile_screen/myProfile_screen.dart';
+import '../views/procedure/procedure_screen/get_all_procedures.dart';
+import '../views/procedure/procedure_screen/procedure_detail_screen.dart';
 import '../views/register/register_screen.dart';
 import '../views/setting/setting_screen/setting_screen.dart';
 import '../views/splash/splash_screens/splash_screen.dart';
@@ -107,6 +110,17 @@ class AppPages {
       name: AppRoutes.addprocedure,
       page: () =>AddProcedure(),
 
+    ),
+    GetPage(
+      name: AppRoutes.getAllprocedure,
+      page: () =>ProceduresScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.procedure_detail,
+      page: () {
+        final procedure = Get.arguments as Procedure;
+        return ProcedureDetailScreen(procedure: procedure);
+      },
     ),
   ];
 }
