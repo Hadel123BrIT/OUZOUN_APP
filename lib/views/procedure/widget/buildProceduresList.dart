@@ -102,6 +102,13 @@ Widget buildProceduresList() {
             phoneNumber: "0100444555",
             role: "Technician",
           ),
+          Assistant(
+            id: "ast1",
+            userName: "Hadel Br",
+            email: "hadel@example.com",
+            phoneNumber: "0111222333",
+            role: "Nurse",
+          ),
         ],
       ),
       Procedure(
@@ -186,6 +193,66 @@ Widget buildProceduresList() {
           userName: "Dr. hadel brmo",
           email: "hadel@example.com",
           phoneNumber: "0100123456",
+          role: "Dentist",
+        ),
+        tools: [
+          MedicalTool(
+            id: 4,
+            name: "Retractor",
+            width: 20.0,
+            height: 5.0,
+            thickness: 1.0,
+            quantity: 1,
+            kitId: null,
+            categoryId: 2,
+          ),
+        ],
+        kits: [
+          Kit(
+            id: 2,
+            name: "Custom Kit",
+            isMainKit: false,
+            implants: [
+              Implant(
+                id: 2,
+                radius: 4.1,
+                width: 4.1,
+                height: 12.0,
+                quantity: 3,
+                brand: "Dental Care",
+                description: "Premium implant",
+                imagePath: "",
+                kitId: 2,
+              ),
+            ],
+            tools: [
+
+            ],
+          ),
+        ],
+        assistants: [
+          Assistant(
+            id: "ast3",
+            userName: "Assistant Samir",
+            email: "samir@example.com",
+            phoneNumber: "0100555666",
+            role: "Assistant",
+          ),
+        ],
+      ),
+      Procedure(
+        id: 4,
+        doctorId: "doc4",
+        numberOfAssistants: 4,
+        assistantIds: ["ast3"],
+        categoryId: 2,
+        status: 3, // Completed
+        date: DateTime.now().subtract(Duration(days: 1)),
+        doctor: Doctor(
+          id: "doc2",
+          userName: "Dr. sara brmo",
+          email: "sara@example.com",
+          phoneNumber: "0051623478",
           role: "Dentist",
         ),
         tools: [

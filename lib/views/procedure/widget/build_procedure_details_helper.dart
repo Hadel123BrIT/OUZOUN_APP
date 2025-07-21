@@ -42,7 +42,7 @@ Widget buildHeaderCard(BuildContext context, bool isDarkMode, Color textColor,Pr
           ),
           Divider(color: Colors.grey[400], height: 20),
           buildDetailRow('Doctor', procedure.doctor.userName, textColor),
-          buildDetailRow('Date', DateFormat('yyyy-MM-dd').format(procedure.date), textColor),
+          buildDetailRow('Date', DateFormat('dd-MM-yyyy').format(procedure.date), textColor),
           buildDetailRow('Time', DateFormat('HH:mm').format(procedure.date), textColor),
           buildDetailRow('Assistants', '${procedure.numberOfAssistants}', textColor),
         ],
@@ -57,7 +57,7 @@ Widget buildDetailRow(String label, String value, Color textColor) {
     child: Row(
       children: [
         Text(
-          '$label: ',
+          '$label : ',
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontSize: 16,
@@ -81,22 +81,29 @@ Widget buildDetailRow(String label, String value, Color textColor) {
 }
 
 Widget buildSectionTitle(String title) {
-  return Text(
-    title,
-    style: TextStyle(
-      fontFamily: 'Montserrat',
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      color: AppColors.primaryGreen,
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Text(
+      title,
+      style: TextStyle(
+        fontFamily: 'Montserrat',
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: AppColors.primaryGreen,
+      ),
     ),
   );
 }
 
-Widget buildAssistantsList(Procedure procedure) {
+Widget buildAssistantsList(Procedure procedure , bool isDarkMode) {
   return Card(
     elevation: 2,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
+      side: BorderSide(
+        color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+        width: 2,
+      ),
     ),
     child: Padding(
       padding: EdgeInsets.all(12),
@@ -114,12 +121,8 @@ Widget buildAssistantsList(Procedure procedure) {
             style: TextStyle(fontFamily: 'Montserrat'),
           ),
           subtitle: Text(
-            assistant.role,
-            style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey),
-          ),
-          trailing: Text(
             assistant.phoneNumber,
-            style: TextStyle(fontFamily: 'Montserrat'),
+            style: TextStyle(fontFamily: 'Montserrat', color: Colors.grey),
           ),
         )).toList(),
       ),
@@ -127,14 +130,20 @@ Widget buildAssistantsList(Procedure procedure) {
   );
 }
 
-Widget buildToolsList(List<MedicalTool> tools) {
+Widget buildToolsList(List<MedicalTool> tools,isDarkMode) {
   return Card(
     elevation: 2,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
+      side: BorderSide(
+        color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+        width: 2,
+      ),
     ),
     child: Column(
       children: tools.map((tool) => ExpansionTile(
+        iconColor: Colors.white,
+        collapsedIconColor: Colors.white,
         title: Text(
           tool.name,
           style: TextStyle(fontFamily: 'Montserrat'),
@@ -145,8 +154,6 @@ Widget buildToolsList(List<MedicalTool> tools) {
             child: Column(
               children: [
                 buildToolDetailRow('Quantity', '${tool.quantity}'),
-                buildToolDetailRow('Dimensions', '${tool.width} x ${tool.height} x ${tool.thickness} cm'),
-                buildToolDetailRow('Category ID', '${tool.categoryId}'),
                 SizedBox(height: 10),
               ],
             ),
@@ -181,14 +188,19 @@ Widget buildToolDetailRow(String label, String value) {
 
 Widget buildKitCard(Kit kit, BuildContext context) {
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
   return Card(
     elevation: 2,
     margin: EdgeInsets.only(top: 10),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
+      side: BorderSide(
+        color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+        width: 3,
+      ),
     ),
     child: ExpansionTile(
+      iconColor: Colors.white,
+      collapsedIconColor: Colors.white,
       leading: kit.isMainKit
           ? Icon(Icons.medical_services, color: Colors.green)
           : Icon(Icons.construction, color: Colors.blue),
@@ -210,12 +222,12 @@ Widget buildKitCard(Kit kit, BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildSectionTitle('Implants (${kit.implants.length})'),
-              ...kit.implants.map((implant) => buildImplantItem(implant)).toList(),
+              ...kit.implants.map((implant) => buildImplantItem(implant,isDarkMode)).toList(),
 
               SizedBox(height: 10),
 
               buildSectionTitle('Tools (${kit.tools.length})'),
-              ...kit.tools.map((tool) => buildToolItem(tool)).toList(),
+              ...kit.tools.map((tool) => buildToolItem(tool,isDarkMode)).toList(),
 
               SizedBox(height: 10),
             ],
@@ -226,8 +238,16 @@ Widget buildKitCard(Kit kit, BuildContext context) {
   );
 }
 
-Widget buildImplantItem(Implant implant) {
+Widget buildImplantItem(Implant implant,isDarkMode) {
+
   return Card(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+      side: BorderSide(
+        color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+        width: 3,
+      ),
+    ),
     elevation: 1,
     margin: EdgeInsets.symmetric(vertical: 4),
     child: ListTile(
@@ -240,12 +260,8 @@ Widget buildImplantItem(Implant implant) {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(implant.description, style: TextStyle(fontFamily: 'Montserrat')),
+          Text(implant.description, style: TextStyle(fontFamily: 'Montserrat',color: Colors.grey)),
           SizedBox(height: 4),
-          Text(
-            'Size: ${implant.width} x ${implant.height} (R: ${implant.radius})',
-            style: TextStyle(fontFamily: 'Montserrat', fontSize: 12),
-          ),
         ],
       ),
       trailing: Column(
@@ -261,8 +277,15 @@ Widget buildImplantItem(Implant implant) {
   );
 }
 
-Widget buildToolItem(MedicalTool tool) {
+Widget buildToolItem(MedicalTool tool,isDarkMode) {
   return Card(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+      side: BorderSide(
+        color: isDarkMode ? Colors.grey[700]! : Colors.grey[400]!,
+        width: 2,
+      ),
+    ),
     elevation: 1,
     margin: EdgeInsets.symmetric(vertical: 4),
     child: ListTile(
@@ -272,19 +295,13 @@ Widget buildToolItem(MedicalTool tool) {
         tool.name,
         style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
       ),
-      subtitle: Text(
-        '${tool.width} x ${tool.height} x ${tool.thickness} cm',
-        style: TextStyle(fontFamily: 'Montserrat'),
+      subtitle:  Text(
+        'Quantity: ${tool.quantity}',
+        style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold,
+        color: Colors.grey
+        ),
       ),
-      trailing: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Qty: ${tool.quantity}',
-            style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+
     ),
   );
 }

@@ -49,13 +49,13 @@ class ProcedureDetailScreen extends StatelessWidget {
 
             // Assistants Section
             buildSectionTitle('Assistants (${procedure.assistants.length})'),
-            buildAssistantsList( procedure),
+            buildAssistantsList( procedure,  isDarkMode),
 
             SizedBox(height: 20),
 
             // Additional Tools Section
             buildSectionTitle('Additional Tools (${procedure.tools.length})'),
-            buildToolsList(procedure.tools),
+            buildToolsList(procedure.tools,isDarkMode),
 
             SizedBox(height: 20),
 

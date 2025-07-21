@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../../core/services/api_services.dart';
 import '../../../models/procedure_model.dart';
 import '../../kits/Kits_Controller/kits_controller.dart';
@@ -21,7 +20,7 @@ class ProcedureController extends GetxController {
   final RxBool showMainKitsOnly = false.obs;
   final RxBool isLoading = false.obs;
 
-  // اختيار التاريخ
+  // Select Data
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -51,7 +50,7 @@ class ProcedureController extends GetxController {
     }
   }
 
-  // اختيار الوقت
+  //Select Time
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
@@ -86,7 +85,7 @@ class ProcedureController extends GetxController {
     }
   }
 
- //جلب كافة المعلومات
+ //Fetch Procedure Information
   Map<String, dynamic> getProcedureData() {
     final combinedDateTime = DateTime(
       procedureDate.value!.year,
@@ -115,7 +114,7 @@ class ProcedureController extends GetxController {
   List<int> getFullKitsData() {
     return kitsController.selectedImplants.keys
         .map((id) => int.tryParse(id.toString()) ?? 0)
-        .where((id) => id > 0) // استبعاد الأصفار
+        .where((id) => id > 0)
         .toList();
   }
 
@@ -135,9 +134,10 @@ class ProcedureController extends GetxController {
     }).toList();
   }
 
-  //تابع ال post
+
+
+  //Post Procedure
   Future<void> postProcedure() async {
-    // التحقق من الحقول المطلوبة
     if (patientNameController.text.isEmpty) {
       Get.snackbar('Error'.tr, 'Patient name is required'.tr);
       return;
@@ -148,21 +148,17 @@ class ProcedureController extends GetxController {
     }
 
     try {
-      // الحصول على البيانات
       final procedureData = getProcedureData();
       print('Sending procedure data: $procedureData');
 
-      // الحصول على التوكن
       final box = GetStorage();
       final token = box.read('auth_token');
 
-      // إرسال البيانات مع التوكن
       final response = await apiServices.addProcedure(
         procedureData,
-        token: token, // إرسال التوكن
+        token: token,
       );
 
-      // معالجة الرد
       if (response.statusCode == 200 || response.statusCode == 201) {
         Get.snackbar('Success'.tr, 'Procedure added successfully'.tr);
         Get.back();
@@ -178,7 +174,7 @@ class ProcedureController extends GetxController {
     }
   }
 
-   //تابع ال fetch for all procedures
+  // fetch for all procedures
   Future<void> fetchProcedures() async {
     isLoading.value = true;
     try {
