@@ -7,10 +7,10 @@ import 'package:ouzoun/views/kits/Kits_Controller/kits_controller.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../core/constants/app_colors.dart';
-import 'build_detail_row.dart';
+import 'buildDetailRow.dart';
 
 Widget BuildImplantCard(BuildContext context, Map<String, dynamic> implant) {
-  KitsController controller=Get.find<KitsController>();
+  KitsController controller=Get.put(KitsController());
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
   final implantId = implant['id']?.toString() ?? UniqueKey().toString();
   return  Container(

@@ -9,7 +9,6 @@ class LocationPickerController extends GetxController {
   late GoogleMapController mapController;
   var selectedLocation = Rxn<LatLng>();
   var locationName = 'Tap your location'.obs;
-  String placeM = "";
   bool useOSM = true;
 
   Future<void> onMapTapped(LatLng latLng) async {
@@ -21,8 +20,6 @@ class LocationPickerController extends GetxController {
     try {
       if (useOSM) {
         await _getOSMLocationName(latLng);
-      } else {
-        await _getGoogleLocationName(latLng);
       }
     } catch (e) {
       locationName.value = '${latLng.latitude.toStringAsFixed(4)}, ${latLng.longitude.toStringAsFixed(4)}';
@@ -39,7 +36,7 @@ class LocationPickerController extends GetxController {
         headers: {'User-Agent': 'OuzounApp/1.0 (com.ouzoun.app)'},
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final data = json.decode(response.body);
         final address = data['display_name'] ?? 'Location: ${latLng.latitude.toStringAsFixed(4)}, ${latLng.longitude.toStringAsFixed(4)}';
         _updateLocationInfo(address);
@@ -52,23 +49,8 @@ class LocationPickerController extends GetxController {
     }
   }
 
-  Future<void> _getGoogleLocationName(LatLng latLng) async {
-    final placemarks = await google_geocoding.placemarkFromCoordinates(
-      latLng.latitude,
-      latLng.longitude,
-    );
-
-    if (placemarks.isNotEmpty) {
-      final place = placemarks.first;
-      final address = '${place.country},${place.street}, ${place.locality}';
-      _updateLocationInfo(address);
-    } else {
-      throw Exception('No address found');
-    }
-  }
 
   void _updateLocationInfo(String address) {
-    placeM = address;
     locationName.value = address;
   }
 }

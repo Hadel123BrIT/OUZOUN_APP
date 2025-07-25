@@ -49,7 +49,6 @@ static const String baseUrl="https://9774ad506712.ngrok-free.app/api";
       return response;
     } on DioException catch (e) {
       print("Dio Error: ${e.message}");
-      print("Dio Error Type: ${e.type}");
       if (e.response != null) {
         print("Error Response Data: ${e.response?.data}");
         print("Error Status Code: ${e.response?.statusCode}");
@@ -201,4 +200,39 @@ static const String baseUrl="https://9774ad506712.ngrok-free.app/api";
     }
   }
 
+
+  Future<List<Procedure>> getProceduresPaged({
+    required int pageSize,
+    required int pageNum,
+    required String doctorId,
+    required String assistantId,
+  }) async {
+    try {
+      final token = GetStorage().read('auth_token');
+      final response = await dio.get(
+        '$baseUrl/api/Procedures/GetProceduresPaged',
+        queryParameters: {
+          'pageSize': pageSize,
+          'pageNum': pageNum,
+          'DoctorId': doctorId,
+          'AssistantId': assistantId,
+        },
+        options: Options(
+          headers: {
+            if (token != null) 'Authorization': 'Bearer $token',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return (response.data as List)
+            .map((item) => Procedure.fromJson(item))
+            .toList();
+      }
+      return [];
+    } on DioException catch (e) {
+      throw Exception('Failed to load paged procedures: ${e.message}');
+    }
+  }
 }

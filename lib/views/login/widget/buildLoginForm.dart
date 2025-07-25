@@ -15,7 +15,6 @@ class buildLogin {
       child: ListView(
         children: [
           Form(
-
             key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

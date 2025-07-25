@@ -5,8 +5,8 @@ import 'package:ouzoun/Widgets/custom_button.dart' hide CustomButton;
 import '../../../core/constants/app_colors.dart';
 import '../../../widgets/custom_button.dart';
 import '../Kits_Controller/kits_controller.dart';
-import '../widget/build_spec_item.dart';
-import '../widget/build_tool_item.dart';
+import '../widget/buildSpecItem.dart';
+import '../widget/buildToolItem.dart';
 
 class ImplantDetailScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();

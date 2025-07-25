@@ -7,7 +7,7 @@ import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
 
 Widget buildToolItem(BuildContext context, String implantId, String toolName) {
-  final KitsController controller = Get.find<KitsController>();
+  final KitsController controller = Get.put(KitsController());
   return Obx(() {
     final toolsList = controller.selectedToolsForImplants[implantId] ?? [];
     final isSelected = toolsList.contains(toolName);

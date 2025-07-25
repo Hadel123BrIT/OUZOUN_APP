@@ -17,7 +17,7 @@ class RegisterHelpers {
   static Widget buildLoadingIndicator() {
     return Center(
       child: Lottie.asset(
-        'assets/animations/Animation - 1740348375718.json',
+        '',
         fit: BoxFit.cover,
         repeat: true,
         height: 150,
@@ -62,7 +62,10 @@ class RegisterHelpers {
     return InkWell(
       onTap: () async {
         Get.dialog(
-          Center(child: CircularProgressIndicator()),
+          Center(child: CircularProgressIndicator(
+            color: AppColors.primaryGreen,
+          ),
+          ),
           barrierDismissible: false,
         );
 
@@ -92,7 +95,6 @@ class RegisterHelpers {
               ? "Tap to select location".tr
               : "Location selected. Tap to change".tr,
           obscureText: false,
-
           suffixIcon: controller.selectedLocation.value != null
               ? Icon(Icons.check_circle, color: Colors.green)
               : null,
@@ -163,15 +165,33 @@ class RegisterHelpers {
     );
   }
 
+  static Widget buildClinicField(TextEditingController controller) {
+    return CustomTextFormField(
+      prefixIcon: Icon(Icons.medical_services, color: Colors.grey[500]),
+      validator: (val) => val?.isEmpty ?? true ? "Clinic name must not be empty".tr : null,
+      myController: controller,
+      hintText: "Enter clinic name".tr,
+      obscureText: false,
+    );
+  }
+
+  static Widget buildAddressField(TextEditingController controller) {
+    return CustomTextFormField(
+      prefixIcon: Icon(Icons.location_city, color: Colors.grey[500]),
+      validator: (val) => val?.isEmpty ?? true ? "Address must not be empty".tr : null,
+      myController: controller,
+      hintText: "Enter your address".tr,
+      obscureText: false,
+    );
+  }
+
   static Widget buildSignUpButton(RegisterController controller) {
     return Obx(
           () => CustomButton(
         onTap: () async {
           if (controller.isLoading.value) return;
           await controller.register();
-          if (!controller.isLoading.value) {
-            //Get.toNamed(AppRoutes.firstchoice);
-          }
+
         },
         text: controller.isLoading.value ? 'Loading...'.tr : 'Sign Up'.tr,
         color: AppColors.primaryGreen,
@@ -209,23 +229,4 @@ class RegisterHelpers {
     );
   }
 
-  static Widget buildClinicField(TextEditingController controller) {
-    return CustomTextFormField(
-      prefixIcon: Icon(Icons.medical_services, color: Colors.grey[500]),
-      validator: (val) => val?.isEmpty ?? true ? "Clinic name must not be empty".tr : null,
-      myController: controller,
-      hintText: "Enter clinic name".tr,
-      obscureText: false,
-    );
-  }
-
-  static Widget buildAddressField(TextEditingController controller) {
-    return CustomTextFormField(
-      prefixIcon: Icon(Icons.location_city, color: Colors.grey[500]),
-      validator: (val) => val?.isEmpty ?? true ? "Address must not be empty".tr : null,
-      myController: controller,
-      hintText: "Enter your address".tr,
-      obscureText: false,
-    );
-  }
 }

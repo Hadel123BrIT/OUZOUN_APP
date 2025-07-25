@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_text.dart';
 import '../../../core/constants/app_colors.dart';
-import 'build_detail_item.dart';
-import 'show_quantity_dialog.dart';
+import 'buildDetailItem.dart';
+import 'showQuantityDialog.dart';
 
 Widget BuildToolCard({
   required bool isAppear,
@@ -24,7 +24,7 @@ Widget BuildToolCard({
 
   return GestureDetector(
     onTap: () {
-      onQuantitySelected(selectedQuantity ?? 0 + 1);
+
     },
     child: Card(
       margin: EdgeInsets.symmetric(vertical: context.height * 0.01),
@@ -80,16 +80,9 @@ Widget BuildToolCard({
                       BuildDetailItem(context, "Width", width),
                       SizedBox(width: context.width * 0.02),
                       BuildDetailItem(context, "Thickness", thickness),
-                      if (showQuantityDetail)
-                        SizedBox(width: context.width * 0.02),
-                        // BuildDetailItem(
-                        //     context,
-                        //     "Quantity",
-                        //     quantity is int ? quantity.toString() : quantity,
-                        //     isNumeric: quantity is int
-                        // ),
+                      if (showQuantityDetail) SizedBox(width: context.width * 0.02),
                     ],
-                  ),
+                  )
                 ],
               ),
             ),

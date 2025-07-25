@@ -5,9 +5,9 @@ import '../../../Core/Services/media_query_service.dart';
 import '../../../Widgets/custom_drawer.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
-import '../widget/build_detail_row.dart';
-import '../widget/build_implant_card.dart';
-import '../widget/show_implant_dialog.dart';
+import '../widget/buildDetailRow.dart';
+import '../widget/buildImplantCard.dart';
+import '../widget/showImplantDialog.dart';
 
 class Implantkits extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -17,7 +17,7 @@ class Implantkits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final KitsController controller = Get.find<KitsController>();
+    final KitsController controller = Get.put(KitsController());
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomDrawer(),

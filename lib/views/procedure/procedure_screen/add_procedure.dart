@@ -5,7 +5,7 @@ import 'package:ouzoun/routes/app_routes.dart';
 import 'package:ouzoun/views/procedure/procedure_controller/procedure_controller.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../kits/Kits_Controller/kits_controller.dart';
-import '../widget/build_procedure_helper.dart';
+import '../widget/buildProcedureHelper.dart';
 
 class AddProcedure extends StatelessWidget {
   AddProcedure({super.key});

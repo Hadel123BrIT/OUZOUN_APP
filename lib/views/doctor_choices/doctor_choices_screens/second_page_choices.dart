@@ -1,11 +1,9 @@
-// second_page_choices.dart
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
- // show AppAssets;
+import 'package:ouzoun/views/doctor_choices/widget/showAssistantDialog.dart';
 
-import '../../../Widgets/custom_text.dart';
 import '../../../Widgets/build_choice_card.dart';
 import '../../../Widgets/custom_awesome_dialog.dart';
 import '../../../core/constants/app_colors.dart';
@@ -19,7 +17,6 @@ class SecondPageChoices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
@@ -39,7 +36,7 @@ class SecondPageChoices extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const SizedBox(height: 70),
+                SizedBox(height: context.height * 0.1),
                 Text(
                   "please choose.\nHow can we help you",
                   textAlign: TextAlign.center,
@@ -48,7 +45,9 @@ class SecondPageChoices extends StatelessWidget {
                 SizedBox(height: context.height * 0.4),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.width * 0.05,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +59,9 @@ class SecondPageChoices extends StatelessWidget {
                                 ? context.height * 0.20
                                 : context.height * 0.4,
                             icon: FontAwesomeIcons.handsHelping,
-                            onTap: () => showAssistantDialog(context),
+                            onTap: () {
+                              showAssistantsDialog(context);
+                            },
                             subtitle: controller.selectedAssistants.value > 0
                                 ? '${controller.selectedAssistants.value} assistant(s)'
                                 : '',
@@ -68,9 +69,9 @@ class SecondPageChoices extends StatelessWidget {
                             title: 'With an assistant',
                           )),
                         ),
-                        const SizedBox(width: 20),
+                        SizedBox(width: context.width * 0.05),
                         Flexible(
-                          child:  BuildChoiceCard(
+                          child: BuildChoiceCard(
                             color: AppColors.primaryGreen,
                             height: context.isPortrait
                                 ? context.height * 0.20
@@ -97,16 +98,19 @@ class SecondPageChoices extends StatelessWidget {
           ),
           Obx(() => controller.showNextButton.value && controller.selectedAssistants.value >= 0
               ? Positioned(
-            bottom: 40,
+            bottom: context.height * 0.05, // بدلاً من 40
             left: 0,
             right: 0,
             child: Center(
-              child:    GestureDetector(
-                  onTap: (){
-                    Get.toNamed(AppRoutes.homepage);
-                  },
-                  child:  Text("next".tr,
-                    textAlign: TextAlign.center,style:Theme.of(context).textTheme.headlineSmall,)
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.homepage);
+                },
+                child: Text(
+                  "next".tr,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
               ),
             ),
           )

@@ -275,9 +275,8 @@ Widget buildKitsToolsButtonsRow(BuildContext context) {
         child: controller.selectedImplants.isEmpty
             ? TextButton(
           onPressed: () async {
-            final result = await Get.to(() => Implantkits());
-            if (result != null) {
-            }
+            await Get.to(() => Implantkits());
+
           },
           child: Text('Tap to choose Full Implant Kits',
             style: TextStyle(
@@ -523,10 +522,7 @@ Widget _buildSelectedImplantsList(BuildContext context, RxMap<String, Map<String
             ),
           ),
           onPressed: () async {
-            final result = await Get.to(() => Implantkits());
-            if (result != null) {
-              // تحديث القائمة إذا لزم الأمر
-            }
+            await Get.to(() => Implantkits());
           },
           child: Text(
             'Edit Selection',
@@ -609,7 +605,6 @@ Widget _buildPartialImplantsList(BuildContext context, List<Map<String, dynamic>
               backgroundColor: AppColors.primaryGreen,
             ),
             onPressed: () async {
-              // عرض قائمة الزرعات للاختيار
               final selectedImplant = await showDialog<Map<String, dynamic>>(
                 context: context,
                 builder: (context) => AlertDialog(

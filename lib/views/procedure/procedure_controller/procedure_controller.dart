@@ -19,6 +19,10 @@ class ProcedureController extends GetxController {
   final RxInt statusFilter = 0.obs;
   final RxBool showMainKitsOnly = false.obs;
   final RxBool isLoading = false.obs;
+  final Rx<Procedure?> selectedProcedure = Rx<Procedure?>(null);
+  final RxInt currentPage = 1.obs;
+  final RxInt itemsPerPage = 3.obs;
+  final RxBool hasMore = true.obs;
 
   // Select Data
   Future<void> selectDate(BuildContext context) async {
@@ -174,6 +178,8 @@ class ProcedureController extends GetxController {
     }
   }
 
+
+
   // fetch for all procedures
   Future<void> fetchProcedures() async {
     isLoading.value = true;
@@ -182,6 +188,53 @@ class ProcedureController extends GetxController {
       procedures.assignAll(response);
     } catch (e) {
       Get.snackbar('Error', 'Failed to load procedures');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+
+  //Fetch Procedure by Pages
+  Future<void> fetchProceduresPaged({bool loadMore = false}) async {
+    try {
+      if (!loadMore) {
+        currentPage.value = 1;
+        procedures.clear();
+      }
+
+      isLoading.value = true;
+
+      final response = await apiServices.getProceduresPaged(
+        pageSize: itemsPerPage.value,
+        pageNum: currentPage.value,
+        doctorId: 'your_doctor_id',
+        assistantId: 'your_assistant_id',
+      );
+
+      if (response.isNotEmpty) {
+        procedures.addAll(response);
+        currentPage.value++;
+        hasMore.value = response.length >= itemsPerPage.value;
+      } else {
+        hasMore.value = false;
+      }
+    } catch (e) {
+      Get.snackbar('Error'.tr, 'Failed to load procedures'.tr);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+
+  // get one procedure details
+  Future<void> fetchProcedureDetails(int procedureId) async {
+    try {
+      isLoading.value = true;
+      final procedure = await apiServices.getProcedureDetails(procedureId);
+      selectedProcedure.value = procedure;
+    } catch (e) {
+      Get.snackbar('Error'.tr, 'Failed to load procedure details'.tr);
+      rethrow;
     } finally {
       isLoading.value = false;
     }
@@ -203,6 +256,11 @@ class ProcedureController extends GetxController {
     }).toList();
   }
 
+  //Update the list
+  void updateItemsPerPage(int value) {
+    itemsPerPage.value = value;
+    fetchProceduresPaged();
+  }
   @override
   void onClose() {
     patientNameController.dispose();

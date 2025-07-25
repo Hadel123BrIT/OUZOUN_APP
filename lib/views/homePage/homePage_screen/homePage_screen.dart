@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ouzoun/Routes/app_routes.dart';
@@ -12,7 +13,7 @@ import '../widget/build_body.dart';
 
 class HomePageScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-
+  NavigationController controller=Get.put(NavigationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class HomePageScreen extends StatelessWidget {
           child: Icon(Icons.home, color: Colors.black),
         ),
         onPressed: () {
-          Get.find<NavigationController>().changeIndex(2);
+          controller.changeIndex(2);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -35,13 +36,28 @@ class HomePageScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: IconButton(onPressed: (){
-              Get.toNamed(AppRoutes.addprocedure);
-            }, icon: Icon(CupertinoIcons.plus_app,
-            color: Colors.white,
-            )),
+              padding: EdgeInsets.symmetric(horizontal: 14),
+               child: InkWell(
+                 onTap: (){
+                   Get.toNamed(AppRoutes.addprocedure);
+                 },
+                 child: Stack(
+                   alignment: Alignment.topRight,
+                   children: [
+                     IconButton(onPressed: (){
+                       Get.toNamed(AppRoutes.addprocedure);
+                     }, icon: Icon( FontAwesomeIcons.tooth,
+                     color: Colors.white,
+                     )),
+                     Icon(Icons.add_circle_outline_sharp,
+                     color: Colors.white,
+                       size: 20,
+                     ),
+                   ],
+                 ),
+               ),
           ),
+
         ],
         leading: IconButton(
           onPressed: () {

@@ -11,16 +11,21 @@ import '../../../models/procedure_model.dart';
 import '../procedure_controller/procedure_controller.dart';
 import '../widget/buildProceduresList.dart';
 import '../widget/buildSearchAndFilterBar.dart';
+import '../widget/showPaginationDialog.dart';
 
 
 class ProceduresScreen extends StatelessWidget {
-  final ProcedureController controller = Get.put(ProcedureController());
+  final ProcedureController controller = Get.put(ProcedureController(),
+  );
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         actions: [
+          IconButton(
+            onPressed: () => showPaginationDialog(context),
+            icon: Icon(Icons.tune, color: Colors.white),
+          ),
         IconButton(onPressed: (){
           controller.fetchProcedures();
         }, icon: Icon(Icons.refresh,
@@ -83,6 +88,11 @@ class ProceduresScreen extends StatelessWidget {
             //   ),
             // ),
             buildSearchAndFilterBar(context),
+            Obx(() => Text(
+          'page  ${controller.currentPage} - show ${controller.itemsPerPage} element',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+            ),
             Expanded(child: buildProceduresList()),
           ],
         ),

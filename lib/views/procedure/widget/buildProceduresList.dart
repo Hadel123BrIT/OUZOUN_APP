@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:ouzoun/core/constants/app_colors.dart';
 
 import '../../../models/Implant_model.dart';
 import '../../../models/assistant_model.dart';
@@ -305,7 +306,10 @@ Widget buildProceduresList() {
   final dummyProcedures = createDummyProcedures();
   return Obx(() {
     if (controller.isLoading.value) {
-      return Center(child: CircularProgressIndicator());
+      return Center(child: CircularProgressIndicator(
+        color: AppColors.primaryGreen,
+      ),
+      );
     }
 
     // if (controller.filteredProcedures.isEmpty) {

@@ -403,24 +403,6 @@ class KitsController extends GetxController {
 
 
   //Function For Surgical kits
-  void updateSurgicalToolQuantity(int index, int quantity) {
-    if (index >= 0 && index < surgicalToolQuantities.length) {
-      surgicalToolQuantities[index] = quantity;
-      update();
-    }
-  }
-
-  void updateSelectedSurgicalTools() {
-    selectedSurgicalTools.clear();
-    for (int i = 0; i < surgicalToolQuantities.length; i++) {
-      if (surgicalToolQuantities[i] > 0) {
-        selectedSurgicalTools.add({
-          ...surgicalKits[i],
-          'quantity': surgicalToolQuantities[i],
-        });
-      }
-    }
-  }
 
   void clearSurgicalToolsSelection() {
     surgicalToolQuantities.assignAll(List.filled(surgicalKits.length, 0));
@@ -442,6 +424,8 @@ class KitsController extends GetxController {
 
 
   // Function For Implants kits
+
+  //add implant when I click CheckBox
   void toggleImplantSelection(String implantId, Map<String, dynamic> implantData) {
     if (selectedImplants.containsKey(implantId)) {
       selectedImplants.remove(implantId);

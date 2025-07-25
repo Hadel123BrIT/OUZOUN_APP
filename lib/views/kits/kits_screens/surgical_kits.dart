@@ -9,7 +9,7 @@ import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_drawer.dart';
 import '../../../core/constants/app_colors.dart';
 import '../Kits_Controller/kits_controller.dart';
-import '../widget/build_tool_card.dart';
+import '../widget/buildToolCard.dart';
 
 class SurgicalKits extends StatelessWidget {
   final KitsController controller = Get.put(KitsController());
@@ -145,7 +145,7 @@ class SurgicalKits extends StatelessWidget {
                         verticalOffset: 50.0,
                         child: FadeInAnimation(
                           child:  BuildToolCard(
-                            showQuantityDetail: false,
+                            showQuantityDetail: true,
                             isAppear: false,
                             context: context,
                             imagePath: surgicalTools[index]['image'],
@@ -154,9 +154,9 @@ class SurgicalKits extends StatelessWidget {
                             width: surgicalTools[index]['width'],
                             thickness: surgicalTools[index]['thickness'],
                             quantity: surgicalTools[index]['quantity'],
-                             selectedQuantity: controller.surgicalToolQuantities[index],
+                             selectedQuantity:0,
                             onQuantitySelected: (quantity) {
-                              controller.updateSurgicalToolQuantity(index, quantity);
+                              // controller.updateSurgicalToolQuantity(index, quantity);
                             },
                           )),
                         ),
@@ -164,18 +164,6 @@ class SurgicalKits extends StatelessWidget {
                     ),
                   ),
                 ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: CustomButton(
-                  onTap: () {
-
-                    Get.back();
-
-                  },
-                  text: "Save Selection",
-                  color: AppColors.primaryGreen,
-                ),
-              ),
       ],
         ),
       ),

@@ -6,6 +6,8 @@ class DoctorChoicesController extends GetxController {
   RxInt tempSelection = 0.obs;
   RxBool showNextButton = false.obs;
   var withoutAssistantClicked = false.obs;
+
+
   void selectAssistants(int number) {
     tempSelection.value = number;
     showNextButton.value = true;

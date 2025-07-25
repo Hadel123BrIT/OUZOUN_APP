@@ -55,8 +55,8 @@ class Procedure {
   String get statusText {
     switch (status) {
       case 3: return 'Pending';
-      case 4: return 'Completed';
-      default: return 'Unknown';
+      case 4: return 'acceptable';
+      default: return 'unacceptable';
     }
   }
 
@@ -64,7 +64,7 @@ class Procedure {
     switch (status) {
       case 3: return Colors.orange;
       case 4: return Colors.green;
-      default: return Colors.grey;
+      default: return Colors.red;
     }
   }
 }

@@ -23,7 +23,10 @@ class LoginController extends GetxController {
           print("***********************************Token: $token");
           final box = GetStorage();
           await box.write('--------------------------user_token', token);
-          Get.snackbar('Success', 'Login successful');
+          Get.snackbar('Success', 'Login successful',
+            margin: EdgeInsets.all(15),
+
+          );
           Get.offAllNamed(AppRoutes.firstchoice);
         }
       } catch (e) {
@@ -32,7 +35,9 @@ class LoginController extends GetxController {
         isLoading(false);
       }
     } else {
-      Get.snackbar('Error', 'Please fill all fields');
+      Get.snackbar('Error', 'Please fill all fields',
+
+      );
     }
   }
 

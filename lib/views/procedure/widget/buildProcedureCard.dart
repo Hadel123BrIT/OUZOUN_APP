@@ -4,9 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:ouzoun/Widgets/custom_button.dart';
 import 'package:ouzoun/core/constants/app_colors.dart';
 import '../../../models/procedure_model.dart';
+import '../procedure_controller/procedure_controller.dart';
 import '../procedure_screen/procedure_detail_screen.dart';
 
 Widget buildProcedureCard(Procedure procedure, BuildContext context) {
+  ProcedureController controller=Get.put(ProcedureController());
   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
   return Card(
     color: isDarkMode ? Theme.of(context).cardColor : Colors.white,
@@ -179,9 +181,21 @@ Widget buildProcedureCard(Procedure procedure, BuildContext context) {
           //     ),
           //   ],
           // )).toList(),
-          CustomButton(onTap: (){
-            Get.to(() => ProcedureDetailScreen(procedure: procedure));
-          }, text: "View details", color: AppColors.primaryGreen),
+          CustomButton(
+            // onTap: () async {
+            //   try {
+            //     await controller.fetchProcedureDetails(procedure.id);
+            //     Get.to(() => ProcedureDetailScreen(procedure: controller.selectedProcedure.value!));
+            //   } catch (e) {
+            //     Get.snackbar('Error'.tr, 'Cannot view details: ${e.toString()}'.tr);
+            //   }
+            // },
+            onTap: (){
+              Get.to(() => ProcedureDetailScreen(procedure: procedure));
+            },
+            text: "View details".tr,
+            color: AppColors.primaryGreen,
+          ),
         ],
       ),
     ),

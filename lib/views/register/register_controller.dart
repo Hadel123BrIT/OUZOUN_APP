@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ouzoun/core/services/api_services.dart';
 import '../../Routes/app_routes.dart';
-import 'package:get_storage/get_storage.dart';
 class RegisterController extends GetxController {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -24,6 +23,7 @@ class RegisterController extends GetxController {
     locationController.text = address;
   }
 
+
   Future<void> register() async {
     if (!formKey.currentState!.validate()) {
       Get.snackbar('Error'.tr, 'Please fill all fields correctly'.tr);
@@ -36,7 +36,6 @@ class RegisterController extends GetxController {
     }
 
     isLoading(true);
-    errorMessage('');
 
     try {
       final response = await apiServices.registerUser(
@@ -93,6 +92,8 @@ class RegisterController extends GetxController {
     passwordController.dispose();
     locationController.dispose();
     phoneController.dispose();
+    clinicNameController.dispose();
+    addressController.dispose();
     super.onClose();
   }
 }

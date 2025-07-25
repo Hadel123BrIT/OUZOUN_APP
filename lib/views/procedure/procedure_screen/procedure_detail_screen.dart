@@ -7,7 +7,7 @@ import '../../../models/Implant_model.dart';
 import '../../../models/kit_model.dart';
 import '../../../models/medicalTool_model.dart';
 import '../../../models/procedure_model.dart';
-import '../widget/build_procedure_details_helper.dart';
+import '../widget/buildProcedureDetailsHelper.dart';
 
 class ProcedureDetailScreen extends StatelessWidget {
   final Procedure procedure;

@@ -103,7 +103,7 @@ class AppPages {
       name: AppRoutes.implant_kit,
       page: () {
         final implant = Get.arguments ?? {};
-        return ImplantDetailScreen(implant: implant);
+        return Implantkits();
       },
     ),
     GetPage(
